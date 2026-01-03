@@ -1,0 +1,48 @@
+/*
+ *    MCreator note: This file will be REGENERATED on each build.
+ */
+package net.mcreator.verse.init;
+
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.BlockItem;
+
+import net.mcreator.verse.item.*;
+import net.mcreator.verse.VerseMod;
+
+public class VerseModItems {
+	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(VerseMod.MODID);
+	public static final DeferredItem<Item> TEMP;
+	public static final DeferredItem<Item> MOBANIMTESTSTICK;
+	public static final DeferredItem<Item> NPC_SPAWN_EGG;
+	public static final DeferredItem<Item> OUTFIT_RESETER;
+	public static final DeferredItem<Item> OUTFIT_TABLE;
+	public static final DeferredItem<Item> GRANT_FLAME_WITHIN;
+	public static final DeferredItem<Item> TALENTCHECKER;
+	public static final DeferredItem<Item> GRAN_SUDA;
+	static {
+		TEMP = REGISTRY.register("temp", TempItem::new);
+		MOBANIMTESTSTICK = REGISTRY.register("mobanimteststick", MobanimteststickItem::new);
+		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
+		OUTFIT_RESETER = REGISTRY.register("outfit_reseter", OutfitReseterItem::new);
+		OUTFIT_TABLE = block(VerseModBlocks.OUTFIT_TABLE);
+		GRANT_FLAME_WITHIN = REGISTRY.register("grant_flame_within", GrantFlameWithinItem::new);
+		TALENTCHECKER = REGISTRY.register("talentchecker", TalentcheckerItem::new);
+		GRAN_SUDA = REGISTRY.register("gran_suda", GranSudaItem::new);
+	}
+
+	// Start of user code block custom items
+	// End of user code block custom items
+	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
+		return block(block, new Item.Properties());
+	}
+
+	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block, Item.Properties properties) {
+		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties));
+	}
+}

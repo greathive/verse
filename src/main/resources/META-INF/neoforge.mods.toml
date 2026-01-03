@@ -1,0 +1,53 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="Not specified"
+
+[[mods]]
+modId="verse"
+version="1.0.0"
+displayName="verse"
+displayURL="https://mcreator.net"
+logoFile="logo.png"
+credits="greathive"
+authors="greathive"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[mixins]]
+    config = "verse.mixins.json"
+
+# Start of user code block custom mixins
+# End of user code block custom mixins
+
+[[dependencies.verse]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.190,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.verse]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="AFTER"
+    side="BOTH"
+
+
+[[dependencies.verse]]
+    modId="kleidersplayerrenderer"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.verse]]
+    modId="nexus_compiler"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration

@@ -1,0 +1,9 @@
+{
+  "parent": "verse:custom/outfittable",
+  "textures": {
+    "all": "verse:block/outfittable",
+    "particle": "verse:block/outfittable",
+    "0": "verse:block/outfittable"
+  },
+  "render_type": "cutout_mipped"
+}

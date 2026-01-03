@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "verse:gran_suda",
+    {
+      "id": "#minecraft:axes",
+      "required": false
+    },
+    "minecraft:mace"
+  ]
+}

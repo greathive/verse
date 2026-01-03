@@ -1,0 +1,12 @@
+{
+  "_fv": 79,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "N",
+    "keyBindingName": "Menu",
+    "keyBindingCategoryKey": "verse",
+    "onKeyPressed": {
+      "name": "StatMenuOnKeyPressed"
+    }
+  }
+}

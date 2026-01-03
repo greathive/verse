@@ -1,0 +1,21 @@
+{
+  "id": "verse:gran_suda",
+  "followpitch": "0.5",
+  "frameHeight": "80",
+  "frameWidth": "150",
+  "frameCount": "8",
+  "swingroll": {
+     "1": "165",
+     "2": "-30",
+     "3": "115"
+  },
+  "percent": {
+     "start": "0.35",
+     "end": "0.8"
+  },
+  "horizontalScale": "2.25",
+  "verticalScale": "3.25",
+  "yOffset": "-0.5",
+  "distance": "-0.25",
+  "path": "verse:textures/trail/sudatrail"
+}

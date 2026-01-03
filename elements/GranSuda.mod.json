@@ -1,0 +1,36 @@
+{
+  "_fv": 79,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Axe",
+    "renderType": 1,
+    "blockingRenderType": 0,
+    "texture": "gran_suda",
+    "customModelName": "sudamodel:default",
+    "blockingModelName": "Normal blocking",
+    "guiTexture": "",
+    "name": "Gran Sudaruska",
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:VerseWeapons"
+      }
+    ],
+    "efficiency": 9.0,
+    "attackSpeed": 0.7,
+    "enchantability": 1,
+    "damageVsEntity": 12.0,
+    "usageCount": 10000,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [],
+    "immuneToFire": false,
+    "blockDropsTier": "NETHERITE",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false
+  }
+}

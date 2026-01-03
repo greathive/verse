@@ -1,0 +1,8 @@
+{
+  "_fv": 79,
+  "_type": "procedure",
+  "definition": {
+    "procedurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"event_trigger\" deletable=\"false\" x=\"40\" y=\"40\"><field name=\"trigger\">no_ext_trigger</field><next><block type=\"controls_if\"><value name=\"IF0\"><block type=\"entity_is_tagged_in\"><value name=\"entity\"><block type=\"entity_from_deps\"></block></value><value name=\"tag\"><block type=\"text\"><field name=\"TEXT\">verse:canparry</field></block></value></block></value><statement name=\"DO0\"><block type=\"java_code\"><field name=\"CODE\">if (!entity.level().isClientSide()) {&amp;#10;\t\t\t\t\t// Server side - send packet to all clients&amp;#10;\t\t\t\t\tPacketDistributor.sendToPlayersTrackingEntity(entity, new PlayPlayerAnimationMessage(entity.getId(), \"verse:rapidpunches\", true, true));&amp;#10;\t\t\t\t\tVerseMod.LOGGER.info(\"Sent animation packet for zombie ID: \" + entity.getId());&amp;#10;\t\t\t\t}</field></block></statement></block></next></block></xml>",
+    "skipDependencyNullCheck": false
+  }
+}

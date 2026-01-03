@@ -1,0 +1,92 @@
+{
+  "parry": {
+    "subtitle": "subtitles.parry",
+    "sounds": [
+      {
+        "name": "verse:parry_sound__real_.mp3",
+        "stream": false
+      }
+    ]
+  },
+  "attributeincrease": {
+    "subtitle": "subtitles.attributeincrease",
+    "sounds": [
+      {
+        "name": "verse:attribute_increased_1.mp3",
+        "stream": false
+      }
+    ]
+  },
+  "powerup": {
+    "subtitle": "subtitles.powerup",
+    "sounds": [
+      {
+        "name": "verse:levelup2",
+        "stream": false
+      }
+    ]
+  },
+  "swordswing1": {
+    "subtitle": "subtitles.swordswing1",
+    "sounds": [
+      {
+        "name": "verse:altswish",
+        "stream": false
+      }
+    ]
+  },
+  "swordswing2": {
+    "subtitle": "subtitles.swordswing2",
+    "sounds": [
+      {
+        "name": "verse:altswish2",
+        "stream": false
+      }
+    ]
+  },
+  "swordswing3": {
+    "subtitle": "subtitles.swordswing3",
+    "sounds": [
+      {
+        "name": "verse:swing_3_alt.mp3",
+        "stream": false
+      }
+    ]
+  },
+  "axeswing1": {
+    "subtitle": "subtitles.axeswing1",
+    "sounds": [
+      {
+        "name": "verse:axe1",
+        "stream": false
+      }
+    ]
+  },
+  "axeswing2": {
+    "subtitle": "subtitles.axeswing2",
+    "sounds": [
+      {
+        "name": "verse:axe2",
+        "stream": false
+      }
+    ]
+  },
+  "blockedattack": {
+    "subtitle": "subtitles.blockedattack",
+    "sounds": [
+      {
+        "name": "verse:weapon_and_shield_block_1.mp3",
+        "stream": false
+      }
+    ]
+  },
+  "blockattempt": {
+    "subtitle": "subtitles.blockattempt",
+    "sounds": [
+      {
+        "name": "verse:block_attempt.mp3",
+        "stream": false
+      }
+    ]
+  }
+}

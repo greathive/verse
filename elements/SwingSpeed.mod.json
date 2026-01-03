@@ -1,0 +1,18 @@
+{
+  "_fv": 79,
+  "_type": "attribute",
+  "definition": {
+    "name": "Swing Speed",
+    "minValue": 0.0,
+    "maxValue": 10.0,
+    "defaultValue": 1.0,
+    "sentiment": "POSITIVE",
+    "addToAllEntities": false,
+    "addToPlayers": false,
+    "entities": [
+      {
+        "value": "CUSTOM:Npc"
+      }
+    ]
+  }
+}

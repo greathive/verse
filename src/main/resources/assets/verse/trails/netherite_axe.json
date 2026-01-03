@@ -1,0 +1,22 @@
+{
+  "id": "minecraft:netherite_axe",
+  "frameHeight": "64",
+  "frameWidth": "80",
+  "frameCount": "4",
+  "swingroll": {
+     "1": "169",
+     "2": "11",
+     "3": "0",
+     "4": "0",
+     "5": "0"
+  },
+  "percent": {
+     "start": "0.4",
+     "end": "0.8"
+  },
+  "horizontalScale": "1.5",
+  "verticalScale": "1",
+  "yOffset": "-0.5",
+  "distance": "1.5",
+  "path": "verse:textures/trail/netherite"
+}

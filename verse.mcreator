@@ -1,0 +1,2626 @@
+{
+  "mod_elements": [
+    {
+      "name": "Screenshaking",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "screenshaking",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/ScreenshakingMobEffect.java"
+        ]
+      },
+      "path": "~/screenshake"
+    },
+    {
+      "name": "Shakescreen",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "shakescreen",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "pitch",
+            "type": "number"
+          },
+          {
+            "name": "roll",
+            "type": "number"
+          },
+          {
+            "name": "yaw",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ShakescreenProcedure.java"
+        ]
+      },
+      "path": "~/screenshake"
+    },
+    {
+      "name": "Parry",
+      "type": "keybind",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "parry",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/ParryMessage.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "ParryFrame",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "parry_frame",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/ParryFrameMobEffect.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "ParryCD",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "parry_cd",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/ParryCDMobEffect.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "ParryOnKeyPressed",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "parry_on_key_pressed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ParryOnKeyPressedProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "Damageparry",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "damageparry",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "damagesource",
+            "type": "damagesource"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/DamageparryProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "Parryparticle",
+      "type": "particle",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "parryparticle",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/particles/parryparticle.json",
+          "src/main/java/net/mcreator/verse/client/particle/ParryparticleParticle.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "NoAttack",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "no_attack",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/NoAttackMobEffect.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "Unparryablemelee",
+      "type": "damagetype",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unparryablemelee",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/damage_type/unparryablemelee.json"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "Playerdeath",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "playerdeath",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/PlayerdeathProcedure.java"
+        ]
+      },
+      "path": "~/life"
+    },
+    {
+      "name": "CustomHeartGui",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "custom_heart_gui",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/CustomHeartGuiMixin.java"
+        ]
+      },
+      "path": "~/life"
+    },
+    {
+      "name": "StatMenu",
+      "type": "keybind",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "stat_menu",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/StatMenuMessage.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "StatMenuOnKeyPressed",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "stat_menu_on_key_pressed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StatMenuOnKeyPressedProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Temp",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "temp",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/temp.json",
+          "src/main/java/net/mcreator/verse/item/TempItem.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "TempRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "temp_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/TempRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "MainGui",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "main_gui",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/gui/MainGuiScreen.java",
+          "src/main/java/net/mcreator/verse/world/inventory/MainGuiMenu.java",
+          "src/main/java/net/mcreator/verse/network/MainGuiButtonMessage.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Investpoint",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "investpoint",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "stat",
+            "type": "string"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/InvestpointProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "ReturnStatValue",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "return_stat_value",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "stat",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnStatValueProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "AttunmentChoice",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunment_choice",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/gui/AttunmentChoiceScreen.java",
+          "src/main/java/net/mcreator/verse/network/AttunmentChoiceButtonMessage.java",
+          "src/main/java/net/mcreator/verse/world/inventory/AttunmentChoiceMenu.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Availablestatchecker",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "availablestatchecker",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AvailablestatcheckerProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "CheckForTalent",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "check_for_talent",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "talentrequest",
+            "type": "string"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/CheckForTalentProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Returnchoice",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "returnchoice",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "string",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnchoiceProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "ConfirmChoice",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "confirm_choice",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ConfirmChoiceProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Mobanimteststick",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mobanimteststick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/item/MobanimteststickItem.java",
+          "src/main/resources/assets/verse/models/item/mobanimteststick.json"
+        ]
+      },
+      "path": "~/mixins"
+    },
+    {
+      "name": "MobanimteststickLivingEntityIsHitWithItem",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mobanimteststick_living_entity_is_hit_with_item",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/MobanimteststickLivingEntityIsHitWithItemProcedure.java"
+        ]
+      },
+      "path": "~/mixins"
+    },
+    {
+      "name": "MainGuiSelector",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "main_gui_selector",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "mouseX",
+            "type": "number"
+          },
+          {
+            "name": "mouseY",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/MainGuiSelectorProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "AttunementChoiceGui",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunement_choice_gui",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "mouseX",
+            "type": "number"
+          },
+          {
+            "name": "mouseY",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AttunementChoiceGuiProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Attunementchoicebutton1",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_1",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton1Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebuttonreset",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebuttonreset",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AttunementchoicebuttonresetProcedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton2",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_2",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton2Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton3",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_3",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton3Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton4",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_4",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton4Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton5",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_5",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton5Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton6",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_6",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton6Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton7",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_7",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton7Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementchoicebutton8",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementchoicebutton_8",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementchoicebutton8Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementcount",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementcount",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AttunementcountProcedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementcount2",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementcount_2",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementcount2Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementcount3",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementcount_3",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementcount3Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Attunementcount4",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "attunementcount_4",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Attunementcount4Procedure.java"
+        ]
+      },
+      "path": "~/menus/attunementchoicebutton"
+    },
+    {
+      "name": "Addpoint1",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_1",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint1Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint2",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_2",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint2Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint3",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_3",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint3Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint4",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_4",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint4Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint5",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_5",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint5Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint6",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_6",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint6Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint7",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_7",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint7Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "Addpoint8",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "addpoint_8",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Addpoint8Procedure.java"
+        ]
+      },
+      "path": "~/menus/statbuttons"
+    },
+    {
+      "name": "StrengthGain",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "strength_gain",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StrengthGainProcedure.java"
+        ]
+      },
+      "path": "~/menus/statEXP"
+    },
+    {
+      "name": "ReturnStatExpCount",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "return_stat_exp_count",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "stat",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnStatExpCountProcedure.java"
+        ]
+      },
+      "path": "~/menus/statEXP"
+    },
+    {
+      "name": "StrengthGainCombat",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "strength_gain_combat",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "immediatesourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "amount",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StrengthGainCombatProcedure.java"
+        ]
+      },
+      "path": "~/menus/statEXP"
+    },
+    {
+      "name": "Hasatleast1attunement",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hasatleast_1attunement",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/Hasatleast1attunementProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Npc",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "npc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/renderer/NpcRenderer.java",
+          "src/main/java/net/mcreator/verse/entity/NpcEntity.java",
+          "src/main/resources/data/verse/neoforge/biome_modifier/npc_biome_modifier.json",
+          "src/main/resources/assets/verse/models/item/npc_spawn_egg.json"
+        ]
+      },
+      "path": "~/humanoidMob"
+    },
+    {
+      "name": "MobParry",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mob_parry",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/MobParryProcedure.java"
+        ]
+      },
+      "path": "~/mixins"
+    },
+    {
+      "name": "OutfitReseter",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "outfit_reseter",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/item/OutfitReseterItem.java",
+          "src/main/resources/assets/verse/models/item/outfit_reseter.json"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "OutfitReseterRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "outfit_reseter_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/OutfitReseterRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "RenderOutfit",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "render_outfit",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "entityModel",
+            "type": "model"
+          },
+          {
+            "name": "playerRenderEvent",
+            "type": "playerrendering"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/RenderOutfitProcedure.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "GetTexture",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "get_texture",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "texturelocation",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GetTextureProcedure.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "KleidersHideArm",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "kleiders_hide_arm",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/KleidersHideArmProcedure.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "ToggleVisibilityGui",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "toggle_visibility_gui",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ToggleVisibilityGuiProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "ReturnRequiredExp",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "return_required_exp",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnRequiredExpProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "Expgain",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "expgain",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "amount",
+            "type": "number"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ExpgainProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "MantraSpeed",
+      "type": "attribute",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mantra_speed",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/attributes"
+    },
+    {
+      "name": "HumanoidAnimation",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "humanoid_animation",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/HumanoidAnimationMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "OutfitTable",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "outfit_table",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/outfit_table.json",
+          "src/main/resources/assets/verse/blockstates/outfit_table.json",
+          "src/main/java/net/mcreator/verse/block/OutfitTableBlock.java",
+          "src/main/resources/assets/verse/models/item/outfit_table.json",
+          "src/main/resources/assets/verse/models/block/outfit_table.json"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "Verse",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "verse",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "Modelnpcmodel",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "modelnpcmodel",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/ModelnpcmodelMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "OutfitCrafting",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "outfit_crafting",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/gui/OutfitCraftingScreen.java",
+          "src/main/java/net/mcreator/verse/world/inventory/OutfitCraftingMenu.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "OutfitTableRender",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "outfit_table_render",
+      "metadata": {
+        "dependencies": [],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/OutfitTableRenderProcedure.java"
+        ]
+      },
+      "path": "~/outfit"
+    },
+    {
+      "name": "SwingSpeed",
+      "type": "attribute",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "swing_speed",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/attributes"
+    },
+    {
+      "name": "ClientAttackHandler",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "client_attack_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/ClientAttackHandlerMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "PreventMiningOnCooldown",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "prevent_mining_on_cooldown",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/PreventMiningOnCooldownMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "PreventHotbarSwitch",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "prevent_hotbar_switch",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/PreventHotbarSwitchMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "ContinuousAttack",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "continuous_attack",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/ContinuousAttackMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "Posture",
+      "type": "attribute",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "posture",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/attributes"
+    },
+    {
+      "name": "MaxPosture",
+      "type": "attribute",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "max_posture",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/attributes"
+    },
+    {
+      "name": "GetWeaponForAnim",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "get_weapon_for_anim",
+      "metadata": {
+        "dependencies": [],
+        "return_type": "string",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GetWeaponForAnimProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "GetTextureForTrail",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "get_texture_for_trail",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GetTextureForTrailProcedure.java"
+        ]
+      },
+      "path": "~/combat"
+    },
+    {
+      "name": "ReturnTalentCount",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "return_talent_count",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnTalentCountProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "StorePlayerTalents",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "store_player_talents",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StorePlayerTalentsProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "RetrievePlayerTalents",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "retrieve_player_talents",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/RetrievePlayerTalentsProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "GrantTalent",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "grant_talent",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "grant",
+            "type": "string"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GrantTalentProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "ValidTalentList",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "valid_talent_list",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ValidTalentListProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "GrantFlameWithin",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "grant_flame_within",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/item/GrantFlameWithinItem.java",
+          "src/main/resources/assets/verse/models/item/grant_flame_within.json"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "GrantFlameWithinRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "grant_flame_within_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GrantFlameWithinRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "TalentDisplay",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "talent_display",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/world/inventory/TalentDisplayMenu.java",
+          "src/main/java/net/mcreator/verse/client/gui/TalentDisplayScreen.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "TalentDisplayGui",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "talent_display_gui",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "mouseX",
+            "type": "number"
+          },
+          {
+            "name": "mouseY",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/TalentDisplayGuiProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "OpenTalentList",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_talent_list",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/OpenTalentListProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "ChatTalent",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chat_talent",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "text",
+            "type": "string"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ChatTalentProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Talentchecker",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "talentchecker",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/talentchecker.json",
+          "src/main/java/net/mcreator/verse/item/TalentcheckerItem.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "CardHand",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_hand",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/gui/CardHandScreen.java",
+          "src/main/java/net/mcreator/verse/world/inventory/CardHandMenu.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "ReturnTalentCount2",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "return_talent_count_2",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "talents",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnTalentCount2Procedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "ReturnCountOfTheseTalents",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "return_count_of_these_talents",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "talents",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnCountOfTheseTalentsProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "BlockFrame",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "block_frame",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/BlockFrameMobEffect.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "ParryOnKeyReleased",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "parry_on_key_released",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ParryOnKeyReleasedProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "BlockFrameOnEffectActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "block_frame_on_effect_active_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/BlockFrameOnEffectActiveTickProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "PostureCalc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "posture_calc",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "source",
+            "type": "entity"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/PostureCalcProcedure.java"
+        ]
+      },
+      "path": "~/calculatedvalues"
+    },
+    {
+      "name": "PostureBonus",
+      "type": "attribute",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "posture_bonus",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/attributes"
+    },
+    {
+      "name": "ReducePosture",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "reduce_posture",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReducePostureProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "GranSuda",
+      "type": "tool",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "gran_suda",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/gran_suda.json",
+          "src/main/java/net/mcreator/verse/item/GranSudaItem.java"
+        ]
+      }
+    },
+    {
+      "name": "VerseWeapons",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "verse_weapons",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "Cardhandorb",
+      "type": "overlay",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cardhandorb",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/screens/CardhandorbOverlay.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "CardhandorbDisplayOverlayIngame",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cardhandorb_display_overlay_ingame",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/CardhandorbDisplayOverlayIngameProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "CardHandRender",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_hand_render",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "mouseX",
+            "type": "number"
+          },
+          {
+            "name": "mouseY",
+            "type": "number"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/CardHandRenderProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    }
+  ],
+  "variable_elements": [
+    {
+      "name": "currentmantra",
+      "type": "string",
+      "scope": "player_lifetime",
+      "value": ""
+    },
+    {
+      "name": "power",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "1.0"
+    },
+    {
+      "name": "str",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "fort",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "intel",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "agility",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "attunementchooserguivariable",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "(flamecharm)(galebreathe)(frostdraw)(thundercall)(shadowcast)(ironsing)(bloodrend)(lifeweave)"
+    },
+    {
+      "name": "choseattunement",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "Flamecharm",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Galebreathe",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Thundercall",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Frostdraw",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Shadowcast",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Ironsing",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Lifeweave",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Bloodrend",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "expgain",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "PlayerIA",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
+    },
+    {
+      "name": "talentlist",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "validdraw",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "life",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "choice",
+      "type": "string",
+      "scope": "player_lifetime",
+      "value": "\"\""
+    },
+    {
+      "name": "echoes",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "echoUpgrades",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "strExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "fortExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "aglExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "intExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "attuneExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "outfit",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": ""
+    },
+    {
+      "name": "outfitVisible",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "true"
+    },
+    {
+      "name": "guiOpenedTick",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
+    },
+    {
+      "name": "scroll",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
+    },
+    {
+      "name": "validrare",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "hasCard",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "burn",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "freeze",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    }
+  ],
+  "sound_elements": [
+    {
+      "name": "parry",
+      "files": [
+        "parry_sound__real_.mp3"
+      ],
+      "category": "player",
+      "subtitle": "parry"
+    },
+    {
+      "name": "attributeincrease",
+      "files": [
+        "attribute_increased_1.mp3"
+      ],
+      "category": "player",
+      "subtitle": "attributeincreased"
+    },
+    {
+      "name": "powerup",
+      "files": [
+        "levelup2"
+      ],
+      "category": "player",
+      "subtitle": "player power increases"
+    },
+    {
+      "name": "swordswing1",
+      "files": [
+        "altswish"
+      ],
+      "category": "player",
+      "subtitle": "weapon swing"
+    },
+    {
+      "name": "swordswing2",
+      "files": [
+        "altswish2"
+      ],
+      "category": "player",
+      "subtitle": "weapon swing"
+    },
+    {
+      "name": "swordswing3",
+      "files": [
+        "swing_3_alt.mp3"
+      ],
+      "category": "player",
+      "subtitle": "weapon swing"
+    },
+    {
+      "name": "axeswing1",
+      "files": [
+        "axe1"
+      ],
+      "category": "player",
+      "subtitle": "swing"
+    },
+    {
+      "name": "axeswing2",
+      "files": [
+        "axe2"
+      ],
+      "category": "player",
+      "subtitle": "swing"
+    },
+    {
+      "name": "blockedattack",
+      "files": [
+        "weapon_and_shield_block_1.mp3"
+      ],
+      "category": "player",
+      "subtitle": "blocked attack"
+    },
+    {
+      "name": "blockattempt",
+      "files": [
+        "block_attempt.mp3"
+      ],
+      "category": "player",
+      "subtitle": "attempted block"
+    }
+  ],
+  "tag_elements": {
+    "ENTITIES:verse:canparry": [
+      "EntitySkeleton",
+      "EntityWitherSkeleton",
+      "EntityBogged",
+      "CUSTOM:Npc"
+    ],
+    "ITEMS:minecraft:axes": [
+      "~CUSTOM:GranSuda"
+    ],
+    "ITEMS:verse:axeanim": [
+      "TAG:minecraft:axes",
+      "Items.MACE",
+      "CUSTOM:GranSuda"
+    ],
+    "ITEMS:verse:swordanim": [
+      "TAG:minecraft:swords"
+    ]
+  },
+  "tab_element_order": {},
+  "language_map": {
+    "en_us": {
+      "effect.verse.screenshaking": "Screenshaking",
+      "death.attack.unparryablemelee.item": "%1$s was killed by %2$s using %3$s",
+      "death.attack.unparryablemelee": "%1$s died",
+      "death.attack.unparryablemelee.player": "%1$s died whilst trying to escape %2$s",
+      "effect.verse.no_attack": "No Attack",
+      "effect.verse.parry_cd": "Parry CD",
+      "effect.verse.parry_frame": "Parry Frame",
+      "key.verse.parry": "Parry",
+      "subtitles.parry": "parry",
+      "gui.verse.attunment_choice.label_attunements": "Attunements",
+      "gui.verse.attunment_choice.label_permanent": "can be gained through gameplay, but",
+      "gui.verse.attunment_choice.label_until_you_experience_permadeath": "Choose wisely.",
+      "gui.verse.attunment_choice.label_through_gameplay_however_they": "they cannot be removed until you wipe.",
+      "gui.verse.attunment_choice.label_this_choice_is_permanent": "This choice is permanent! Attunements",
+      "subtitles.attributeincrease": "attributeincreased",
+      "item.verse.temp": "stat + power debug",
+      "key.verse.stat_menu": "Menu",
+      "key.categories.verse": "Verse",
+      "item.verse.mobanimteststick": "Mobanimteststick",
+      "entity.verse.npc": "Npc",
+      "item.verse.npc_spawn_egg": "Npc Spawn Egg",
+      "item.verse.outfit_reseter": "Outfit Reseter",
+      "gui.verse.main_gui.button_t": "t",
+      "gui.verse.main_gui.tooltip_toggles_the_visibility_of_your_o": "Toggles the visibility of your outfit.",
+      "subtitles.powerup": "player power increases",
+      "attribute.verse.mantra_speed": "Mantra Speed",
+      "block.verse.outfit_table": "Outfit Table",
+      "item_group.verse.verse": "Verse",
+      "attribute.verse.swing_speed": "Swing Speed",
+      "subtitles.swordswing1": "weapon swing",
+      "subtitles.swordswing2": "weapon swing",
+      "subtitles.swordswing3": "weapon swing",
+      "subtitles.axeswing1": "swing",
+      "subtitles.axeswing2": "swing",
+      "attribute.verse.posture": "Posture",
+      "attribute.verse.max_posture": "Max Posture",
+      "item.verse.grant_flame_within": "Grant Flame Within",
+      "item.verse.talentchecker": "Talentchecker",
+      "effect.verse.block_frame": "Block Frame",
+      "subtitles.blockedattack": "blocked attack",
+      "subtitles.blockattempt": "attempted block",
+      "attribute.verse.posture_bonus": "Posture Bonus",
+      "item.verse.gran_suda": "Gran Sudaruska",
+      "item_group.verse.verse_weapons": "Verse Weapons",
+      "gui.verse.card_hand.tooltip_the_amount_of_remaining_mantra_d": "The amount of remaining mantra draws.",
+      "gui.verse.card_hand.tooltip_the_amount_of_remaining_talent_d": "The amount of remaining talent draws."
+    }
+  },
+  "metadata": {
+    "files": [
+      "src/main/java/net/mcreator/verse/init/VerseModAttributes.java",
+      "src/main/java/net/mcreator/verse/init/VerseModMenus.java",
+      "src/main/java/net/mcreator/verse/network/MenuStateUpdateMessage.java",
+      "src/main/java/net/mcreator/verse/init/VerseModScreens.java",
+      "src/main/java/net/mcreator/verse/init/VerseModKeyMappings.java",
+      "src/main/java/net/mcreator/verse/init/VerseModParticles.java",
+      "src/main/java/net/mcreator/verse/init/VerseModParticleTypes.java",
+      "src/main/java/net/mcreator/verse/init/VerseModMobEffects.java",
+      "src/main/java/net/mcreator/verse/init/VerseModBlocks.java",
+      "src/main/java/net/mcreator/verse/init/VerseModItems.java",
+      "src/main/java/net/mcreator/verse/init/VerseModEntities.java",
+      "src/main/java/net/mcreator/verse/init/VerseModEntityRenderers.java",
+      "src/main/resources/pack.mcmeta",
+      "src/main/java/net/mcreator/verse/network/PlayPlayerAnimationMessage.java",
+      "src/main/java/net/mcreator/verse/mixin/ItemInHandLayerMixin.java",
+      "src/main/java/net/mcreator/verse/mixin/LevelRendererMixin.java",
+      "src/main/resources/assets/verse/sounds.json",
+      "src/main/java/net/mcreator/verse/network/VerseModVariables.java",
+      "src/main/java/net/mcreator/verse/mixin/PlayerAnimationMixin.java",
+      "src/main/java/net/mcreator/verse/VerseMod.java",
+      "src/main/java/net/mcreator/verse/mixin/EntityRenderDispatcherMixin.java",
+      "src/main/java/net/mcreator/verse/init/VerseModSounds.java",
+      "src/main/java/net/mcreator/verse/mixin/ItemInHandRendererMixin.java",
+      "src/main/resources/META-INF/neoforge.mods.toml",
+      "src/main/java/net/mcreator/verse/mixin/CameraAccessor.java",
+      "src/main/java/net/mcreator/verse/mixin/PlayerAnimationRendererMixin.java",
+      "src/main/java/net/mcreator/verse/init/VerseModTabs.java",
+      "src/main/java/net/mcreator/verse/init/VerseModModels.java",
+      "src/main/resources/verse.mixins.json",
+      "src/main/java/net/mcreator/verse/VerseModPlayerAnimationAPI.java",
+      "src/main/resources/META-INF/accesstransformer.cfg",
+      "src/main/java/net/mcreator/verse/mixin/HumanoidArmorLayerMixin.java"
+    ]
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": [
+      {
+        "name": "screenshake",
+        "children": []
+      },
+      {
+        "name": "parry",
+        "children": []
+      },
+      {
+        "name": "life",
+        "children": []
+      },
+      {
+        "name": "menus",
+        "children": [
+          {
+            "name": "attunementchoicebutton",
+            "children": []
+          },
+          {
+            "name": "statbuttons",
+            "children": []
+          },
+          {
+            "name": "statEXP",
+            "children": []
+          },
+          {
+            "name": "Talent",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "mixins",
+        "children": []
+      },
+      {
+        "name": "humanoidMob",
+        "children": []
+      },
+      {
+        "name": "outfit",
+        "children": []
+      },
+      {
+        "name": "combat",
+        "children": []
+      },
+      {
+        "name": "attributes",
+        "children": []
+      },
+      {
+        "name": "calculatedvalues",
+        "children": []
+      }
+    ]
+  },
+  "workspaceSettings": {
+    "modid": "verse",
+    "modName": "verse",
+    "version": "1.0.0",
+    "author": "greathive",
+    "websiteURL": "https://mcreator.net",
+    "license": "Not specified",
+    "serverSideOnly": false,
+    "modPicture": "logo",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [
+      "kleidersplayerrenderer",
+      "nexus_compiler"
+    ],
+    "currentGenerator": "neoforge-1.21.1",
+    "credits": "greathive",
+    "modElementsPackage": "net.mcreator.verse"
+  },
+  "mcreatorVersion": 202500345720
+}

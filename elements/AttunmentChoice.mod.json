@@ -1,0 +1,289 @@
+{
+  "_fv": 79,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 150,
+    "height": 200,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": false,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton1"
+          },
+          "x": 14,
+          "y": 176,
+          "locked": true
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton1",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton2"
+          },
+          "x": 74,
+          "y": 176,
+          "locked": true
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_2",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton3"
+          },
+          "x": 134,
+          "y": 176,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton2",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton4"
+          },
+          "x": 194,
+          "y": 176,
+          "locked": true
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton3",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton7"
+          },
+          "x": 134,
+          "y": 20,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton4",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton8"
+          },
+          "x": 194,
+          "y": 20,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton5",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton6"
+          },
+          "x": 74,
+          "y": 20,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton6",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebutton5"
+          },
+          "x": 14,
+          "y": 20,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_this_choice_is_permanent",
+          "text": {
+            "fixedValue": "This choice is permanent! Attunements"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 21,
+          "y": 90,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_permanent",
+          "text": {
+            "fixedValue": "can be gained through gameplay, but"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 21,
+          "y": 100,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_through_gameplay_however_they",
+          "text": {
+            "fixedValue": "they cannot be removed until you wipe."
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 21,
+          "y": 110,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_until_you_experience_permadeath",
+          "text": {
+            "fixedValue": "Choose wisely."
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 84,
+          "y": 121,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "newtextbox.png",
+          "use1Xscale": false,
+          "x": 15,
+          "y": 74,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "thinbox.png",
+          "use1Xscale": false,
+          "x": 74,
+          "y": 69,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_attunements",
+          "text": {
+            "fixedValue": "Attunements"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 92,
+          "y": 75,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "thinbox.png",
+          "use1Xscale": false,
+          "x": 74,
+          "y": 141,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton7",
+          "image": "emptybutton.png",
+          "hoveredImage": "emptybutton.png",
+          "onClick": {
+            "name": "Attunementchoicebuttonreset"
+          },
+          "x": 239,
+          "y": 95,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_emptybutton8",
+          "image": "checkbutton.png",
+          "hoveredImage": "outlinecheckbutton.png",
+          "onClick": {
+            "name": "ConfirmChoice"
+          },
+          "x": 249,
+          "y": 20,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_returnchoice",
+          "text": {
+            "fixedValue": "",
+            "name": "Returnchoice"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "x": 85,
+          "y": 147,
+          "locked": false
+        }
+      }
+    ],
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

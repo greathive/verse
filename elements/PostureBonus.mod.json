@@ -1,0 +1,14 @@
+{
+  "_fv": 79,
+  "_type": "attribute",
+  "definition": {
+    "name": "Posture Bonus",
+    "minValue": 0.0,
+    "maxValue": 50.0,
+    "defaultValue": 1.0,
+    "sentiment": "POSITIVE",
+    "addToAllEntities": true,
+    "addToPlayers": false,
+    "entities": []
+  }
+}

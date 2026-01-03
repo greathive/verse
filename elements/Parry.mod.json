@@ -1,0 +1,15 @@
+{
+  "_fv": 79,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "V",
+    "keyBindingName": "Parry",
+    "keyBindingCategoryKey": "verse",
+    "onKeyPressed": {
+      "name": "ParryOnKeyPressed"
+    },
+    "onKeyReleased": {
+      "name": "ParryOnKeyReleased"
+    }
+  }
+}

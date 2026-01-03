@@ -1,0 +1,18 @@
+{
+  "_fv": 79,
+  "_type": "attribute",
+  "definition": {
+    "name": "Mantra Speed",
+    "minValue": 0.1,
+    "maxValue": 4.0,
+    "defaultValue": 1.0,
+    "sentiment": "POSITIVE",
+    "addToAllEntities": false,
+    "addToPlayers": true,
+    "entities": [
+      {
+        "value": "CUSTOM:Npc"
+      }
+    ]
+  }
+}

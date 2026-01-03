@@ -1,0 +1,20 @@
+{
+    "name": "Sin Stacker",
+    "required": "(All the Dead Gods)",
+    "mutual": "",
+    "power": "0",
+    "rarity": "1",
+
+    "strength": "0",
+    "fortitude": "0",
+    "mind": "25",
+    "agility": "0",
+    "flamecharm": "0",
+    "galebreathe": "0",
+    "thundercall": "0",
+    "frostdraw": "0",
+    "shadowcast": "0",
+    "bloodrend": "0",
+    "ironsing": "0",
+    "lifeweave": "0"
+}
