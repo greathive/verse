@@ -41,21 +41,46 @@ public abstract class PlayerAnimationRendererMixin extends LivingEntityRenderer<
 		if (!master.equals("verse")) {
 			return;
 		}
+
+		// Check if in first person and animation is active
 		if (entity.getPersistentData().getBoolean("FirstPersonAnimation") && mc.options.getCameraType().isFirstPerson() && entity == mc.player && mc.screen == null) {
-			this.model.head.visible = false;
-			this.model.body.visible = false;
-			this.model.leftLeg.visible = false;
-			this.model.rightLeg.visible = false;
-			this.model.rightArm.visible = false;
-			this.model.leftArm.visible = false;
-			this.model.hat.visible = false;
-			this.model.leftSleeve.visible = false;
-			this.model.rightSleeve.visible = false;
-			this.model.leftPants.visible = false;
-			this.model.rightPants.visible = false;
-			this.model.jacket.visible = false;
-			this.model.rightArm.visible = true;
-			this.model.leftArm.visible = true;
+			// Get current animation name
+			String currentAnimation = entity.getPersistentData().getString("PlayerCurrentAnimation");
+
+			// Check if animation name contains "swing"
+			boolean isSwingAnimation = currentAnimation != null && currentAnimation.toLowerCase().contains("swing");
+
+			if (isSwingAnimation) {
+				// Hide arms only for swing animations in first person
+				this.model.rightArm.visible = false;
+				this.model.leftArm.visible = false;
+				this.model.rightSleeve.visible = false;
+				this.model.leftSleeve.visible = false;
+
+				// Hide other body parts as before
+				this.model.head.visible = false;
+				this.model.body.visible = false;
+				this.model.leftLeg.visible = false;
+				this.model.rightLeg.visible = false;
+				this.model.hat.visible = false;
+				this.model.leftPants.visible = false;
+				this.model.rightPants.visible = false;
+				this.model.jacket.visible = false;
+			} else {
+				// For non-swing animations, keep arms visible but hide body/legs
+				this.model.head.visible = false;
+				this.model.body.visible = false;
+				this.model.leftLeg.visible = false;
+				this.model.rightLeg.visible = false;
+				this.model.hat.visible = false;
+				this.model.leftSleeve.visible = false;
+				this.model.rightSleeve.visible = false;
+				this.model.leftPants.visible = false;
+				this.model.rightPants.visible = false;
+				this.model.jacket.visible = false;
+				this.model.rightArm.visible = true;
+				this.model.leftArm.visible = true;
+			}
 		}
 	}
 

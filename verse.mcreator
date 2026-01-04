@@ -2059,7 +2059,8 @@
           "src/main/resources/assets/verse/models/item/gran_suda.json",
           "src/main/java/net/mcreator/verse/item/GranSudaItem.java"
         ]
-      }
+      },
+      "path": "~/items"
     },
     {
       "name": "VerseWeapons",
@@ -2126,6 +2127,106 @@
         ]
       },
       "path": "~/menus/Talent"
+    },
+    {
+      "name": "AnkleWeights",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "ankle_weights",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/item/AnkleWeightsItem.java",
+          "src/main/resources/assets/verse/models/item/ankle_weights.json"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "AnkleWeightsRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "ankle_weights_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "AgilityTraining",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "agility_training",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/AgilityTrainingMobEffect.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "AnkleWeightsItemInInventoryTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "ankle_weights_item_in_inventory_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsItemInInventoryTickProcedure.java"
+        ]
+      },
+      "path": "~/menus"
+    },
+    {
+      "name": "TrainingGear",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "training_gear",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/menus/statEXP"
     }
   ],
   "variable_elements": [
@@ -2451,6 +2552,9 @@
     ],
     "ITEMS:verse:swordanim": [
       "TAG:minecraft:swords"
+    ],
+    "ITEMS:minecraft:enchantable/durability": [
+      "~CUSTOM:AnkleWeights"
     ]
   },
   "tab_element_order": {},
@@ -2501,7 +2605,12 @@
       "item.verse.gran_suda": "Gran Sudaruska",
       "item_group.verse.verse_weapons": "Verse Weapons",
       "gui.verse.card_hand.tooltip_the_amount_of_remaining_mantra_d": "The amount of remaining mantra draws.",
-      "gui.verse.card_hand.tooltip_the_amount_of_remaining_talent_d": "The amount of remaining talent draws."
+      "gui.verse.card_hand.tooltip_the_amount_of_remaining_talent_d": "The amount of remaining talent draws.",
+      "item.verse.ankle_weights.description_0": "Right-Click to enable effects.",
+      "item.verse.ankle_weights.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+      "item.verse.ankle_weights": "Ankle Weights",
+      "effect.verse.agility_training": "Agility Training",
+      "item_group.verse.training_gear": "Training Gear"
     }
   },
   "metadata": {
@@ -2599,6 +2708,15 @@
       {
         "name": "calculatedvalues",
         "children": []
+      },
+      {
+        "name": "items",
+        "children": [
+          {
+            "name": "training gear",
+            "children": []
+          }
+        ]
       }
     ]
   },

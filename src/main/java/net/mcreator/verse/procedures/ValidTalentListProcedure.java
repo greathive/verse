@@ -54,6 +54,12 @@ public class ValidTalentListProcedure {
 		String mutual = "";
 		String requiredrepeater = "";
 		String mutualrepeater = "";
+		{
+			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+			_vars.validdraw = "";
+			_vars.validrare = "";
+			_vars.markSyncDirty();
+		}
 		if (entity.isShiftKeyDown()) {
 			rare = 1;
 		} else {
@@ -185,5 +191,8 @@ public class ValidTalentListProcedure {
 			_player.displayClientMessage(Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, primary) + "primary: " + primary)), false);
 		if (entity instanceof Player _player && !_player.level().isClientSide())
 			_player.displayClientMessage(Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, reserve) + "reserve: " + reserve)), false);
+		if (entity instanceof Player _player && !_player.level().isClientSide())
+			_player.displayClientMessage(
+					Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare) + "validrare: " + entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare)), false);
 	}
 }

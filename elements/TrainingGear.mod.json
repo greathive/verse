@@ -1,0 +1,11 @@
+{
+  "_fv": 79,
+  "_type": "tab",
+  "definition": {
+    "name": "Training Gear",
+    "icon": {
+      "value": "CUSTOM:AnkleWeights"
+    },
+    "showSearch": false
+  }
+}

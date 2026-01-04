@@ -25,6 +25,7 @@ public class VerseModItems {
 	public static final DeferredItem<Item> GRANT_FLAME_WITHIN;
 	public static final DeferredItem<Item> TALENTCHECKER;
 	public static final DeferredItem<Item> GRAN_SUDA;
+	public static final DeferredItem<Item> ANKLE_WEIGHTS;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		MOBANIMTESTSTICK = REGISTRY.register("mobanimteststick", MobanimteststickItem::new);
@@ -34,6 +35,7 @@ public class VerseModItems {
 		GRANT_FLAME_WITHIN = REGISTRY.register("grant_flame_within", GrantFlameWithinItem::new);
 		TALENTCHECKER = REGISTRY.register("talentchecker", TalentcheckerItem::new);
 		GRAN_SUDA = REGISTRY.register("gran_suda", GranSudaItem::new);
+		ANKLE_WEIGHTS = REGISTRY.register("ankle_weights", AnkleWeightsItem::new);
 	}
 
 	// Start of user code block custom items

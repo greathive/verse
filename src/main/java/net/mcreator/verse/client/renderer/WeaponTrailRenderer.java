@@ -46,7 +46,7 @@ public class WeaponTrailRenderer {
 		if (mainHand.isEmpty()) {
 			return;
 		}
-		
+
 
 		CompoundTag data = player.getPersistentData();
 
@@ -94,6 +94,9 @@ public class WeaponTrailRenderer {
 				data.remove("TrailSpawnYaw");
 				data.remove("TrailSpawnPitch");
 				data.remove("TrailAttackStartTime");
+				data.remove("TrailVelocityX");
+				data.remove("TrailVelocityY");
+				data.remove("TrailVelocityZ");
 			}
 			return;
 		}
@@ -116,7 +119,7 @@ public class WeaponTrailRenderer {
 			float playerPitch = player.getXRot();
 			float adjustedPitch = playerPitch * trailInfo.followPitch;
 
-			System.out.println("Player pitch: " + playerPitch + ", followPitch multiplier: " + trailInfo.followPitch + ", adjusted pitch: " + adjustedPitch);
+
 
 			// Use distance from JSON
 			double distance = trailInfo.distance;
@@ -129,10 +132,15 @@ public class WeaponTrailRenderer {
 
 			// Vertical offset: negative because positive pitch is looking down in Minecraft
 			double offsetY = -Math.sin(pitch) * distance + trailInfo.yOffset;
-
-			System.out.println("Offsets - X: " + offsetX + ", Y: " + offsetY + ", Z: " + offsetZ);
+			
 
 			Vec3 spawnPos = playerPos.add(offsetX, offsetY, offsetZ);
+
+			// Store player's horizontal velocity at spawn time (full velocity, no Y component)
+			Vec3 playerVelocity = player.getDeltaMovement();
+			double velX = playerVelocity.x;
+			double velY = 0; // No vertical movement
+			double velZ = playerVelocity.z;
 
 			// Store the spawn position and rotation (using adjusted pitch)
 			data.putDouble("TrailSpawnX", spawnPos.x);
@@ -141,18 +149,39 @@ public class WeaponTrailRenderer {
 			data.putFloat("TrailSpawnYaw", player.getYRot());
 			data.putFloat("TrailSpawnPitch", adjustedPitch);
 			data.putLong("TrailAttackStartTime", attackStartTime);
+
+			// Store velocity
+			data.putDouble("TrailVelocityX", velX);
+			data.putDouble("TrailVelocityY", velY);
+			data.putDouble("TrailVelocityZ", velZ);
 		}
 
 		// Get the stored spawn position
-		Vec3 trailPos = new Vec3(
+		Vec3 basePos = new Vec3(
 				data.getDouble("TrailSpawnX"),
 				data.getDouble("TrailSpawnY"),
 				data.getDouble("TrailSpawnZ")
 		);
+
+		// Get stored velocity
+		Vec3 velocity = new Vec3(
+				data.getDouble("TrailVelocityX"),
+				data.getDouble("TrailVelocityY"),
+				data.getDouble("TrailVelocityZ")
+		);
+
+		// Calculate time since spawn and apply velocity
+		float timeSinceSpawn = ticksSinceStart + partialTick;
+		Vec3 trailPos = basePos.add(
+				velocity.x * timeSinceSpawn,
+				velocity.y * timeSinceSpawn,
+				velocity.z * timeSinceSpawn
+		);
+
 		float spawnYaw = data.getFloat("TrailSpawnYaw");
 		float spawnPitch = data.getFloat("TrailSpawnPitch");
 
-		// Render the trail at the stored position
+		// Render the trail at the calculated position
 		renderTrail(event.getPoseStack(), event.getCamera(), trailInfo, currentFrame, trailPos, spawnYaw, spawnPitch, swingCounter);
 	}
 

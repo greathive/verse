@@ -436,6 +436,16 @@ public class CardHandRenderProcedure {
 						texturechoice = "freezebase";
 						repeat = -1;
 					}
+					texturechoice = "talent";
+					repeat = 1;
+					for (int index1 = 0; index1 < 2; index1++) {
+						aceX = (anchorX - 7 * 1.5) - 35 * repeat;
+						aceY = anchorY + 20;
+						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xhandcount".replace("x", texturechoice)) + ".png")));
+						renderTexture((float) aceX, (float) aceY, -3, 0, (float) 1.5, 255 << 24 | 255 << 16 | 255 << 8 | 255, 0);
+						texturechoice = "mantra";
+						repeat = -1;
+					}
 					release();
 				}
 			}
