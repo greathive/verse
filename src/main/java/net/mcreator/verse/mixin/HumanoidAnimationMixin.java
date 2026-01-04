@@ -90,10 +90,7 @@ public abstract class HumanoidAnimationMixin<T extends LivingEntity> {
 		boolean overrideAnimation = data.getBoolean("OverrideCurrentAnimation");
 		
 		// Debug: Log every frame for this entity type to see if NBT data exists
-		VerseMod.LOGGER.info("[ANIMATION DEBUG] Entity: " + entityIn.getClass().getSimpleName() + 
-							 " | ID: " + entityIn.getId() + 
-							 " | Animation: '" + playingAnimation + "'" +
-							 " | Has NBT: " + !playingAnimation.isEmpty());
+		
 		
 		if (data.getBoolean("ResetPlayerAnimation")) {
 			data.remove("ResetPlayerAnimation");
@@ -268,19 +265,19 @@ public abstract class HumanoidAnimationMixin<T extends LivingEntity> {
 	private boolean isAnimatableEntity(T entity) {
 		// Check if it's any zombie variant (includes Zombie, Husk, Drowned, ZombieVillager)
 		if (entity instanceof Zombie) {
-			VerseMod.LOGGER.info("Detected Zombie variant: " + entity.getClass().getSimpleName());
+			
 			return true;
 		}
 		
 		// Check if it's any skeleton variant (includes Skeleton, Stray, WitherSkeleton, Bogged)
 		if (entity instanceof AbstractSkeleton) {
-			VerseMod.LOGGER.info("Detected Skeleton variant: " + entity.getClass().getSimpleName());
+			
 			return true;
 		}
 		
 		// Check if it's the custom NPC entity
 		if (entity instanceof NpcEntity) {
-			VerseMod.LOGGER.info("Detected NPC entity");
+			
 			return true;
 		}
 		
