@@ -7,11 +7,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.resources.ResourceLocation;
 
+import net.mcreator.verse.procedures.AgilityTrainingOnEffectActiveTickProcedure;
 import net.mcreator.verse.init.VerseModMobEffects;
 import net.mcreator.verse.VerseMod;
 
@@ -20,6 +22,17 @@ public class AgilityTrainingMobEffect extends MobEffect {
 	public AgilityTrainingMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -1);
 		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "effect.agility_training_0"), -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	}
+
+	@Override
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+		return true;
+	}
+
+	@Override
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+		AgilityTrainingOnEffectActiveTickProcedure.execute(entity.level(), entity);
+		return super.applyEffectTick(entity, amplifier);
 	}
 
 	@SubscribeEvent

@@ -28,6 +28,10 @@ public class VerseModTabs {
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse_weapons")).icon(() -> new ItemStack(VerseModItems.GRAN_SUDA.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.GRAN_SUDA.get());
 			}).withTabsBefore(VERSE.getId()).build());
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TRAINING_GEAR = REGISTRY.register("training_gear",
+			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.training_gear")).icon(() -> new ItemStack(VerseModItems.ANKLE_WEIGHTS.get())).displayItems((parameters, tabData) -> {
+				tabData.accept(VerseModItems.ANKLE_WEIGHTS.get());
+			}).withTabsBefore(VERSE_WEAPONS.getId()).build());
 
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {

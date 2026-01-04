@@ -11,7 +11,11 @@
     "animations": [],
     "name": "Ankle Weights",
     "rarity": "COMMON",
-    "creativeTabs": [],
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:TrainingGear"
+      }
+    ],
     "stackSize": 1,
     "enchantability": 0,
     "useDuration": 0,
@@ -40,9 +44,6 @@
     "inventoryStackSize": 99,
     "onRightClickedInAir": {
       "name": "AnkleWeightsRightclicked"
-    },
-    "onItemInInventoryTick": {
-      "name": "AnkleWeightsItemInInventoryTick"
     },
     "enableRanged": false,
     "shootConstantly": false,

@@ -2151,6 +2151,10 @@
       "metadata": {
         "dependencies": [
           {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
             "name": "itemstack",
             "type": "itemstack"
           },
@@ -2191,33 +2195,6 @@
       "path": "~/items/training gear"
     },
     {
-      "name": "AnkleWeightsItemInInventoryTick",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "ankle_weights_item_in_inventory_tick",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsItemInInventoryTickProcedure.java"
-        ]
-      },
-      "path": "~/menus"
-    },
-    {
       "name": "TrainingGear",
       "type": "tab",
       "compiles": true,
@@ -2226,7 +2203,30 @@
       "metadata": {
         "files": []
       },
-      "path": "~/menus/statEXP"
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "AgilityTrainingOnEffectActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "agility_training_on_effect_active_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AgilityTrainingOnEffectActiveTickProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
     }
   ],
   "variable_elements": [

@@ -24,6 +24,9 @@
         "amount": -0.15,
         "operation": "ADD_MULTIPLIED_BASE"
       }
-    ]
+    ],
+    "onActiveTick": {
+      "name": "AgilityTrainingOnEffectActiveTick"
+    }
   }
 }

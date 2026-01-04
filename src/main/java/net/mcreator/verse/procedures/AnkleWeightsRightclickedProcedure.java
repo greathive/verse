@@ -4,14 +4,21 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
 
+import net.mcreator.verse.init.VerseModMobEffects;
+
 public class AnkleWeightsRightclickedProcedure {
-	public static void execute(LevelAccessor world, double x, double y, double z, ItemStack itemstack) {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
+		if (entity == null)
+			return;
 		if (itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getBoolean("active") == true) {
 			{
 				final String _tagName = "active";
@@ -25,6 +32,8 @@ public class AnkleWeightsRightclickedProcedure {
 					_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("item.armor.equip_iron")), SoundSource.PLAYERS, (float) 0.3, 1, false);
 				}
 			}
+			if (entity instanceof LivingEntity _entity)
+				_entity.removeEffect(VerseModMobEffects.AGILITY_TRAINING);
 		} else {
 			{
 				final String _tagName = "active";
@@ -38,6 +47,8 @@ public class AnkleWeightsRightclickedProcedure {
 					_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("item.armor.equip_iron")), SoundSource.PLAYERS, (float) 0.3, 1, false);
 				}
 			}
+			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+				_entity.addEffect(new MobEffectInstance(VerseModMobEffects.AGILITY_TRAINING, 100, 0, false, false));
 		}
 	}
 }
