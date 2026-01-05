@@ -26,6 +26,9 @@ public class VerseModItems {
 	public static final DeferredItem<Item> TALENTCHECKER;
 	public static final DeferredItem<Item> GRAN_SUDA;
 	public static final DeferredItem<Item> ANKLE_WEIGHTS;
+	public static final DeferredItem<Item> DUMBBELL;
+	public static final DeferredItem<Item> PRAYER_BEADS;
+	public static final DeferredItem<Item> TRAINING_VEST;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		MOBANIMTESTSTICK = REGISTRY.register("mobanimteststick", MobanimteststickItem::new);
@@ -36,6 +39,9 @@ public class VerseModItems {
 		TALENTCHECKER = REGISTRY.register("talentchecker", TalentcheckerItem::new);
 		GRAN_SUDA = REGISTRY.register("gran_suda", GranSudaItem::new);
 		ANKLE_WEIGHTS = REGISTRY.register("ankle_weights", AnkleWeightsItem::new);
+		DUMBBELL = REGISTRY.register("dumbbell", DumbbellItem::new);
+		PRAYER_BEADS = REGISTRY.register("prayer_beads", PrayerBeadsItem::new);
+		TRAINING_VEST = REGISTRY.register("training_vest", TrainingVestItem::new);
 	}
 
 	// Start of user code block custom items

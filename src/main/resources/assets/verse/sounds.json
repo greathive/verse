@@ -88,5 +88,14 @@
         "stream": false
       }
     ]
+  },
+  "posturebreak": {
+    "subtitle": "subtitles.posturebreak",
+    "sounds": [
+      {
+        "name": "verse:posture_break_1.mp3",
+        "stream": false
+      }
+    ]
   }
 }

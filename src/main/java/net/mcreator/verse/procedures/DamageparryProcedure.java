@@ -100,22 +100,48 @@ public class DamageparryProcedure {
 					}
 				}
 			} else if (entity instanceof LivingEntity _livEnt18 && _livEnt18.hasEffect(VerseModMobEffects.BLOCK_FRAME)) {
-				if (event instanceof ICancellableEvent _cancellable) {
-					_cancellable.setCanceled(true);
-				}
-				if (world instanceof Level _level) {
-					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:blockedattack")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 1.5, 2));
-					} else {
-						_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:blockedattack")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 1.5, 2), false);
+				if (entity instanceof LivingEntity _livingEntity20 && _livingEntity20.getAttributes().hasAttribute(VerseModAttributes.POSTURE))
+					_livingEntity20.getAttribute(VerseModAttributes.POSTURE)
+							.setBaseValue(((entity instanceof LivingEntity _livingEntity19 && _livingEntity19.getAttributes().hasAttribute(VerseModAttributes.POSTURE) ? _livingEntity19.getAttribute(VerseModAttributes.POSTURE).getValue() : 0)
+									+ PostureCalcProcedure.execute(sourceentity)));
+				if ((entity instanceof LivingEntity _livingEntity21 && _livingEntity21.getAttributes().hasAttribute(VerseModAttributes.POSTURE)
+						? _livingEntity21.getAttribute(VerseModAttributes.POSTURE).getValue()
+						: 0) < (entity instanceof LivingEntity _livingEntity22 && _livingEntity22.getAttributes().hasAttribute(VerseModAttributes.MAX_POSTURE) ? _livingEntity22.getAttribute(VerseModAttributes.MAX_POSTURE).getValue() : 0)) {
+					if (event instanceof ICancellableEvent _cancellable) {
+						_cancellable.setCanceled(true);
+					}
+					if (world instanceof Level _level) {
+						if (!_level.isClientSide()) {
+							_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:blockedattack")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 1.5, 2));
+						} else {
+							_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:blockedattack")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 1.5, 2), false);
+						}
+					}
+					entity.setDeltaMovement(new Vec3(((entity.getX() - sourceentity.getX()) * 2), ((entity.getY() - sourceentity.getY()) * 2), ((entity.getZ() - sourceentity.getZ()) * 2)));
+				} else {
+					if (world instanceof Level _level) {
+						if (!_level.isClientSide()) {
+							_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:posturebreak")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 0.9, 1.1));
+						} else {
+							_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:posturebreak")), SoundSource.PLAYERS, 1, (float) Mth.nextDouble(RandomSource.create(), 0.9, 1.1), false);
+						}
+					}
+					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+						_entity.addEffect(new MobEffectInstance(VerseModMobEffects.GUARDBROKEN, 35, 0, false, false));
+					if (entity instanceof LivingEntity _livingEntity35 && _livingEntity35.getAttributes().hasAttribute(VerseModAttributes.POSTURE))
+						_livingEntity35.getAttribute(VerseModAttributes.POSTURE).setBaseValue(0);
+					if (entity instanceof Player) {
+						if (entity.level().isClientSide()) {
+							CompoundTag data = entity.getPersistentData();
+							data.putString("PlayerCurrentAnimation", "verse:guardbreak");
+							data.putBoolean("OverrideCurrentAnimation", true);
+							data.putBoolean("FirstPersonAnimation", true);
+						} else {
+							PacketDistributor.sendToPlayersInDimension((ServerLevel) entity.level(), new PlayPlayerAnimationMessage(entity.getId(), "verse:guardbreak", true, true));
+						}
 					}
 				}
-				if (entity instanceof LivingEntity _livingEntity22 && _livingEntity22.getAttributes().hasAttribute(VerseModAttributes.POSTURE))
-					_livingEntity22.getAttribute(VerseModAttributes.POSTURE)
-							.setBaseValue(((entity instanceof LivingEntity _livingEntity21 && _livingEntity21.getAttributes().hasAttribute(VerseModAttributes.POSTURE) ? _livingEntity21.getAttribute(VerseModAttributes.POSTURE).getValue() : 0)
-									+ PostureCalcProcedure.execute(sourceentity)));
-				entity.setDeltaMovement(new Vec3(((entity.getX() - sourceentity.getX()) * 2), ((entity.getY() - sourceentity.getY()) * 2), ((entity.getZ() - sourceentity.getZ()) * 2)));
-			} else if (sourceentity instanceof LivingEntity _livEnt30 && _livEnt30.hasEffect(VerseModMobEffects.NO_ATTACK)) {
+			} else if (sourceentity instanceof LivingEntity _livEnt37 && _livEnt37.hasEffect(VerseModMobEffects.NO_ATTACK)) {
 				if (event instanceof ICancellableEvent _cancellable) {
 					_cancellable.setCanceled(true);
 				}

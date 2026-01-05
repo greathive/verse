@@ -14,6 +14,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.verse.init.VerseModMobEffects;
+import net.mcreator.verse.init.VerseModItems;
 
 public class AnkleWeightsRightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
@@ -32,8 +33,19 @@ public class AnkleWeightsRightclickedProcedure {
 					_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("item.armor.equip_iron")), SoundSource.PLAYERS, (float) 0.3, 1, false);
 				}
 			}
-			if (entity instanceof LivingEntity _entity)
-				_entity.removeEffect(VerseModMobEffects.AGILITY_TRAINING);
+			if (itemstack.getItem() == VerseModItems.ANKLE_WEIGHTS.get()) {
+				if (entity instanceof LivingEntity _entity)
+					_entity.removeEffect(VerseModMobEffects.AGILITY_TRAINING);
+			} else if (itemstack.getItem() == VerseModItems.DUMBBELL.get()) {
+				if (entity instanceof LivingEntity _entity)
+					_entity.removeEffect(VerseModMobEffects.STRENGTH_TRAINING);
+			} else if (itemstack.getItem() == VerseModItems.PRAYER_BEADS.get()) {
+				if (entity instanceof LivingEntity _entity)
+					_entity.removeEffect(VerseModMobEffects.STRENGTH_TRAINING);
+			} else if (itemstack.getItem() == VerseModItems.TRAINING_VEST.get()) {
+				if (entity instanceof LivingEntity _entity)
+					_entity.removeEffect(VerseModMobEffects.STRENGTH_TRAINING);
+			}
 		} else {
 			{
 				final String _tagName = "active";
@@ -47,8 +59,19 @@ public class AnkleWeightsRightclickedProcedure {
 					_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("item.armor.equip_iron")), SoundSource.PLAYERS, (float) 0.3, 1, false);
 				}
 			}
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-				_entity.addEffect(new MobEffectInstance(VerseModMobEffects.AGILITY_TRAINING, 100, 0, false, false));
+			if (itemstack.getItem() == VerseModItems.ANKLE_WEIGHTS.get()) {
+				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					_entity.addEffect(new MobEffectInstance(VerseModMobEffects.AGILITY_TRAINING, 100, 0, false, false));
+			} else if (itemstack.getItem() == VerseModItems.DUMBBELL.get()) {
+				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					_entity.addEffect(new MobEffectInstance(VerseModMobEffects.STRENGTH_TRAINING, 100, 0, false, false));
+			} else if (itemstack.getItem() == VerseModItems.PRAYER_BEADS.get()) {
+				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					_entity.addEffect(new MobEffectInstance(VerseModMobEffects.AGILITY_TRAINING, 100, 0, false, false));
+			} else if (itemstack.getItem() == VerseModItems.TRAINING_VEST.get()) {
+				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+					_entity.addEffect(new MobEffectInstance(VerseModMobEffects.AGILITY_TRAINING, 100, 0, false, false));
+			}
 		}
 	}
 }

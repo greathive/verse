@@ -13,8 +13,8 @@
     },
     "isInstant": false,
     "mobEffectCategory": "NEUTRAL",
-    "renderStatusInInventory": true,
-    "renderStatusInHUD": true,
+    "renderStatusInInventory": false,
+    "renderStatusInHUD": false,
     "isCuredbyHoney": false,
     "modifiers": []
   }

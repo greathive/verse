@@ -27,7 +27,7 @@ public class GetWeaponForAnimProcedure {
 		}
 		
 		if (mainHandItem.getItem() instanceof DiggerItem) {
-			return "axe";
+			return "sword";
 		}
 		
 		return "fist";

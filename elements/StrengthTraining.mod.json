@@ -2,8 +2,8 @@
   "_fv": 79,
   "_type": "potioneffect",
   "definition": {
-    "effectName": "Block Frame",
-    "icon": "parry",
+    "effectName": "Agility Training",
+    "icon": "ankleweights",
     "color": {
       "value": -1,
       "falpha": 0.0
@@ -13,7 +13,7 @@
     },
     "isInstant": false,
     "mobEffectCategory": "NEUTRAL",
-    "renderStatusInInventory": false,
+    "renderStatusInInventory": true,
     "renderStatusInHUD": false,
     "isCuredbyHoney": false,
     "modifiers": [
@@ -21,12 +21,12 @@
         "attribute": {
           "value": "MOVEMENT_SPEED"
         },
-        "amount": -0.5,
-        "operation": "ADD_MULTIPLIED_TOTAL"
+        "amount": -0.15,
+        "operation": "ADD_MULTIPLIED_BASE"
       }
     ],
     "onActiveTick": {
-      "name": "BlockFrameOnEffectActiveTick"
+      "name": "StrengthTrainingOnEffectActiveTick"
     }
   }
 }

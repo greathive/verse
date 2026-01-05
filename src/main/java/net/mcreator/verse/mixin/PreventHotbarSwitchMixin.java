@@ -13,6 +13,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 
+import net.mcreator.verse.init.VerseModMobEffects;
+
 @Mixin(Player.class)
 public class PreventHotbarSwitchMixin {
     @Shadow
@@ -26,39 +28,44 @@ public class PreventHotbarSwitchMixin {
         
         if (player.level().isClientSide()) {
             ItemStack mainHand = player.getMainHandItem();
+            CompoundTag data = player.getPersistentData();
             
-            // If holding custom weapon and on cooldown, reset selected slot to prevent switching
-            if (mainHand.is(ItemTags.create(ResourceLocation.parse("verse:tools")))) {
-                CompoundTag data = player.getPersistentData();
-                
+            boolean shouldLockHotbar = false;
+            
+            // Check if player has guardbroken effect - if your effect exists, uncomment this:
+            // if (player.hasEffect(VerseModMobEffects.GUARDBROKEN)) {
+            //     shouldLockHotbar = true;
+            // }
+            
+            // Check if holding custom weapon and on cooldown
+            if (!shouldLockHotbar && mainHand.is(ItemTags.create(ResourceLocation.parse("verse:tools")))) {
                 if (data.contains("CustomAttackCooldownUntil")) {
                     long cooldownUntil = data.getLong("CustomAttackCooldownUntil");
                     long currentTime = player.level().getGameTime();
                     long ticksRemaining = cooldownUntil - currentTime;
                     
-                    // Track the slot we were using
-                    if (!data.contains("LockedHotbarSlot")) {
-                        data.putInt("LockedHotbarSlot", player.getInventory().selected);
-                    }
-                    
-                    int lockedSlot = data.getInt("LockedHotbarSlot");
-                    
-                    // Force back to locked slot if on cooldown (except last 5 ticks)
+                    // Lock if on cooldown (except last 5 ticks)
                     if (ticksRemaining > 5) {
-                        if (player.getInventory().selected != lockedSlot) {
-                            player.getInventory().selected = lockedSlot;
-                        }
-                    } else {
-                        // Cooldown ending, clear lock
-                        data.remove("LockedHotbarSlot");
+                        shouldLockHotbar = true;
                     }
-                } else {
-                    // No cooldown, clear lock
-                    data.remove("LockedHotbarSlot");
+                }
+            }
+            
+            if (shouldLockHotbar) {
+                // Track the slot we were using
+                if (!data.contains("LockedHotbarSlot")) {
+                    data.putInt("LockedHotbarSlot", player.getInventory().selected);
+                }
+                
+                int lockedSlot = data.getInt("LockedHotbarSlot");
+                
+                // Force back to locked slot
+                if (player.getInventory().selected != lockedSlot) {
+                    player.getInventory().selected = lockedSlot;
                 }
             } else {
-                // Not holding custom weapon, clear lock
-                player.getPersistentData().remove("LockedHotbarSlot");
+                // No restrictions, clear lock
+                data.remove("LockedHotbarSlot");
             }
         }
     }

@@ -1600,8 +1600,12 @@
       "locked_code": true,
       "registry_name": "get_weapon_for_anim",
       "metadata": {
-        "dependencies": [],
-        "return_type": "string",
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
         "files": [
           "src/main/java/net/mcreator/verse/procedures/GetWeaponForAnimProcedure.java"
         ]
@@ -2227,6 +2231,186 @@
         ]
       },
       "path": "~/items/training gear"
+    },
+    {
+      "name": "Dumbbell",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dumbbell",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/dumbbell.json",
+          "src/main/java/net/mcreator/verse/item/DumbbellItem.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "PrayerBeads",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "prayer_beads",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/prayer_beads.json",
+          "src/main/java/net/mcreator/verse/item/PrayerBeadsItem.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "TrainingVest",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "training_vest",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/item/TrainingVestItem.java",
+          "src/main/resources/assets/verse/models/item/training_vest.json"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "AnkleWeightsSpecialInformation",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "ankle_weights_special_information",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ],
+        "return_type": "string",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsSpecialInformationProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "StrengthTraining",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "strength_training",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/StrengthTrainingMobEffect.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "StrengthTrainingOnEffectActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "strength_training_on_effect_active_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StrengthTrainingOnEffectActiveTickProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "StrengthExp",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "strength_exp",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/StrengthExpProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "Guardbroken",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "guardbroken",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/GuardbrokenMobEffect.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "GuardbrokenOnEffectActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "guardbroken_on_effect_active_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GuardbrokenOnEffectActiveTickProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "GuardbrokenEffectExpires",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "guardbroken_effect_expires",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/GuardbrokenEffectExpiresProcedure.java"
+        ]
+      },
+      "path": "~/parry"
+    },
+    {
+      "name": "PreventBlockInteraction",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "prevent_block_interaction",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/PreventBlockInteractionMixin.java"
+        ]
+      }
     }
   ],
   "variable_elements": [
@@ -2533,6 +2717,14 @@
       ],
       "category": "player",
       "subtitle": "attempted block"
+    },
+    {
+      "name": "posturebreak",
+      "files": [
+        "posture_break_1.mp3"
+      ],
+      "category": "player",
+      "subtitle": "guardbroken"
     }
   ],
   "tag_elements": {
@@ -2554,6 +2746,9 @@
       "TAG:minecraft:swords"
     ],
     "ITEMS:minecraft:enchantable/durability": [
+      "~CUSTOM:TrainingVest",
+      "~CUSTOM:PrayerBeads",
+      "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
     ]
   },
@@ -2610,7 +2805,19 @@
       "item.verse.ankle_weights.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
       "item.verse.ankle_weights": "Ankle Weights",
       "effect.verse.agility_training": "Agility Training",
-      "item_group.verse.training_gear": "Training Gear"
+      "item_group.verse.training_gear": "Training Gear",
+      "item.verse.dumbbell": "Dumbbell",
+      "item.verse.dumbbell.description_0": "Right-Click to enable effects.",
+      "item.verse.dumbbell.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+      "item.verse.prayer_beads.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+      "item.verse.prayer_beads.description_0": "Right-Click to enable effects.",
+      "item.verse.prayer_beads": "Prayer Beads",
+      "item.verse.training_vest.description_0": "Right-Click to enable effects.",
+      "item.verse.training_vest.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+      "item.verse.training_vest": "Training Vest",
+      "effect.verse.strength_training": "Agility Training",
+      "effect.verse.guardbroken": "Guardbroken",
+      "subtitles.posturebreak": "guardbroken"
     }
   },
   "metadata": {

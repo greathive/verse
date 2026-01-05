@@ -12,18 +12,16 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
-import net.minecraft.client.gui.GuiGraphics;
 
-import net.mcreator.verse.procedures.BlockFrameOnEffectActiveTickProcedure;
+import net.mcreator.verse.procedures.StrengthTrainingOnEffectActiveTickProcedure;
 import net.mcreator.verse.init.VerseModMobEffects;
 import net.mcreator.verse.VerseMod;
 
 @EventBusSubscriber
-public class BlockFrameMobEffect extends MobEffect {
-	public BlockFrameMobEffect() {
+public class StrengthTrainingMobEffect extends MobEffect {
+	public StrengthTrainingMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -1);
-		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "effect.block_frame_0"), -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "effect.strength_training_0"), -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 	}
 
 	@Override
@@ -33,7 +31,7 @@ public class BlockFrameMobEffect extends MobEffect {
 
 	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-		BlockFrameOnEffectActiveTickProcedure.execute(entity);
+		StrengthTrainingOnEffectActiveTickProcedure.execute(entity.level(), entity);
 		return super.applyEffectTick(entity, amplifier);
 	}
 
@@ -41,19 +39,9 @@ public class BlockFrameMobEffect extends MobEffect {
 	public static void registerMobEffectExtensions(RegisterClientExtensionsEvent event) {
 		event.registerMobEffect(new IClientMobEffectExtensions() {
 			@Override
-			public boolean isVisibleInInventory(MobEffectInstance effect) {
-				return false;
-			}
-
-			@Override
-			public boolean renderInventoryText(MobEffectInstance instance, EffectRenderingInventoryScreen<?> screen, GuiGraphics guiGraphics, int x, int y, int blitOffset) {
-				return false;
-			}
-
-			@Override
 			public boolean isVisibleInGui(MobEffectInstance effect) {
 				return false;
 			}
-		}, VerseModMobEffects.BLOCK_FRAME.get());
+		}, VerseModMobEffects.STRENGTH_TRAINING.get());
 	}
 }

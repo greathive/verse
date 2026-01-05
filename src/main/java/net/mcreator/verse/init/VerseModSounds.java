@@ -24,4 +24,5 @@ public class VerseModSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> AXESWING2 = REGISTRY.register("axeswing2", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "axeswing2")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> BLOCKEDATTACK = REGISTRY.register("blockedattack", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "blockedattack")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> BLOCKATTEMPT = REGISTRY.register("blockattempt", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "blockattempt")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> POSTUREBREAK = REGISTRY.register("posturebreak", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "posturebreak")));
 }

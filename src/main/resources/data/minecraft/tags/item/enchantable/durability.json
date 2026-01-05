@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "verse:ankle_weights"
+    "verse:training_vest",
+    "verse:ankle_weights",
+    "verse:prayer_beads",
+    "verse:dumbbell"
   ]
 }

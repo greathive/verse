@@ -19,8 +19,8 @@ import net.mcreator.verse.procedures.AnkleWeightsRightclickedProcedure;
 
 import java.util.List;
 
-public class AnkleWeightsItem extends Item {
-	public AnkleWeightsItem() {
+public class TrainingVestItem extends Item {
+	public TrainingVestItem() {
 		super(new Item.Properties().durability(2000));
 	}
 

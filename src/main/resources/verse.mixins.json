@@ -9,7 +9,8 @@
     "ClientAttackHandlerMixin",
     "PreventMiningOnCooldownMixin",
     "PreventHotbarSwitchMixin",
-    "ContinuousAttackMixin"
+    "ContinuousAttackMixin",
+    "PreventBlockInteractionMixin"
   ],
   "client": [
     "PlayerAnimationMixin",

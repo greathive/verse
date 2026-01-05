@@ -3,13 +3,13 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "ankleweights",
+    "texture": "trainingvest",
     "customModelName": "Normal",
     "guiTexture": "",
     "customProperties": {},
     "states": [],
     "animations": [],
-    "name": "Ankle Weights",
+    "name": "Training Vest",
     "rarity": "COMMON",
     "creativeTabs": [
       {

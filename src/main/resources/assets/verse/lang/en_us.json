@@ -49,5 +49,17 @@
   "item.verse.ankle_weights.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
   "item.verse.ankle_weights": "Ankle Weights",
   "effect.verse.agility_training": "Agility Training",
-  "item_group.verse.training_gear": "Training Gear"
+  "item_group.verse.training_gear": "Training Gear",
+  "item.verse.dumbbell": "Dumbbell",
+  "item.verse.dumbbell.description_0": "Right-Click to enable effects.",
+  "item.verse.dumbbell.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+  "item.verse.prayer_beads.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+  "item.verse.prayer_beads.description_0": "Right-Click to enable effects.",
+  "item.verse.prayer_beads": "Prayer Beads",
+  "item.verse.training_vest.description_0": "Right-Click to enable effects.",
+  "item.verse.training_vest.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
+  "item.verse.training_vest": "Training Vest",
+  "effect.verse.strength_training": "Agility Training",
+  "effect.verse.guardbroken": "Guardbroken",
+  "subtitles.posturebreak": "guardbroken"
 }

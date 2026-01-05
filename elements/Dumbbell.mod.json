@@ -3,13 +3,13 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "ankleweights",
+    "texture": "dumbell",
     "customModelName": "Normal",
     "guiTexture": "",
     "customProperties": {},
     "states": [],
     "animations": [],
-    "name": "Ankle Weights",
+    "name": "Dumbbell",
     "rarity": "COMMON",
     "creativeTabs": [
       {

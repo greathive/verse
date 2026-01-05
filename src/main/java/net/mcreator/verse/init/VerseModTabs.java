@@ -31,6 +31,9 @@ public class VerseModTabs {
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TRAINING_GEAR = REGISTRY.register("training_gear",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.training_gear")).icon(() -> new ItemStack(VerseModItems.ANKLE_WEIGHTS.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.ANKLE_WEIGHTS.get());
+				tabData.accept(VerseModItems.DUMBBELL.get());
+				tabData.accept(VerseModItems.PRAYER_BEADS.get());
+				tabData.accept(VerseModItems.TRAINING_VEST.get());
 			}).withTabsBefore(VERSE_WEAPONS.getId()).build());
 
 	@SubscribeEvent
