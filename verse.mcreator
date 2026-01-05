@@ -2411,6 +2411,20 @@
           "src/main/java/net/mcreator/verse/mixin/PreventBlockInteractionMixin.java"
         ]
       }
+    },
+    {
+      "name": "Blood",
+      "type": "particle",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "blood",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/particle/BloodParticle.java",
+          "src/main/resources/assets/verse/particles/blood.json"
+        ]
+      },
+      "path": "~/parry"
     }
   ],
   "variable_elements": [

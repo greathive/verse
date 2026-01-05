@@ -9,11 +9,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
 
 import net.mcreator.verse.client.particle.ParryparticleParticle;
+import net.mcreator.verse.client.particle.BloodParticle;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class VerseModParticles {
 	@SubscribeEvent
 	public static void registerParticles(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(VerseModParticleTypes.PARRYPARTICLE.get(), ParryparticleParticle::provider);
+		event.registerSpriteSet(VerseModParticleTypes.BLOOD.get(), BloodParticle::provider);
 	}
 }
