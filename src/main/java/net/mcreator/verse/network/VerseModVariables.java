@@ -100,6 +100,7 @@ public class VerseModVariables {
 		clone.hasCard = original.hasCard;
 		clone.burn = original.burn;
 		clone.freeze = original.freeze;
+		clone.fold = original.fold;
 		if (!event.isWasDeath()) {
 			clone.currentmantra = original.currentmantra;
 			clone.PlayerIA = original.PlayerIA;
@@ -149,6 +150,7 @@ public class VerseModVariables {
 		public boolean hasCard = false;
 		public String burn = "\"\"";
 		public String freeze = "\"\"";
+		public double fold = 0;
 
 		@Override
 		public CompoundTag serializeNBT(HolderLookup.Provider lookupProvider) {
@@ -190,6 +192,7 @@ public class VerseModVariables {
 			nbt.putBoolean("hasCard", hasCard);
 			nbt.putString("burn", burn);
 			nbt.putString("freeze", freeze);
+			nbt.putDouble("fold", fold);
 			return nbt;
 		}
 
@@ -232,6 +235,7 @@ public class VerseModVariables {
 			hasCard = nbt.getBoolean("hasCard");
 			burn = nbt.getString("burn");
 			freeze = nbt.getString("freeze");
+			fold = nbt.getDouble("fold");
 		}
 
 		public void markSyncDirty() {

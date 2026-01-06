@@ -47,6 +47,7 @@ public class ValidTalentListProcedure {
 		double rare = 0;
 		double checkrequired = 0;
 		double checkmutual = 0;
+		double handcount = 0;
 		String required = "";
 		String name = "";
 		String reserve = "";
@@ -54,6 +55,8 @@ public class ValidTalentListProcedure {
 		String mutual = "";
 		String requiredrepeater = "";
 		String mutualrepeater = "";
+		String finaltext = "";
+		String validrare = "";
 		{
 			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 			_vars.validdraw = "";
@@ -173,11 +176,7 @@ public class ValidTalentListProcedure {
 												reserve = reserve + "" + ("(" + name + ")");
 											}
 										} else {
-											{
-												VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-												_vars.validrare = entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare + "" + ("(" + name + ")");
-												_vars.markSyncDirty();
-											}
+											validrare = entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare + "" + ("(" + name + ")");
 										}
 									}
 								}
@@ -187,12 +186,42 @@ public class ValidTalentListProcedure {
 				}
 			}
 		}
+		if (entity.getData(VerseModVariables.PLAYER_VARIABLES).power % 2 == 0) {
+			handcount = 2;
+			count = 5;
+		} else {
+			handcount = 3;
+			count = 4;
+		}
+		if (!((ReturnCountOfTheseTalentsProcedure.execute(entity, primary) + ReturnCountOfTheseTalentsProcedure.execute(entity, reserve)) / count > handcount + entity.getData(VerseModVariables.PLAYER_VARIABLES).fold)) {
+			handcount = 2;
+			count = Math.floor((ReturnCountOfTheseTalentsProcedure.execute(entity, primary) + ReturnCountOfTheseTalentsProcedure.execute(entity, reserve)) / 2);
+		}
+		for (int index2 = 0; index2 < (int) handcount; index2++) {
+			for (int index3 = 0; index3 < (int) count; index3++) {
+				if (count > ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext)) {
+					if (primary.contains("(")) {
+						finaltext = finaltext + "" + primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length());
+						primary = primary.replace(primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length()), "");
+					} else {
+						finaltext = finaltext + "" + reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length());
+						primary = reserve.replace(reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length()), "");
+					}
+					if (count == ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext) && validrare.contains("(")) {
+						finaltext = finaltext + "" + validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length());
+						validrare = validrare.replace(validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length()), "");
+					}
+				}
+			}
+			{
+				VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+				_vars.validdraw = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw + "{" + finaltext + "}";
+				_vars.markSyncDirty();
+			}
+			finaltext = "";
+		}
+		VerseMod.LOGGER.info("" + entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw);
 		if (entity instanceof Player _player && !_player.level().isClientSide())
-			_player.displayClientMessage(Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, primary) + "primary: " + primary)), false);
-		if (entity instanceof Player _player && !_player.level().isClientSide())
-			_player.displayClientMessage(Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, reserve) + "reserve: " + reserve)), false);
-		if (entity instanceof Player _player && !_player.level().isClientSide())
-			_player.displayClientMessage(
-					Component.literal((ReturnCountOfTheseTalentsProcedure.execute(entity, entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare) + "validrare: " + entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare)), false);
+			_player.displayClientMessage(Component.literal(("" + entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw)), false);
 	}
 }
