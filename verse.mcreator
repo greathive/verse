@@ -2425,6 +2425,32 @@
         ]
       },
       "path": "~/parry"
+    },
+    {
+      "name": "DisableHotbarKeymapping",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "disable_hotbar_keymapping",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/DisableHotbarKeymappingMixin.java"
+        ]
+      }
+    },
+    {
+      "name": "Deepspindle",
+      "type": "tool",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "deepspindle",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/deepspindle.json",
+          "src/main/java/net/mcreator/verse/item/DeepspindleItem.java"
+        ]
+      },
+      "path": "~/items"
     }
   ],
   "variable_elements": [
@@ -2770,6 +2796,9 @@
       "~CUSTOM:PrayerBeads",
       "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
+    ],
+    "ITEMS:minecraft:swords": [
+      "~CUSTOM:Deepspindle"
     ]
   },
   "tab_element_order": {},
@@ -2837,7 +2866,8 @@
       "item.verse.training_vest": "Training Vest",
       "effect.verse.strength_training": "Agility Training",
       "effect.verse.guardbroken": "Guardbroken",
-      "subtitles.posturebreak": "guardbroken"
+      "subtitles.posturebreak": "guardbroken",
+      "item.verse.deepspindle": "Deepspindle"
     }
   },
   "metadata": {

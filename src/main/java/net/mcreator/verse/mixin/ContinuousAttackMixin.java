@@ -62,7 +62,7 @@ public class ContinuousAttackMixin {
         if (this.player.hasEffect(VerseModMobEffects.NO_ATTACK)) return;
         
         long currentTime = this.player.level().getGameTime();
-        int comboBuffer = 5;
+        int comboBuffer = -2;
         
         // Check if cooldown allows attack
         boolean canAttack = false;

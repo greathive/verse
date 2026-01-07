@@ -3,6 +3,8 @@ package net.mcreator.verse.procedures;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.Mth;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.IoSupplier;
 import net.minecraft.server.packs.PackType;
@@ -29,6 +31,16 @@ public class ValidTalentListProcedure {
 		com.google.gson.JsonObject mainJOBJ = new com.google.gson.JsonObject();
 		boolean requiredisfine = false;
 		boolean mutualisfine = false;
+		String required = "";
+		String name = "";
+		String reserve = "";
+		String primary = "";
+		String mutual = "";
+		String requiredrepeater = "";
+		String mutualrepeater = "";
+		String finaltext = "";
+		String validrare = "";
+		String choice = "";
 		double tesdt = 0;
 		double mind = 0;
 		double gale = 0;
@@ -48,15 +60,7 @@ public class ValidTalentListProcedure {
 		double checkrequired = 0;
 		double checkmutual = 0;
 		double handcount = 0;
-		String required = "";
-		String name = "";
-		String reserve = "";
-		String primary = "";
-		String mutual = "";
-		String requiredrepeater = "";
-		String mutualrepeater = "";
-		String finaltext = "";
-		String validrare = "";
+		double randomchoice = 0;
 		{
 			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 			_vars.validdraw = "";
@@ -201,11 +205,37 @@ public class ValidTalentListProcedure {
 			for (int index3 = 0; index3 < (int) count; index3++) {
 				if (count > ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext)) {
 					if (primary.contains("(")) {
-						finaltext = finaltext + "" + primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length());
-						primary = primary.replace(primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length()), "");
+						if (0 < ReturnCountOfTheseTalentsProcedure.execute(entity, primary)) {
+							randomchoice = Mth.nextInt(RandomSource.create(), 1, (int) ReturnCountOfTheseTalentsProcedure.execute(entity, primary));
+							choice = primary;
+							for (int index4 = 0; index4 < (int) (randomchoice - 1); index4++) {
+								if (1 < ReturnCountOfTheseTalentsProcedure.execute(entity, choice)) {
+									choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
+								}
+							}
+							choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
+							primary = primary.replace(choice, "");
+							VerseMod.LOGGER.info("1");
+						} else {
+							finaltext = finaltext + "" + primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length());
+							primary = primary.replace(primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length()), "");
+						}
 					} else {
-						finaltext = finaltext + "" + reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length());
-						primary = reserve.replace(reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length()), "");
+						if (0 < ReturnCountOfTheseTalentsProcedure.execute(entity, reserve)) {
+							randomchoice = Mth.nextInt(RandomSource.create(), 1, (int) ReturnCountOfTheseTalentsProcedure.execute(entity, reserve));
+							choice = reserve;
+							for (int index5 = 0; index5 < (int) (randomchoice - 1); index5++) {
+								if (1 < ReturnCountOfTheseTalentsProcedure.execute(entity, choice)) {
+									choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
+								}
+							}
+							choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
+							reserve = reserve.replace(choice, "");
+							VerseMod.LOGGER.info("2");
+						} else {
+							finaltext = finaltext + "" + reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length());
+							reserve = reserve.replace(reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length()), "");
+						}
 					}
 					if (count == ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext) && validrare.contains("(")) {
 						finaltext = finaltext + "" + validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length());

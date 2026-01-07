@@ -27,6 +27,7 @@ public class VerseModTabs {
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE_WEAPONS = REGISTRY.register("verse_weapons",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse_weapons")).icon(() -> new ItemStack(VerseModItems.GRAN_SUDA.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.GRAN_SUDA.get());
+				tabData.accept(VerseModItems.DEEPSPINDLE.get());
 			}).withTabsBefore(VERSE.getId()).build());
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TRAINING_GEAR = REGISTRY.register("training_gear",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.training_gear")).icon(() -> new ItemStack(VerseModItems.ANKLE_WEIGHTS.get())).displayItems((parameters, tabData) -> {

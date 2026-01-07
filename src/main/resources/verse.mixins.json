@@ -10,7 +10,8 @@
     "PreventMiningOnCooldownMixin",
     "PreventHotbarSwitchMixin",
     "ContinuousAttackMixin",
-    "PreventBlockInteractionMixin"
+    "PreventBlockInteractionMixin",
+    "DisableHotbarKeymappingMixin"
   ],
   "client": [
     "PlayerAnimationMixin",

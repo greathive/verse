@@ -49,7 +49,7 @@ public class ClientAttackHandlerMixin {
         long currentTime = this.player.level().getGameTime();
         
         // Calculate how many ticks before end we allow next attack (buffer for smooth combos)
-        int comboBuffer = 5;
+        int comboBuffer = -2;
         
         // Check custom cooldown - allow attack in last few ticks
         if (data.contains("CustomAttackCooldownUntil")) {

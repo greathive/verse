@@ -29,6 +29,7 @@ public class VerseModItems {
 	public static final DeferredItem<Item> DUMBBELL;
 	public static final DeferredItem<Item> PRAYER_BEADS;
 	public static final DeferredItem<Item> TRAINING_VEST;
+	public static final DeferredItem<Item> DEEPSPINDLE;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		MOBANIMTESTSTICK = REGISTRY.register("mobanimteststick", MobanimteststickItem::new);
@@ -42,6 +43,7 @@ public class VerseModItems {
 		DUMBBELL = REGISTRY.register("dumbbell", DumbbellItem::new);
 		PRAYER_BEADS = REGISTRY.register("prayer_beads", PrayerBeadsItem::new);
 		TRAINING_VEST = REGISTRY.register("training_vest", TrainingVestItem::new);
+		DEEPSPINDLE = REGISTRY.register("deepspindle", DeepspindleItem::new);
 	}
 
 	// Start of user code block custom items
