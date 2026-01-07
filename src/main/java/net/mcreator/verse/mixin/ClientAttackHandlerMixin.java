@@ -14,7 +14,9 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.util.SwingDataLoader;
+import net.mcreator.verse.util.EndlagDataLoader;
 import net.mcreator.verse.init.VerseModMobEffects;
+import net.mcreator.verse.VerseMod;
 
 @Mixin(Minecraft.class)
 public class ClientAttackHandlerMixin {
@@ -48,8 +50,9 @@ public class ClientAttackHandlerMixin {
         // Get persistent data for cooldown tracking
         long currentTime = this.player.level().getGameTime();
         
-        // Calculate how many ticks before end we allow next attack (buffer for smooth combos)
-        int comboBuffer = -2;
+        // Get combo buffer from endlag data (defaults to 5 if no file exists)
+        int comboBuffer = EndlagDataLoader.getEndlag(mainHand);
+
         
         // Check custom cooldown - allow attack in last few ticks
         if (data.contains("CustomAttackCooldownUntil")) {

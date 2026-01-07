@@ -18,6 +18,7 @@ import net.minecraft.client.Options;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.util.SwingDataLoader;
+import net.mcreator.verse.util.EndlagDataLoader;
 import net.mcreator.verse.network.CustomAttackPacket;
 import net.mcreator.verse.init.VerseModMobEffects;
 
@@ -62,7 +63,9 @@ public class ContinuousAttackMixin {
         if (this.player.hasEffect(VerseModMobEffects.NO_ATTACK)) return;
         
         long currentTime = this.player.level().getGameTime();
-        int comboBuffer = -2;
+        
+        // Get combo buffer from endlag data (defaults to 5 if no file exists)
+        int comboBuffer = EndlagDataLoader.getEndlag(mainHand);
         
         // Check if cooldown allows attack
         boolean canAttack = false;

@@ -1,0 +1,21 @@
+{
+  "id": "verse:deepspindle",
+  "followpitch": "0.5",
+  "frameHeight": "120",
+  "frameWidth": "80",
+  "frameCount": "6",
+  "swingroll": {
+     "1": "-45",
+     "2": "150",
+     "3": "115"
+  },
+  "percent": {
+     "start": "0.15",
+     "end": "1"
+  },
+  "horizontalScale": "1",
+  "verticalScale": "1.5",
+  "yOffset": "-0.5",
+  "distance": "1.15",
+  "path": "verse:textures/trail/deepspindletrail"
+}

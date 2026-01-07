@@ -42,6 +42,6 @@ public class DeepspindleItem extends SwordItem {
 	};
 
 	public DeepspindleItem() {
-		super(TOOL_TIER, new Item.Properties().attributes(SwordItem.createAttributes(TOOL_TIER, 5f, -2f)));
+		super(TOOL_TIER, new Item.Properties().attributes(SwordItem.createAttributes(TOOL_TIER, 5f, -2.2f)));
 	}
 }

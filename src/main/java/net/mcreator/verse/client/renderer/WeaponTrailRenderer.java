@@ -138,9 +138,9 @@ public class WeaponTrailRenderer {
 
 			// Store player's horizontal velocity at spawn time (full velocity, no Y component)
 			Vec3 playerVelocity = player.getDeltaMovement();
-			double velX = playerVelocity.x;
+			double velX = playerVelocity.x * 0.5;
 			double velY = 0; // No vertical movement
-			double velZ = playerVelocity.z;
+			double velZ = playerVelocity.z * 0.5;
 
 			// Store the spawn position and rotation (using adjusted pitch)
 			data.putDouble("TrailSpawnX", spawnPos.x);
