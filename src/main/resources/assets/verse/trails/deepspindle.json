@@ -5,12 +5,12 @@
   "frameWidth": "80",
   "frameCount": "6",
   "swingroll": {
-     "1": "-45",
+     "1": "-15",
      "2": "150",
      "3": "115"
   },
   "percent": {
-     "start": "0.15",
+     "start": "0.35",
      "end": "1"
   },
   "horizontalScale": "1",
