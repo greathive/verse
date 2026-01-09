@@ -203,46 +203,40 @@ public class ValidTalentListProcedure {
 		}
 		for (int index2 = 0; index2 < (int) handcount; index2++) {
 			for (int index3 = 0; index3 < (int) count; index3++) {
+				choice = "";
 				if (count > ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext)) {
 					if (primary.contains("(")) {
-						if (0 < ReturnCountOfTheseTalentsProcedure.execute(entity, primary)) {
-							randomchoice = Mth.nextInt(RandomSource.create(), 1, (int) ReturnCountOfTheseTalentsProcedure.execute(entity, primary));
-							choice = primary;
-							for (int index4 = 0; index4 < (int) (randomchoice - 1); index4++) {
-								if (1 < ReturnCountOfTheseTalentsProcedure.execute(entity, choice)) {
-									choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
-								}
+						randomchoice = Mth.nextInt(RandomSource.create(), 0, (int) (ReturnCountOfTheseTalentsProcedure.execute(entity, primary) - 1));
+						choice = primary;
+						if (randomchoice > 0) {
+							for (int index4 = 0; index4 < (int) randomchoice; index4++) {
+								choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
 							}
-							choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
-							primary = primary.replace(choice, "");
-							VerseMod.LOGGER.info("1");
-						} else {
-							finaltext = finaltext + "" + primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length());
-							primary = primary.replace(primary.substring((int) primary.indexOf("("), (int) primary.indexOf(")") + ")".length()), "");
 						}
+						choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
+						primary = primary.replace(choice, "");
 					} else {
-						if (0 < ReturnCountOfTheseTalentsProcedure.execute(entity, reserve)) {
-							randomchoice = Mth.nextInt(RandomSource.create(), 1, (int) ReturnCountOfTheseTalentsProcedure.execute(entity, reserve));
-							choice = reserve;
-							for (int index5 = 0; index5 < (int) (randomchoice - 1); index5++) {
-								if (1 < ReturnCountOfTheseTalentsProcedure.execute(entity, choice)) {
-									choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
-								}
+						randomchoice = Mth.nextInt(RandomSource.create(), 0, (int) (ReturnCountOfTheseTalentsProcedure.execute(entity, reserve) - 1));
+						choice = reserve;
+						if (randomchoice > 0) {
+							for (int index5 = 0; index5 < (int) randomchoice; index5++) {
+								choice = choice.replace(choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length()), "");
 							}
-							choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
-							reserve = reserve.replace(choice, "");
-							VerseMod.LOGGER.info("2");
-						} else {
-							finaltext = finaltext + "" + reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length());
-							reserve = reserve.replace(reserve.substring((int) reserve.indexOf("("), (int) reserve.indexOf(")") + ")".length()), "");
 						}
+						choice = choice.substring((int) choice.indexOf("("), (int) choice.indexOf(")") + ")".length());
+						VerseMod.LOGGER.info("choice" + choice);
+						reserve = reserve.replace(choice, "");
 					}
 					if (count == ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext) && validrare.contains("(")) {
 						finaltext = finaltext + "" + validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length());
 						validrare = validrare.replace(validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length()), "");
+					} else {
+						finaltext = finaltext + "" + choice;
 					}
+					VerseMod.LOGGER.info("hand: " + finaltext);
 				}
 			}
+			VerseMod.LOGGER.info("hand: " + finaltext);
 			{
 				VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 				_vars.validdraw = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw + "{" + finaltext + "}";

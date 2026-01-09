@@ -37,6 +37,7 @@ import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.world.inventory.CardHandMenu;
 import net.mcreator.verse.network.VerseModVariables;
+import net.mcreator.verse.VerseMod;
 
 import javax.annotation.Nullable;
 
@@ -391,7 +392,6 @@ public class CardHandRenderProcedure {
 	}
 
 	private static void execute(@Nullable Event event, double mouseX, double mouseY) {
-		String texturechoice = "";
 		double currentTick = 0;
 		double orbscale = 0;
 		double anchorX = 0;
@@ -401,6 +401,22 @@ public class CardHandRenderProcedure {
 		double aceX = 0;
 		double aceY = 0;
 		double repeat = 0;
+		double nameScale = 0;
+		double cardX = 0;
+		double cardY = 0;
+		double LineRepeat = 0;
+		double yrepeat = 0;
+		double lastPos = 0;
+		double talentcount = 0;
+		double scrollModifier = 0;
+		String texturechoice = "";
+		String TalentText = "";
+		String icon = "";
+		String description = "";
+		String finalText = "";
+		String talent = "";
+		String talentlist = "";
+		String card = "";
 		if (Minecraft.getInstance().player != null) {
 			Entity entity = Minecraft.getInstance().player;
 			double x = entity.getX();
@@ -445,6 +461,78 @@ public class CardHandRenderProcedure {
 						renderTexture((float) aceX, (float) aceY, -3, 0, (float) 1.5, 255 << 24 | 255 << 16 | 255 << 8 | 255, 0);
 						texturechoice = "mantra";
 						repeat = -1;
+					}
+					talentlist = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("{") + "{".length(),
+							(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("}"));
+					talentcount = ReturnCountOfTheseTalentsProcedure.execute(entity, talentlist);
+					VerseMod.LOGGER.info(ReturnCountOfTheseTalentsProcedure.execute(entity, talentlist));
+					repeat = 1;
+					description = "placeholder";
+					for (int index2 = 0; index2 < (int) talentcount; index2++) {
+						talent = talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length());
+						if ((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length() > 14) {
+							nameScale = 14d / (talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length();
+						} else {
+							nameScale = 1;
+						}
+						try {
+							boolean found = false;
+							// Get all available namespaces (mods and resource packs)
+							for (String namespace : Minecraft.getInstance().getResourceManager().getNamespaces()) {
+								var resource = Minecraft.getInstance().getResourceManager().getResource(ResourceLocation.fromNamespaceAndPath(namespace, "talent_info/talent_local.json"));
+								if (resource.isPresent()) {
+									com.google.gson.JsonObject json = com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(resource.get().open())).getAsJsonObject();
+									if (json.has(talent)) {
+										description = json.get(talent).getAsString();
+										found = true;
+										break;
+									}
+								}
+							}
+							if (!found) {
+								description = "Description not found";
+							}
+						} catch (Exception e) {
+							description = "Error loading description";
+							e.printStackTrace();
+						}
+						if (!(description.endsWith(")") && description.startsWith("("))) {
+							description = "(icon)This talent's description could not be found!(commoncard)";
+						}
+						card = description.substring((int) description.lastIndexOf("(") + "(".length(), (int) description.lastIndexOf(")"));
+						icon = description.substring((int) description.indexOf("(") + "(".length(), (int) description.indexOf(")"));
+						cardX = repeat * 148;
+						cardY = (128 + yrepeat * 230) - entity.getData(VerseModVariables.PLAYER_VARIABLES).scroll / scrollModifier;
+						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
+						renderTexture((float) cardX, (float) (cardY - 30), -1, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
+						renderTexture((float) cardX, (float) cardY, 0, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -1, 0, (float) nameScale, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+						LineRepeat = 0;
+						TalentText = description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("));
+						if (1 + Math.ceil((description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("))).length() / 20d) > 7) {
+							lastPos = 7 / (1 + Math.ceil((description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("))).length() / 20d));
+						} else {
+							lastPos = 1;
+						}
+						for (int index3 = 0; index3 < (int) (1 + Math.ceil((description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("))).length() / 20d)); index3++) {
+							if ((TalentText).length() > 20) {
+								finalText = TalentText.substring(0, (int) ((TalentText.substring(0, 20)).lastIndexOf(" ") - 0));
+								LineRepeat = LineRepeat + 1;
+							} else {
+								finalText = TalentText.substring(0, (TalentText).length());
+								LineRepeat = LineRepeat + 1;
+							}
+							renderTexts(finalText, (float) cardX, (float) (cardY + 12 + 8 * lastPos * LineRepeat), -1, 0, (float) lastPos, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+							TalentText = TalentText.replace(finalText, "");
+						}
+						talentlist = talentlist.replace(talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length()), "");
+						if (4 > repeat) {
+							repeat = repeat + 1;
+						} else {
+							repeat = 1;
+							yrepeat = yrepeat + 1;
+						}
 					}
 					release();
 				}

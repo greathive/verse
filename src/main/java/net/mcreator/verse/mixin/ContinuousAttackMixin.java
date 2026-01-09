@@ -11,16 +11,16 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.Options;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.util.SwingDataLoader;
-import net.mcreator.verse.util.EndlagDataLoader;
 import net.mcreator.verse.network.CustomAttackPacket;
 import net.mcreator.verse.init.VerseModMobEffects;
+import net.mcreator.verse.client.renderer.WeaponTrailRenderer;
 
 @Mixin(Minecraft.class)
 public class ContinuousAttackMixin {
@@ -63,9 +63,7 @@ public class ContinuousAttackMixin {
         if (this.player.hasEffect(VerseModMobEffects.NO_ATTACK)) return;
         
         long currentTime = this.player.level().getGameTime();
-        
-        // Get combo buffer from endlag data (defaults to 5 if no file exists)
-        int comboBuffer = EndlagDataLoader.getEndlag(mainHand);
+        int comboBuffer = 5;
         
         // Check if cooldown allows attack
         boolean canAttack = false;
@@ -99,6 +97,12 @@ public class ContinuousAttackMixin {
         int swing = data.getInt("SwingCounter");
         swing = swing >= swingData.swingCount ? 1 : swing + 1;
         data.putInt("SwingCounter", swing);
+        
+        // Get the item's registry ID for trail
+        ResourceLocation itemId = mainHand.getItem().builtInRegistryHolder().key().location();
+        
+        // Start the trail with the current weapon and swing counter
+        WeaponTrailRenderer.startTrail(this.player, itemId, swing, cooldownTicks);
         
         // Play animation using anim type from JSON
         String animName = "verse:swing_" + swingData.animType + swing;
