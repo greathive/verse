@@ -7,8 +7,9 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.Camera;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,9 +20,7 @@ import org.joml.Matrix4f;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @EventBusSubscriber(modid = "verse", bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
@@ -42,186 +41,148 @@ public class WeaponTrailRenderer {
 			return;
 		}
 
+		ItemStack mainHand = player.getMainHandItem();
+
+		if (mainHand.isEmpty()) {
+			return;
+		}
+
+
 		CompoundTag data = player.getPersistentData();
 
-		// Check if we have active trails list
-		if (!data.contains("ActiveTrails")) {
+		// Check if we're in an attack
+		if (!data.contains("CustomAttackCooldownUntil") || !data.contains("AttackStartTime")) {
 			return;
 		}
 
-		ListTag trailsList = data.getList("ActiveTrails", 10); // 10 = CompoundTag type
 
-		if (trailsList.isEmpty()) {
-			return;
-		}
-
+		long cooldownUntil = data.getLong("CustomAttackCooldownUntil");
+		long attackStartTime = data.getLong("AttackStartTime");
 		long currentTime = player.level().getGameTime();
+
+		// Calculate swing progress
+		double attackSpeed = player.getAttributeValue(Attributes.ATTACK_SPEED);
+		long totalSwingTicks = Math.round(20.0 / attackSpeed);
+		long ticksSinceStart = currentTime - attackStartTime;
+
+		// Add partial tick for smooth animation
 		float partialTick = event.getPartialTick().getGameTimeDeltaPartialTick(false);
+		float progress = (ticksSinceStart + partialTick) / totalSwingTicks;
 
-		// List to track indices of trails to remove
-		List<Integer> trailsToRemove = new ArrayList<>();
-
-		// Render all active trails
-		for (int i = 0; i < trailsList.size(); i++) {
-			CompoundTag trailData = trailsList.getCompound(i);
-
-			String storedTrailIdString = trailData.getString("TrailID");
-			ResourceLocation trailId = ResourceLocation.parse(storedTrailIdString);
-
-			// Get trail info
-			TrailInfo trailInfo = getTrailInfo(trailId);
-			if (trailInfo == null) {
-				trailsToRemove.add(i);
-				continue;
-			}
-
-			long attackStartTime = trailData.getLong("StartTime");
-			long totalSwingTicks = trailData.getLong("TotalSwingTicks");
-			long ticksSinceStart = currentTime - attackStartTime;
-
-			// Calculate swing progress
-			float progress = (ticksSinceStart + partialTick) / totalSwingTicks;
-
-			// Check if trail should end based on progress
-			if (progress > trailInfo.endPercent) {
-				trailsToRemove.add(i);
-				continue;
-			}
-
-			// Only render during the specified percent range
-			if (progress < trailInfo.startPercent) {
-				continue;
-			}
-
-			// Calculate which frame to show based on progress
-			float animProgress = (progress - trailInfo.startPercent) / (trailInfo.endPercent - trailInfo.startPercent);
-			int currentFrame = (int) (animProgress * trailInfo.frameCount);
-			currentFrame = Math.min(currentFrame, trailInfo.frameCount - 1);
-
-			// Get swing counter from stored data
-			int swingCounter = trailData.getInt("SwingCounter");
-
-			// Get the stored spawn position
-			Vec3 basePos = new Vec3(
-					trailData.getDouble("SpawnX"),
-					trailData.getDouble("SpawnY"),
-					trailData.getDouble("SpawnZ")
-			);
-
-			// Get stored velocity
-			Vec3 velocity = new Vec3(
-					trailData.getDouble("VelocityX"),
-					trailData.getDouble("VelocityY"),
-					trailData.getDouble("VelocityZ")
-			);
-
-			// Calculate time since spawn and apply velocity
-			float timeSinceSpawn = ticksSinceStart + partialTick;
-			Vec3 trailPos = basePos.add(
-					velocity.x * timeSinceSpawn,
-					velocity.y * timeSinceSpawn,
-					velocity.z * timeSinceSpawn
-			);
-
-			float spawnYaw = trailData.getFloat("SpawnYaw");
-			float spawnPitch = trailData.getFloat("SpawnPitch");
-
-			// Render the trail at the calculated position
-			renderTrail(event.getPoseStack(), event.getCamera(), trailInfo, currentFrame, trailPos, spawnYaw, spawnPitch, swingCounter);
-		}
-
-		// Remove expired trails (iterate backwards to avoid index issues)
-		for (int i = trailsToRemove.size() - 1; i >= 0; i--) {
-			trailsList.remove(trailsToRemove.get(i).intValue());
-		}
-
-		// Update the trails list
-		data.put("ActiveTrails", trailsList);
-	}
-
-	// Separate method to handle trail initialization when an attack starts
-	public static void startTrail(LocalPlayer player, ResourceLocation itemId, int swingCounter, long totalSwingTicks) {
-		CompoundTag data = player.getPersistentData();
-
-		// Extract just the item name from the full item ID
-		String itemName = itemId.getPath();
+		// Get the item's registry name and extract just the path (item name)
+		ResourceLocation itemId = mainHand.getItem().builtInRegistryHolder().key().location();
+		String itemName = itemId.getPath(); // Gets "iron_sword" from "minecraft:iron_sword"
 
 		// Create trail ID using the item name
 		ResourceLocation trailId = ResourceLocation.fromNamespaceAndPath("verse", itemName);
 
-		// Get trail info to validate it exists
+		// Get trail info
 		TrailInfo trailInfo = getTrailInfo(trailId);
 		if (trailInfo == null) {
 			return;
 		}
 
-		// Get or create the active trails list
-		ListTag trailsList;
-		if (data.contains("ActiveTrails")) {
-			trailsList = data.getList("ActiveTrails", 10); // 10 = CompoundTag type
-		} else {
-			trailsList = new ListTag();
+
+
+		// Only render during the specified percent range
+		if (progress < trailInfo.startPercent || progress > trailInfo.endPercent) {
+			// Clear spawn data when trail is not rendering
+			if (data.contains("TrailSpawnX")) {
+				data.remove("TrailSpawnX");
+				data.remove("TrailSpawnY");
+				data.remove("TrailSpawnZ");
+				data.remove("TrailSpawnYaw");
+				data.remove("TrailSpawnPitch");
+				data.remove("TrailAttackStartTime");
+				data.remove("TrailVelocityX");
+				data.remove("TrailVelocityY");
+				data.remove("TrailVelocityZ");
+			}
+			return;
 		}
 
-		// Create new trail data compound
-		CompoundTag newTrail = new CompoundTag();
+		// Calculate which frame to show based on progress
+		// Map startPercent-endPercent to 0.0-1.0
+		float animProgress = (progress - trailInfo.startPercent) / (trailInfo.endPercent - trailInfo.startPercent);
+		int currentFrame = (int) (animProgress * trailInfo.frameCount);
+		currentFrame = Math.min(currentFrame, trailInfo.frameCount - 1);
 
-		// Store the trail ID
-		newTrail.putString("TrailID", trailId.toString());
+		// Get swing counter to determine which swing we're on
+		int swingCounter = data.getInt("SwingCounter");
 
-		// Store total swing ticks
-		newTrail.putLong("TotalSwingTicks", totalSwingTicks);
+		// Check if we need to store the spawn position (only at the start of THIS attack)
+		if (!data.contains("TrailSpawnX") || data.getLong("TrailAttackStartTime") != attackStartTime) {
+			// Store the spawn position when the attack starts
+			Vec3 playerPos = player.getPosition(partialTick).add(0, player.getEyeHeight(), 0);
 
-		// Store swing counter
-		newTrail.putInt("SwingCounter", swingCounter);
+			// Get player's pitch and apply followPitch percentage
+			float playerPitch = player.getXRot();
+			float adjustedPitch = playerPitch * trailInfo.followPitch;
 
-		// Get current time
-		long currentTime = player.level().getGameTime();
-		newTrail.putLong("StartTime", currentTime);
 
-		// Calculate spawn position
-		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
-		Vec3 playerPos = player.getPosition(partialTick).add(0, player.getEyeHeight(), 0);
 
-		// Get player's pitch and apply followPitch percentage
-		float playerPitch = player.getXRot();
-		float adjustedPitch = playerPitch * trailInfo.followPitch;
+			// Use distance from JSON
+			double distance = trailInfo.distance;
+			double yaw = Math.toRadians(-player.getYRot());
+			double pitch = Math.toRadians(adjustedPitch); // Don't negate here
 
-		// Use distance from JSON
-		double distance = trailInfo.distance;
-		double yaw = Math.toRadians(-player.getYRot());
-		double pitch = Math.toRadians(adjustedPitch);
+			// Calculate position in front of player
+			double offsetX = Math.sin(yaw) * Math.cos(pitch) * distance;
+			double offsetZ = Math.cos(yaw) * Math.cos(pitch) * distance;
 
-		// Calculate position in front of player
-		double offsetX = Math.sin(yaw) * Math.cos(pitch) * distance;
-		double offsetZ = Math.cos(yaw) * Math.cos(pitch) * distance;
-		double offsetY = -Math.sin(pitch) * distance + trailInfo.yOffset;
+			// Vertical offset: negative because positive pitch is looking down in Minecraft
+			double offsetY = -Math.sin(pitch) * distance + trailInfo.yOffset;
 
-		Vec3 spawnPos = playerPos.add(offsetX, offsetY, offsetZ);
 
-		// Store player's horizontal velocity at spawn time
-		Vec3 playerVelocity = player.getDeltaMovement();
-		double velX = playerVelocity.x;
-		double velY = 0; // No vertical movement
-		double velZ = playerVelocity.z;
+			Vec3 spawnPos = playerPos.add(offsetX, offsetY, offsetZ);
 
-		// Store the spawn position and rotation
-		newTrail.putDouble("SpawnX", spawnPos.x);
-		newTrail.putDouble("SpawnY", spawnPos.y);
-		newTrail.putDouble("SpawnZ", spawnPos.z);
-		newTrail.putFloat("SpawnYaw", player.getYRot());
-		newTrail.putFloat("SpawnPitch", adjustedPitch);
+			// Store player's horizontal velocity at spawn time (full velocity, no Y component)
+			Vec3 playerVelocity = player.getDeltaMovement();
+			double velX = playerVelocity.x;
+			double velY = 0; // No vertical movement
+			double velZ = playerVelocity.z;
 
-		// Store velocity
-		newTrail.putDouble("VelocityX", velX);
-		newTrail.putDouble("VelocityY", velY);
-		newTrail.putDouble("VelocityZ", velZ);
+			// Store the spawn position and rotation (using adjusted pitch)
+			data.putDouble("TrailSpawnX", spawnPos.x);
+			data.putDouble("TrailSpawnY", spawnPos.y);
+			data.putDouble("TrailSpawnZ", spawnPos.z);
+			data.putFloat("TrailSpawnYaw", player.getYRot());
+			data.putFloat("TrailSpawnPitch", adjustedPitch);
+			data.putLong("TrailAttackStartTime", attackStartTime);
 
-		// Add the new trail to the list
-		trailsList.add(newTrail);
+			// Store velocity
+			data.putDouble("TrailVelocityX", velX);
+			data.putDouble("TrailVelocityY", velY);
+			data.putDouble("TrailVelocityZ", velZ);
+		}
 
-		// Save the updated list
-		data.put("ActiveTrails", trailsList);
+		// Get the stored spawn position
+		Vec3 basePos = new Vec3(
+				data.getDouble("TrailSpawnX"),
+				data.getDouble("TrailSpawnY"),
+				data.getDouble("TrailSpawnZ")
+		);
+
+		// Get stored velocity
+		Vec3 velocity = new Vec3(
+				data.getDouble("TrailVelocityX"),
+				data.getDouble("TrailVelocityY"),
+				data.getDouble("TrailVelocityZ")
+		);
+
+		// Calculate time since spawn and apply velocity
+		float timeSinceSpawn = ticksSinceStart + partialTick;
+		Vec3 trailPos = basePos.add(
+				velocity.x * timeSinceSpawn,
+				velocity.y * timeSinceSpawn,
+				velocity.z * timeSinceSpawn
+		);
+
+		float spawnYaw = data.getFloat("TrailSpawnYaw");
+		float spawnPitch = data.getFloat("TrailSpawnPitch");
+
+		// Render the trail at the calculated position
+		renderTrail(event.getPoseStack(), event.getCamera(), trailInfo, currentFrame, trailPos, spawnYaw, spawnPitch, swingCounter);
 	}
 
 	private static void renderTrail(PoseStack poseStack, Camera camera, TrailInfo trailInfo, int frame, Vec3 trailPos, float yaw, float pitch, int swingCounter) {
@@ -364,6 +325,8 @@ public class WeaponTrailRenderer {
 
 			// Cache it
 			trailCache.put(trailId, info);
+
+
 
 			return info;
 
