@@ -16,28 +16,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
 
 import net.mcreator.verse.network.StatMenuMessage;
-import net.mcreator.verse.network.ParryMessage;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class VerseModKeyMappings {
-	public static final KeyMapping PARRY = new KeyMapping("key.verse.parry", GLFW.GLFW_KEY_V, "key.categories.verse") {
-		private boolean isDownOld = false;
-
-		@Override
-		public void setDown(boolean isDown) {
-			super.setDown(isDown);
-			if (isDownOld != isDown && isDown) {
-				PacketDistributor.sendToServer(new ParryMessage(0, 0));
-				ParryMessage.pressAction(Minecraft.getInstance().player, 0, 0);
-				PARRY_LASTPRESS = System.currentTimeMillis();
-			} else if (isDownOld != isDown && !isDown) {
-				int dt = (int) (System.currentTimeMillis() - PARRY_LASTPRESS);
-				PacketDistributor.sendToServer(new ParryMessage(1, dt));
-				ParryMessage.pressAction(Minecraft.getInstance().player, 1, dt);
-			}
-			isDownOld = isDown;
-		}
-	};
+	public static final KeyMapping PARRY = new KeyMapping("key.verse.parry", GLFW.GLFW_KEY_V, "key.categories.verse");
 	public static final KeyMapping STAT_MENU = new KeyMapping("key.verse.stat_menu", GLFW.GLFW_KEY_N, "key.categories.verse") {
 		private boolean isDownOld = false;
 
@@ -51,7 +33,6 @@ public class VerseModKeyMappings {
 			isDownOld = isDown;
 		}
 	};
-	private static long PARRY_LASTPRESS = 0;
 
 	@SubscribeEvent
 	public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
@@ -64,7 +45,6 @@ public class VerseModKeyMappings {
 		@SubscribeEvent
 		public static void onClientTick(ClientTickEvent.Post event) {
 			if (Minecraft.getInstance().screen == null) {
-				PARRY.consumeClick();
 				STAT_MENU.consumeClick();
 			}
 		}

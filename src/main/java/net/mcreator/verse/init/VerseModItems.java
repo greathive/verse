@@ -18,7 +18,6 @@ import net.mcreator.verse.VerseMod;
 public class VerseModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(VerseMod.MODID);
 	public static final DeferredItem<Item> TEMP;
-	public static final DeferredItem<Item> MOBANIMTESTSTICK;
 	public static final DeferredItem<Item> NPC_SPAWN_EGG;
 	public static final DeferredItem<Item> OUTFIT_RESETER;
 	public static final DeferredItem<Item> OUTFIT_TABLE;
@@ -32,7 +31,6 @@ public class VerseModItems {
 	public static final DeferredItem<Item> DEEPSPINDLE;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
-		MOBANIMTESTSTICK = REGISTRY.register("mobanimteststick", MobanimteststickItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
 		OUTFIT_RESETER = REGISTRY.register("outfit_reseter", OutfitReseterItem::new);
 		OUTFIT_TABLE = block(VerseModBlocks.OUTFIT_TABLE);

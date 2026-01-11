@@ -84,82 +84,6 @@
       "path": "~/parry"
     },
     {
-      "name": "ParryOnKeyPressed",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "parry_on_key_pressed",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/ParryOnKeyPressedProcedure.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
-      "name": "Damageparry",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "damageparry",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "damagesource",
-            "type": "damagesource"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "sourceentity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/DamageparryProcedure.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
-      "name": "Parryparticle",
-      "type": "particle",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "parryparticle",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/verse/particles/parryparticle.json",
-          "src/main/java/net/mcreator/verse/client/particle/ParryparticleParticle.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
       "name": "NoAttack",
       "type": "potioneffect",
       "compiles": true,
@@ -168,19 +92,6 @@
       "metadata": {
         "files": [
           "src/main/java/net/mcreator/verse/potion/NoAttackMobEffect.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
-      "name": "Unparryablemelee",
-      "type": "damagetype",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "unparryablemelee",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/verse/damage_type/unparryablemelee.json"
         ]
       },
       "path": "~/parry"
@@ -489,39 +400,6 @@
         ]
       },
       "path": "~/menus"
-    },
-    {
-      "name": "Mobanimteststick",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mobanimteststick",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/item/MobanimteststickItem.java",
-          "src/main/resources/assets/verse/models/item/mobanimteststick.json"
-        ]
-      },
-      "path": "~/mixins"
-    },
-    {
-      "name": "MobanimteststickLivingEntityIsHitWithItem",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mobanimteststick_living_entity_is_hit_with_item",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/MobanimteststickLivingEntityIsHitWithItemProcedure.java"
-        ]
-      },
-      "path": "~/mixins"
     },
     {
       "name": "MainGuiSelector",
@@ -1213,37 +1091,6 @@
         ]
       },
       "path": "~/humanoidMob"
-    },
-    {
-      "name": "MobParry",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mob_parry",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/MobParryProcedure.java"
-        ]
-      },
-      "path": "~/mixins"
     },
     {
       "name": "OutfitReseter",
@@ -1952,57 +1799,6 @@
       "path": "~/menus/Talent"
     },
     {
-      "name": "BlockFrame",
-      "type": "potioneffect",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "block_frame",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/potion/BlockFrameMobEffect.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
-      "name": "ParryOnKeyReleased",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "parry_on_key_released",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/ParryOnKeyReleasedProcedure.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
-      "name": "BlockFrameOnEffectActiveTick",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "block_frame_on_effect_active_tick",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/BlockFrameOnEffectActiveTickProcedure.java"
-        ]
-      },
-      "path": "~/parry"
-    },
-    {
       "name": "PostureCalc",
       "type": "procedure",
       "compiles": true,
@@ -2040,12 +1836,7 @@
       "locked_code": false,
       "registry_name": "reduce_posture",
       "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
+        "dependencies": [],
         "files": [
           "src/main/java/net/mcreator/verse/procedures/ReducePostureProcedure.java"
         ]
@@ -2935,9 +2726,6 @@
   "language_map": {
     "en_us": {
       "effect.verse.screenshaking": "Screenshaking",
-      "death.attack.unparryablemelee.item": "%1$s was killed by %2$s using %3$s",
-      "death.attack.unparryablemelee": "%1$s died",
-      "death.attack.unparryablemelee.player": "%1$s died whilst trying to escape %2$s",
       "effect.verse.no_attack": "No Attack",
       "effect.verse.parry_cd": "Parry CD",
       "effect.verse.parry_frame": "Parry Frame",
@@ -2952,7 +2740,6 @@
       "item.verse.temp": "stat + power debug",
       "key.verse.stat_menu": "Menu",
       "key.categories.verse": "Verse",
-      "item.verse.mobanimteststick": "Mobanimteststick",
       "entity.verse.npc": "Npc",
       "item.verse.npc_spawn_egg": "Npc Spawn Egg",
       "item.verse.outfit_reseter": "Outfit Reseter",
@@ -2972,7 +2759,6 @@
       "attribute.verse.max_posture": "Max Posture",
       "item.verse.grant_flame_within": "Grant Flame Within",
       "item.verse.talentchecker": "Talentchecker",
-      "effect.verse.block_frame": "Block Frame",
       "subtitles.blockedattack": "blocked attack",
       "subtitles.blockattempt": "attempted block",
       "attribute.verse.posture_bonus": "Posture Bonus",
@@ -3074,10 +2860,6 @@
             "children": []
           }
         ]
-      },
-      {
-        "name": "mixins",
-        "children": []
       },
       {
         "name": "humanoidMob",

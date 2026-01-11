@@ -26,7 +26,6 @@ public class VerseModMobEffects {
 	public static final DeferredHolder<MobEffect, MobEffect> PARRY_FRAME = REGISTRY.register("parry_frame", () -> new ParryFrameMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> PARRY_CD = REGISTRY.register("parry_cd", () -> new ParryCDMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> NO_ATTACK = REGISTRY.register("no_attack", () -> new NoAttackMobEffect());
-	public static final DeferredHolder<MobEffect, MobEffect> BLOCK_FRAME = REGISTRY.register("block_frame", () -> new BlockFrameMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> AGILITY_TRAINING = REGISTRY.register("agility_training", () -> new AgilityTrainingMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> STRENGTH_TRAINING = REGISTRY.register("strength_training", () -> new StrengthTrainingMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> GUARDBROKEN = REGISTRY.register("guardbroken", () -> new GuardbrokenMobEffect());
