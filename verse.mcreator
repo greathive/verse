@@ -2124,6 +2124,10 @@
           {
             "name": "mouseY",
             "type": "number"
+          },
+          {
+            "name": "partialTick",
+            "type": "number"
           }
         ],
         "files": [
@@ -2451,6 +2455,110 @@
         ]
       },
       "path": "~/items"
+    },
+    {
+      "name": "CardClickPacket",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_click_packet",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "inboundString",
+            "type": "string"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/CardClickPacketProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "CardPacket",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_packet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/CardPacketMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Clickcd",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "clickcd",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/potion/ClickcdMobEffect.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "ClickcdEffectExpires",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "clickcd_effect_expires",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ClickcdEffectExpiresProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "CardBurnFreezeOrChooseReceivedByServer",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_burn_freeze_or_choose_received_by_server",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "inboundString",
+            "type": "string"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/CardBurnFreezeOrChooseReceivedByServerProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "CardBurnFreezeOrChoose",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "card_burn_freeze_or_choose",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/CardBurnFreezeOrChooseMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
     }
   ],
   "variable_elements": [
@@ -2653,12 +2761,6 @@
       "value": "0"
     },
     {
-      "name": "validrare",
-      "type": "string",
-      "scope": "player_persistent",
-      "value": "\"\""
-    },
-    {
       "name": "hasCard",
       "type": "logic",
       "scope": "player_persistent",
@@ -2681,6 +2783,18 @@
       "type": "number",
       "scope": "player_persistent",
       "value": "0"
+    },
+    {
+      "name": "ace",
+      "type": "string",
+      "scope": "player_lifetime",
+      "value": "\"\""
+    },
+    {
+      "name": "cardoutcome",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
     }
   ],
   "sound_elements": [
@@ -2771,6 +2885,22 @@
       ],
       "category": "player",
       "subtitle": "guardbroken"
+    },
+    {
+      "name": "freeze",
+      "files": [
+        "selecting_freeze_ace__1_.mp3"
+      ],
+      "category": "ui",
+      "subtitle": "freeze"
+    },
+    {
+      "name": "burn",
+      "files": [
+        "burn"
+      ],
+      "category": "ui",
+      "subtitle": "burn"
     }
   ],
   "tag_elements": {
@@ -2867,7 +2997,10 @@
       "effect.verse.strength_training": "Agility Training",
       "effect.verse.guardbroken": "Guardbroken",
       "subtitles.posturebreak": "guardbroken",
-      "item.verse.deepspindle": "Deepspindle"
+      "item.verse.deepspindle": "Deepspindle",
+      "subtitles.burn": "burn",
+      "subtitles.freeze": "freeze",
+      "effect.verse.clickcd": "Clickcd"
     }
   },
   "metadata": {
@@ -2980,7 +3113,7 @@
   "workspaceSettings": {
     "modid": "verse",
     "modName": "verse",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "author": "greathive",
     "websiteURL": "https://mcreator.net",
     "license": "Not specified",

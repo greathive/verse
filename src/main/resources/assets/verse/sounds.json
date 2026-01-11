@@ -97,5 +97,23 @@
         "stream": false
       }
     ]
+  },
+  "freeze": {
+    "subtitle": "subtitles.freeze",
+    "sounds": [
+      {
+        "name": "verse:selecting_freeze_ace__1_.mp3",
+        "stream": false
+      }
+    ]
+  },
+  "burn": {
+    "subtitle": "subtitles.burn",
+    "sounds": [
+      {
+        "name": "verse:burn",
+        "stream": false
+      }
+    ]
   }
 }

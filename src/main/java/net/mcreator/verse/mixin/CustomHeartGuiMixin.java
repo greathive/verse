@@ -42,7 +42,6 @@ public abstract class CustomHeartGuiMixin {
 		
 		// Check if textures exist for this life type
 		if (!texturesExist(life)) {
-			System.err.println("[VERSE] Heart textures not found for life type: " + life + ", using vanilla hearts");
 			return;
 		}
 		

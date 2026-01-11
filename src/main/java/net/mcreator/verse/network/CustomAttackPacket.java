@@ -1,6 +1,7 @@
 package net.mcreator.verse.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,19 +14,22 @@ import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.nbt.CompoundTag;
 
+import net.mcreator.verse.util.SwingDataLoader;
 import net.mcreator.verse.VerseMod;
 
 @EventBusSubscriber
-public record CustomAttackPacket() implements CustomPacketPayload {
+public record CustomAttackPacket(int swing, String animName) implements CustomPacketPayload {
 
 	public static final Type<CustomAttackPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "custom_attack"));
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, CustomAttackPacket> STREAM_CODEC = StreamCodec.of(
 			(RegistryFriendlyByteBuf buffer, CustomAttackPacket message) -> {
-				// Empty packet - no data to write
+				buffer.writeInt(message.swing);
+				buffer.writeUtf(message.animName);
 			},
-			(RegistryFriendlyByteBuf buffer) -> new CustomAttackPacket()
+			(RegistryFriendlyByteBuf buffer) -> new CustomAttackPacket(buffer.readInt(), buffer.readUtf())
 	);
 
 	@Override
@@ -51,6 +55,29 @@ public record CustomAttackPacket() implements CustomPacketPayload {
 
 					// Clear the damage flag for the new swing
 					data.remove("HasDealtDamage");
+
+					// Set swing counter on server
+					data.putInt("SwingCounter", message.swing);
+
+					// Set animation on server
+					data.putString("PlayerCurrentAnimation", message.animName);
+					data.putBoolean("OverrideCurrentAnimation", true);
+					data.putBoolean("FirstPersonAnimation", true);
+
+					// Clear hit entities for new swing
+					data.remove("HitEntitiesThisSwing");
+					data.remove("LastDamageTick");
+
+					// Broadcast animation to all nearby players (including the attacker for consistency)
+					PacketDistributor.sendToPlayersTrackingEntityAndSelf(
+							player,
+							new PlayPlayerAnimationMessage(
+									player.getId(),
+									message.animName,
+									true,
+									true
+							)
+					);
 				}
 			}).exceptionally(e -> {
 				context.connection().disconnect(Component.literal(e.getMessage()));

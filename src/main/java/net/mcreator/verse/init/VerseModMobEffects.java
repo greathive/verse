@@ -15,6 +15,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.verse.procedures.GuardbrokenEffectExpiresProcedure;
+import net.mcreator.verse.procedures.ClickcdEffectExpiresProcedure;
 import net.mcreator.verse.potion.*;
 import net.mcreator.verse.VerseMod;
 
@@ -29,6 +30,7 @@ public class VerseModMobEffects {
 	public static final DeferredHolder<MobEffect, MobEffect> AGILITY_TRAINING = REGISTRY.register("agility_training", () -> new AgilityTrainingMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> STRENGTH_TRAINING = REGISTRY.register("strength_training", () -> new StrengthTrainingMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> GUARDBROKEN = REGISTRY.register("guardbroken", () -> new GuardbrokenMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> CLICKCD = REGISTRY.register("clickcd", () -> new ClickcdMobEffect());
 
 	@SubscribeEvent
 	public static void onEffectRemoved(MobEffectEvent.Remove event) {
@@ -49,6 +51,8 @@ public class VerseModMobEffects {
 	private static void expireEffects(Entity entity, MobEffectInstance effectInstance) {
 		if (effectInstance.getEffect().is(GUARDBROKEN)) {
 			GuardbrokenEffectExpiresProcedure.execute(entity);
+		} else if (effectInstance.getEffect().is(CLICKCD)) {
+			ClickcdEffectExpiresProcedure.execute(entity);
 		}
 	}
 }

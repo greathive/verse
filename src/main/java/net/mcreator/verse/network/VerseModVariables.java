@@ -96,17 +96,18 @@ public class VerseModVariables {
 		clone.attuneExp = original.attuneExp;
 		clone.outfit = original.outfit;
 		clone.outfitVisible = original.outfitVisible;
-		clone.validrare = original.validrare;
 		clone.hasCard = original.hasCard;
 		clone.burn = original.burn;
 		clone.freeze = original.freeze;
 		clone.fold = original.fold;
+		clone.cardoutcome = original.cardoutcome;
 		if (!event.isWasDeath()) {
 			clone.currentmantra = original.currentmantra;
 			clone.PlayerIA = original.PlayerIA;
 			clone.choice = original.choice;
 			clone.guiOpenedTick = original.guiOpenedTick;
 			clone.scroll = original.scroll;
+			clone.ace = original.ace;
 		}
 		event.getEntity().setData(PLAYER_VARIABLES, clone);
 	}
@@ -146,11 +147,12 @@ public class VerseModVariables {
 		public boolean outfitVisible = true;
 		public double guiOpenedTick = 0;
 		public double scroll = 0;
-		public String validrare = "\"\"";
 		public boolean hasCard = false;
 		public String burn = "\"\"";
 		public String freeze = "\"\"";
 		public double fold = 0;
+		public String ace = "\"\"";
+		public String cardoutcome = "\"\"";
 
 		@Override
 		public CompoundTag serializeNBT(HolderLookup.Provider lookupProvider) {
@@ -188,11 +190,12 @@ public class VerseModVariables {
 			nbt.putBoolean("outfitVisible", outfitVisible);
 			nbt.putDouble("guiOpenedTick", guiOpenedTick);
 			nbt.putDouble("scroll", scroll);
-			nbt.putString("validrare", validrare);
 			nbt.putBoolean("hasCard", hasCard);
 			nbt.putString("burn", burn);
 			nbt.putString("freeze", freeze);
 			nbt.putDouble("fold", fold);
+			nbt.putString("ace", ace);
+			nbt.putString("cardoutcome", cardoutcome);
 			return nbt;
 		}
 
@@ -231,11 +234,12 @@ public class VerseModVariables {
 			outfitVisible = nbt.getBoolean("outfitVisible");
 			guiOpenedTick = nbt.getDouble("guiOpenedTick");
 			scroll = nbt.getDouble("scroll");
-			validrare = nbt.getString("validrare");
 			hasCard = nbt.getBoolean("hasCard");
 			burn = nbt.getString("burn");
 			freeze = nbt.getString("freeze");
 			fold = nbt.getDouble("fold");
+			ace = nbt.getString("ace");
+			cardoutcome = nbt.getString("cardoutcome");
 		}
 
 		public void markSyncDirty() {

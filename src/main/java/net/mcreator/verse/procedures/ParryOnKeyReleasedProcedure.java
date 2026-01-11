@@ -18,19 +18,17 @@ public class ParryOnKeyReleasedProcedure {
 			return;
 		String anim = "";
 		CompoundTag data = entity.getPersistentData();
-		anim = data.getString("PlayerCurrentAnimation");;
-		if (anim.contains("parry_")) {
+		anim = data.getString("PlayerCurrentAnimation");; 
 			if (entity instanceof Player) {
 				if (entity.level().isClientSide()) {
-					data.remove("PlayerCurrentAnimation");
-					data.remove("PlayerAnimationProgress");
-					data.putBoolean("ResetPlayerAnimation", true);
+					data.putString("PlayerCurrentAnimation", "verse:animationcancel");
+					data.putBoolean("OverrideCurrentAnimation", true);
 					data.putBoolean("FirstPersonAnimation", false);
 				} else {
-					PacketDistributor.sendToPlayersInDimension((ServerLevel) entity.level(), new PlayPlayerAnimationMessage(entity.getId(), "", false, false));
+					PacketDistributor.sendToPlayersInDimension((ServerLevel) entity.level(), new PlayPlayerAnimationMessage(entity.getId(), "verse:animationcancel", true, false));
 				}
 			}
-		}
+		
 		if (entity instanceof LivingEntity _entity)
 			_entity.removeEffect(VerseModMobEffects.BLOCK_FRAME);
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())

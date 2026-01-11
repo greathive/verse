@@ -4,7 +4,7 @@ license="Not specified"
 
 [[mods]]
 modId="verse"
-version="1.0.0"
+version="0.0.1"
 displayName="verse"
 displayURL="https://mcreator.net"
 logoFile="logo.png"

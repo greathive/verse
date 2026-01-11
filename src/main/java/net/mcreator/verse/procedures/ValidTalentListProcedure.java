@@ -1,7 +1,6 @@
 package net.mcreator.verse.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Mth;
@@ -11,7 +10,6 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.Component;
 
 import net.mcreator.verse.network.VerseModVariables;
 import net.mcreator.verse.VerseMod;
@@ -64,18 +62,13 @@ public class ValidTalentListProcedure {
 		{
 			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 			_vars.validdraw = "";
-			_vars.validrare = "";
 			_vars.markSyncDirty();
 		}
+		required = "";
 		if (entity.isShiftKeyDown()) {
 			rare = 1;
 		} else {
 			rare = 0;
-		}
-		{
-			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-			_vars.validdraw = "";
-			_vars.markSyncDirty();
 		}
 		{
 			if (world instanceof ServerLevel srvlvl_) {
@@ -180,7 +173,7 @@ public class ValidTalentListProcedure {
 												reserve = reserve + "" + ("(" + name + ")");
 											}
 										} else {
-											validrare = entity.getData(VerseModVariables.PLAYER_VARIABLES).validrare + "" + ("(" + name + ")");
+											validrare = validrare + "" + ("(" + name + ")");
 										}
 									}
 								}
@@ -244,8 +237,5 @@ public class ValidTalentListProcedure {
 			}
 			finaltext = "";
 		}
-		VerseMod.LOGGER.info("" + entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw);
-		if (entity instanceof Player _player && !_player.level().isClientSide())
-			_player.displayClientMessage(Component.literal(("" + entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw)), false);
 	}
 }

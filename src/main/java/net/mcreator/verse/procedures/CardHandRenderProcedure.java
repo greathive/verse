@@ -1,10 +1,12 @@
 package net.mcreator.verse.procedures;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.glfw.GLFW;
 
 import org.joml.Matrix4fStack;
 import org.joml.Matrix4f;
 
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,8 +23,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -37,7 +42,9 @@ import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.world.inventory.CardHandMenu;
 import net.mcreator.verse.network.VerseModVariables;
-import net.mcreator.verse.VerseMod;
+import net.mcreator.verse.network.CardPacketMessage;
+import net.mcreator.verse.network.CardBurnFreezeOrChooseMessage;
+import net.mcreator.verse.init.VerseModMobEffects;
 
 import javax.annotation.Nullable;
 
@@ -377,7 +384,7 @@ public class CardHandRenderProcedure {
 			RenderSystem.enableBlend();
 			RenderSystem.defaultBlendFunc();
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			execute(event, minecraft.mouseHandler.xpos() / scale, minecraft.mouseHandler.ypos() / scale);
+			execute(event, minecraft.mouseHandler.xpos() / scale, minecraft.mouseHandler.ypos() / scale, partialTick);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			RenderSystem.defaultBlendFunc();
 			RenderSystem.disableBlend();
@@ -387,11 +394,21 @@ public class CardHandRenderProcedure {
 		}
 	}
 
-	public static void execute(double mouseX, double mouseY) {
-		execute(null, mouseX, mouseY);
+	public static void execute(double mouseX, double mouseY, double partialTick) {
+		execute(null, mouseX, mouseY, partialTick);
 	}
 
-	private static void execute(@Nullable Event event, double mouseX, double mouseY) {
+	private static void execute(@Nullable Event event, double mouseX, double mouseY, double partialTick) {
+		String texturechoice = "";
+		String TalentText = "";
+		String icon = "";
+		String description = "";
+		String finalText = "";
+		String talent = "";
+		String talentlist = "";
+		String card = "";
+		boolean clickvalid = false;
+		boolean wasLeftClickDown = false;
 		double currentTick = 0;
 		double orbscale = 0;
 		double anchorX = 0;
@@ -409,14 +426,16 @@ public class CardHandRenderProcedure {
 		double lastPos = 0;
 		double talentcount = 0;
 		double scrollModifier = 0;
-		String texturechoice = "";
-		String TalentText = "";
-		String icon = "";
-		String description = "";
-		String finalText = "";
-		String talent = "";
-		String talentlist = "";
-		String card = "";
+		double xanchor = 0;
+		double yanchor = 0;
+		double renderoffset = 0;
+		double localtalenttick = 0;
+		double leftclickmodifier = 0;
+		double leftClickHeldTicks = 0;
+		double mousehover = 0;
+		double cardscale = 0;
+		double frame = 0;
+		double animrepeat = 0;
 		if (Minecraft.getInstance().player != null) {
 			Entity entity = Minecraft.getInstance().player;
 			double x = entity.getX();
@@ -428,7 +447,7 @@ public class CardHandRenderProcedure {
 				if (target(3)) {
 					anchorX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2d;
 					anchorY = 53;
-					currentTick = entity.tickCount - entity.getData(VerseModVariables.PLAYER_VARIABLES).guiOpenedTick;
+					currentTick = entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).guiOpenedTick - partialTick);
 					orbX = anchorX - 26;
 					orbY = anchorY;
 					orbscale = 2;
@@ -443,14 +462,42 @@ public class CardHandRenderProcedure {
 						if (Math.hypot(Math.abs(mouseX - aceX), Math.abs(mouseY - aceY)) < 10) {
 							texturechoice = texturechoice.replace("base", "");
 							orbscale = 1.25;
+							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(VerseModMobEffects.CLICKCD)
+									&& (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(VerseModMobEffects.CLICKCD) ? _livEnt.getEffect(VerseModMobEffects.CLICKCD).getDuration() : 0) < 2) {
+								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+									_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 4, 0, false, false));
+							}
+							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS
+									&& !(entity instanceof LivingEntity _livEnt12 && _livEnt12.hasEffect(VerseModMobEffects.CLICKCD))) {
+								if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace).equals(texturechoice)) {
+									if (world.isClientSide())
+										PacketDistributor.sendToServer(new CardPacketMessage(texturechoice));
+									ResourceLocation soundLocation = ResourceLocation.fromNamespaceAndPath("verse", texturechoice);
+									Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvent.createVariableRangeEvent(soundLocation), 1.0F));
+								} else if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).ace).equals(texturechoice)) {
+									if (world.isClientSide())
+										PacketDistributor.sendToServer(new CardPacketMessage("norm"));
+									ResourceLocation soundLocation = ResourceLocation.fromNamespaceAndPath("verse", texturechoice);
+									Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvent.createVariableRangeEvent(soundLocation), 1.0F));
+								}
+							}
 						} else {
 							orbscale = 1;
+						}
+						if (texturechoice.contains(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace)) {
+							texturechoice = texturechoice.replace("base", "");
+							orbscale = 1.25;
 						}
 						aceX = (anchorX - 16 * repeat) - 6 * orbscale;
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", texturechoice)) + ".png")));
 						renderTexture((float) aceX, (float) (aceY - 6 * orbscale), -1, 0, (float) orbscale, 255 << 24 | 255 << 16 | 255 << 8 | 255, 0);
-						texturechoice = "freezebase";
+						if (texturechoice.contains(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace)) {
+							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xbg".replace("x", texturechoice)) + ".png")));
+							renderTexture((float) (aceX - 1 * (orbscale + 0.15 * Math.sin(currentTick * (1 / (2 * Math.PI))))), (float) (aceY - 6 * (orbscale + 0.15 * Math.sin(currentTick * (1 / (2 * Math.PI))))), 0, 0,
+									(float) (orbscale + 0.125 + 0.1 * Math.sin(currentTick * (1 / (2 * Math.PI)))), 255 << 24 | 255 << 16 | 255 << 8 | 255, 0);
+						}
 						repeat = -1;
+						texturechoice = "freezebase";
 					}
 					texturechoice = "talent";
 					repeat = 1;
@@ -465,10 +512,29 @@ public class CardHandRenderProcedure {
 					talentlist = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("{") + "{".length(),
 							(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("}"));
 					talentcount = ReturnCountOfTheseTalentsProcedure.execute(entity, talentlist);
-					VerseMod.LOGGER.info(ReturnCountOfTheseTalentsProcedure.execute(entity, talentlist));
 					repeat = 1;
 					description = "placeholder";
+					if (repeat * 11 > currentTick) {
+						clickvalid = true;
+					} else {
+						clickvalid = false;
+					}
 					for (int index2 = 0; index2 < (int) talentcount; index2++) {
+						if (clickvalid == true && GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+							leftclickmodifier = 1;
+						} else {
+							leftclickmodifier = 0;
+						}
+						localtalenttick = currentTick - (repeat - 1) * 10;
+						if (talentcount % 2 == 0) {
+							renderoffset = 0.5;
+						}
+						xanchor = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2d;
+						if (10 > localtalenttick) {
+							yanchor = (Math.pow(localtalenttick, 0.7) / Math.pow(10, 0.7)) * Minecraft.getInstance().getWindow().getGuiScaledHeight() - Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
+						} else {
+							yanchor = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
+						}
 						talent = talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length());
 						if ((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length() > 14) {
 							nameScale = 14d / (talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length();
@@ -501,13 +567,31 @@ public class CardHandRenderProcedure {
 						}
 						card = description.substring((int) description.lastIndexOf("(") + "(".length(), (int) description.lastIndexOf(")"));
 						icon = description.substring((int) description.indexOf("(") + "(".length(), (int) description.indexOf(")"));
-						cardX = repeat * 148;
-						cardY = (128 + yrepeat * 230) - entity.getData(VerseModVariables.PLAYER_VARIABLES).scroll / scrollModifier;
+						cardX = xanchor - (talentcount / 2 + renderoffset) * 148 + repeat * 148;
+						cardY = yanchor;
+						if (Math.abs(cardY - mouseY) <= 92 && Math.abs(cardX - mouseX) <= 66) {
+							mousehover = 1;
+							if (!(entity instanceof LivingEntity _livEnt39 && _livEnt39.hasEffect(VerseModMobEffects.CLICKCD))
+									&& GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+								if (world.isClientSide())
+									PacketDistributor.sendToServer(new CardBurnFreezeOrChooseMessage(("[" + entity.getData(VerseModVariables.PLAYER_VARIABLES).ace + ":" + talent + "]")));
+							}
+						} else {
+							mousehover = 0;
+						}
+						cardY = cardY + mousehover * (-10);
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
-						renderTexture((float) cardX, (float) (cardY - 30), -1, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
-						renderTexture((float) cardX, (float) cardY, 0, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
-						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -1, 0, (float) nameScale, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+						renderTexture((float) cardX, (float) cardY, -1, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.contains("[burn:" + talent + "b]")) {
+							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xcard".replace("x", "burn")) + ".png")));
+							renderTexture((float) cardX, (float) cardY, 0, 0, (float) (2.2 + 0.075 * Math.sin(currentTick * (1 / (2 * Math.PI)))), 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						} else if (entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.contains("[freeze:" + talent + "f]")) {
+							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xcard".replace("x", "freeze")) + ".png")));
+							renderTexture((float) cardX, (float) cardY, 0, 0, (float) (2.2 + 0.075 * Math.sin(currentTick * (1 / (2 * Math.PI)))), 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						}
+						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -2, 0, (float) nameScale, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
 						LineRepeat = 0;
 						TalentText = description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("));
 						if (1 + Math.ceil((description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("))).length() / 20d) > 7) {
@@ -523,7 +607,7 @@ public class CardHandRenderProcedure {
 								finalText = TalentText.substring(0, (TalentText).length());
 								LineRepeat = LineRepeat + 1;
 							}
-							renderTexts(finalText, (float) cardX, (float) (cardY + 12 + 8 * lastPos * LineRepeat), -1, 0, (float) lastPos, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+							renderTexts(finalText, (float) cardX, (float) (cardY + 12 + 8 * lastPos * LineRepeat), -2, 0, (float) lastPos, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
 							TalentText = TalentText.replace(finalText, "");
 						}
 						talentlist = talentlist.replace(talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length()), "");
@@ -533,6 +617,8 @@ public class CardHandRenderProcedure {
 							repeat = 1;
 							yrepeat = yrepeat + 1;
 						}
+						leftclickmodifier = 0;
+						mousehover = 0;
 					}
 					release();
 				}

@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.Options;
@@ -20,7 +20,6 @@ import net.minecraft.client.Minecraft;
 import net.mcreator.verse.util.SwingDataLoader;
 import net.mcreator.verse.network.CustomAttackPacket;
 import net.mcreator.verse.init.VerseModMobEffects;
-import net.mcreator.verse.client.renderer.WeaponTrailRenderer;
 
 @Mixin(Minecraft.class)
 public class ContinuousAttackMixin {
@@ -90,19 +89,10 @@ public class ContinuousAttackMixin {
         data.putLong("AttackStartTime", currentTime);
         data.putLong("CustomAttackCooldownUntil", currentTime + cooldownTicks);
         
-        // Send packet to SERVER
-        PacketDistributor.sendToServer(new CustomAttackPacket());
-        
         // Cycle swing counter based on swing count from JSON
         int swing = data.getInt("SwingCounter");
         swing = swing >= swingData.swingCount ? 1 : swing + 1;
         data.putInt("SwingCounter", swing);
-        
-        // Get the item's registry ID for trail
-        ResourceLocation itemId = mainHand.getItem().builtInRegistryHolder().key().location();
-        
-        // Start the trail with the current weapon and swing counter
-        WeaponTrailRenderer.startTrail(this.player, itemId, swing, cooldownTicks);
         
         // Play animation using anim type from JSON
         String animName = "verse:swing_" + swingData.animType + swing;
@@ -113,6 +103,9 @@ public class ContinuousAttackMixin {
         // Clear hit entities for new swing
         data.remove("HitEntitiesThisSwing");
         data.remove("LastDamageTick");
+        
+        // Send packet to SERVER with swing number and animation name
+        PacketDistributor.sendToServer(new CustomAttackPacket(swing, animName));
         
         // Trigger swing on client for immediate feedback
         this.player.swing(this.player.getUsedItemHand());

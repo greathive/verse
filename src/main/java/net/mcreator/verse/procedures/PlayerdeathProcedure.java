@@ -30,20 +30,26 @@ public class PlayerdeathProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof Player) {
-			if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("drowned")) {
-				if ((entity.level().dimension()) == Level.OVERWORLD) {
-					if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("")) {
-						{
-							VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-							_vars.life = "tattered";
-							_vars.markSyncDirty();
-						}
-					} else if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("tattered")) {
-						{
-							VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-							_vars.life = "drowned";
-							_vars.markSyncDirty();
-						}
+			if ((entity.level().dimension()) == Level.OVERWORLD) {
+				if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("tattered")) {
+					{
+						VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+						_vars.life = "tattered";
+						_vars.markSyncDirty();
+					}
+				} else if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("tattered")) {
+					{
+						VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+						_vars.life = "drowned";
+						_vars.markSyncDirty();
+					}
+				}
+			} else {
+				if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("drowned")) {
+					{
+						VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+						_vars.life = "wiped";
+						_vars.markSyncDirty();
 					}
 				} else {
 					{
@@ -52,10 +58,11 @@ public class PlayerdeathProcedure {
 						_vars.markSyncDirty();
 					}
 				}
-			} else {
+			}
+			if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).life).equals("wiped")) {
 				{
 					VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-					_vars.life = "wiped";
+					_vars.life = "\"\"";
 					_vars.markSyncDirty();
 				}
 			}
