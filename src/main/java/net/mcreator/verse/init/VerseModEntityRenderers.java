@@ -9,11 +9,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
 
 import net.mcreator.verse.client.renderer.NpcRenderer;
+import net.mcreator.verse.client.renderer.MegalodauntRenderer;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class VerseModEntityRenderers {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(VerseModEntities.NPC.get(), NpcRenderer::new);
+		event.registerEntityRenderer(VerseModEntities.MEGALODAUNT.get(), MegalodauntRenderer::new);
 	}
 }

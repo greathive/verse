@@ -27,4 +27,5 @@ public class VerseModSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> POSTUREBREAK = REGISTRY.register("posturebreak", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "posturebreak")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> FREEZE = REGISTRY.register("freeze", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "freeze")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> BURN = REGISTRY.register("burn", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "burn")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> HEAVYSTEP = REGISTRY.register("heavystep", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "heavystep")));
 }

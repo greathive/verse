@@ -10,15 +10,24 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 
+import net.mcreator.verse.procedures.ParrySystem;
 import net.mcreator.verse.init.VerseModMobEffects;
 
 @Mixin(MultiPlayerGameMode.class)
 public class PreventBlockInteractionMixin {
-	@Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
-	private void preventItemUse(net.minecraft.client.player.LocalPlayer player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
-		// Uncomment if you have guardbroken effect:
-		if (player != null && player.hasEffect(VerseModMobEffects.GUARDBROKEN)) {
-			cir.setReturnValue(InteractionResult.FAIL);
-		}
-	}
+    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
+    private void preventItemUse(net.minecraft.client.player.LocalPlayer player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
+        if (player == null) return;
+        
+        // Prevent block interaction during active parry frames
+        if (ParrySystem.isInActiveParryFrames(player)) {
+            cir.setReturnValue(InteractionResult.FAIL);
+            return;
+        }
+        
+        // Check for guardbroken effect
+        if (player.hasEffect(VerseModMobEffects.GUARDBROKEN)) {
+            cir.setReturnValue(InteractionResult.FAIL);
+        }
+    }
 }

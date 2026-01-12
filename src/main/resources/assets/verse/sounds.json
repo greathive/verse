@@ -115,5 +115,14 @@
         "stream": false
       }
     ]
+  },
+  "heavystep": {
+    "subtitle": "subtitles.heavystep",
+    "sounds": [
+      {
+        "name": "verse:sharko_owl_walking_barrel_place_greataxe_crit_1.mp3-_1_",
+        "stream": false
+      }
+    ]
   }
 }

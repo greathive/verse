@@ -60,5 +60,8 @@
   "item.verse.deepspindle": "Deepspindle",
   "subtitles.burn": "burn",
   "subtitles.freeze": "freeze",
-  "effect.verse.clickcd": "Clickcd"
+  "effect.verse.clickcd": "Clickcd",
+  "entity.verse.megalodaunt": "Megalodaunt",
+  "item.verse.megalodaunt_spawn_egg": "Megalodaunt Spawn Egg",
+  "subtitles.heavystep": "heavy footstep"
 }

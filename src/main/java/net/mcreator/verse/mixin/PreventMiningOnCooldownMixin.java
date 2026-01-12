@@ -16,6 +16,7 @@ import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.util.SwingDataLoader;
+import net.mcreator.verse.procedures.ParrySystem;
 
 @Mixin(MultiPlayerGameMode.class)
 public class PreventMiningOnCooldownMixin {
@@ -25,6 +26,12 @@ public class PreventMiningOnCooldownMixin {
         LocalPlayer player = Minecraft.getInstance().player;
         
         if (player == null) return;
+        
+        // Prevent mining during active parry frames
+        if (ParrySystem.isInActiveParryFrames(player)) {
+            cir.setReturnValue(false);
+            return;
+        }
         
         ItemStack mainHand = player.getMainHandItem();
         
@@ -55,6 +62,12 @@ public class PreventMiningOnCooldownMixin {
         LocalPlayer player = Minecraft.getInstance().player;
         
         if (player == null) return;
+        
+        // Prevent mining during active parry frames
+        if (ParrySystem.isInActiveParryFrames(player)) {
+            cir.setReturnValue(false);
+            return;
+        }
         
         ItemStack mainHand = player.getMainHandItem();
         

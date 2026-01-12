@@ -2350,6 +2350,21 @@
         ]
       },
       "path": "~/menus/Talent"
+    },
+    {
+      "name": "Megalodaunt",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "megalodaunt",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/client/renderer/MegalodauntRenderer.java",
+          "src/main/resources/data/verse/neoforge/biome_modifier/megalodaunt_biome_modifier.json",
+          "src/main/resources/assets/verse/models/item/megalodaunt_spawn_egg.json",
+          "src/main/java/net/mcreator/verse/entity/MegalodauntEntity.java"
+        ]
+      }
     }
   ],
   "variable_elements": [
@@ -2692,6 +2707,14 @@
       ],
       "category": "ui",
       "subtitle": "burn"
+    },
+    {
+      "name": "heavystep",
+      "files": [
+        "sharko_owl_walking_barrel_place_greataxe_crit_1.mp3-_1_"
+      ],
+      "category": "hostile",
+      "subtitle": "heavy footstep"
     }
   ],
   "tag_elements": {
@@ -2701,9 +2724,7 @@
       "EntityBogged",
       "CUSTOM:Npc"
     ],
-    "ITEMS:minecraft:axes": [
-      "~CUSTOM:GranSuda"
-    ],
+    "ITEMS:minecraft:axes": [],
     "ITEMS:verse:axeanim": [
       "TAG:minecraft:axes",
       "Items.MACE",
@@ -2718,9 +2739,7 @@
       "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
     ],
-    "ITEMS:minecraft:swords": [
-      "~CUSTOM:Deepspindle"
-    ]
+    "ITEMS:minecraft:swords": []
   },
   "tab_element_order": {},
   "language_map": {
@@ -2786,7 +2805,10 @@
       "item.verse.deepspindle": "Deepspindle",
       "subtitles.burn": "burn",
       "subtitles.freeze": "freeze",
-      "effect.verse.clickcd": "Clickcd"
+      "effect.verse.clickcd": "Clickcd",
+      "entity.verse.megalodaunt": "Megalodaunt",
+      "item.verse.megalodaunt_spawn_egg": "Megalodaunt Spawn Egg",
+      "subtitles.heavystep": "heavy footstep"
     }
   },
   "metadata": {

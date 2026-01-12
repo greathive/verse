@@ -16,6 +16,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.util.SwingDataLoader;
+import net.mcreator.verse.procedures.ParrySystem;
 import net.mcreator.verse.network.CustomAttackPacket;
 import net.mcreator.verse.init.VerseModMobEffects;
 
@@ -27,6 +28,18 @@ public class ClientAttackHandlerMixin {
     @Inject(method = "startAttack", at = @At("HEAD"), cancellable = true)
     private void onStartAttack(CallbackInfoReturnable<Boolean> cir) {
         if (this.player == null) return;
+        
+        // Check if in active parry frames - prevent all attacks
+        if (ParrySystem.isInActiveParryFrames(this.player)) {
+            cir.setReturnValue(false);
+            return;
+        }
+        
+        // Check if in no-swing period after parry
+        if (!ParrySystem.canSwing(this.player)) {
+            cir.setReturnValue(false);
+            return;
+        }
         
         ItemStack mainHand = this.player.getMainHandItem();
         

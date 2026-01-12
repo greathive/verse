@@ -29,6 +29,7 @@ public class VerseModItems {
 	public static final DeferredItem<Item> PRAYER_BEADS;
 	public static final DeferredItem<Item> TRAINING_VEST;
 	public static final DeferredItem<Item> DEEPSPINDLE;
+	public static final DeferredItem<Item> MEGALODAUNT_SPAWN_EGG;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
@@ -42,6 +43,7 @@ public class VerseModItems {
 		PRAYER_BEADS = REGISTRY.register("prayer_beads", PrayerBeadsItem::new);
 		TRAINING_VEST = REGISTRY.register("training_vest", TrainingVestItem::new);
 		DEEPSPINDLE = REGISTRY.register("deepspindle", DeepspindleItem::new);
+		MEGALODAUNT_SPAWN_EGG = REGISTRY.register("megalodaunt_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.MEGALODAUNT, -13210, -13261, new Item.Properties()));
 	}
 
 	// Start of user code block custom items

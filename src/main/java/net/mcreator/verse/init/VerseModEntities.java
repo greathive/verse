@@ -16,6 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.verse.entity.NpcEntity;
+import net.mcreator.verse.entity.MegalodauntEntity;
 import net.mcreator.verse.VerseMod;
 
 @EventBusSubscriber
@@ -24,6 +25,10 @@ public class VerseModEntities {
 	public static final DeferredHolder<EntityType<?>, EntityType<NpcEntity>> NPC = register("npc", EntityType.Builder.<NpcEntity>of(NpcEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 			.sized(0.6f, 1.8f));
+	public static final DeferredHolder<EntityType<?>, EntityType<MegalodauntEntity>> MEGALODAUNT = register("megalodaunt",
+			EntityType.Builder.<MegalodauntEntity>of(MegalodauntEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
+
+					.sized(2f, 4f));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities
@@ -34,10 +39,12 @@ public class VerseModEntities {
 	@SubscribeEvent
 	public static void init(RegisterSpawnPlacementsEvent event) {
 		NpcEntity.init(event);
+		MegalodauntEntity.init(event);
 	}
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(NPC.get(), NpcEntity.createAttributes().build());
+		event.put(MEGALODAUNT.get(), MegalodauntEntity.createAttributes().build());
 	}
 }

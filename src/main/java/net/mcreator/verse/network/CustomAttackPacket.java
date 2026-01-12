@@ -17,9 +17,10 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
 
 import net.mcreator.verse.util.SwingDataLoader;
+import net.mcreator.verse.procedures.ParrySystem;
 import net.mcreator.verse.VerseMod;
 
-@EventBusSubscriber
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public record CustomAttackPacket(int swing, String animName) implements CustomPacketPayload {
 
 	public static final Type<CustomAttackPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "custom_attack"));
@@ -42,6 +43,18 @@ public record CustomAttackPacket(int swing, String animName) implements CustomPa
 			context.enqueueWork(() -> {
 				var player = context.player();
 				if (player != null) {
+					// Check if player is in active parry frames - prevent attack on server
+					if (ParrySystem.isInActiveParryFrames(player)) {
+						VerseMod.LOGGER.info("Attack rejected: player in active parry frames");
+						return;
+					}
+
+					// Check if player is in no-swing period - prevent attack on server
+					if (!ParrySystem.canSwing(player)) {
+						VerseMod.LOGGER.info("Attack rejected: player in no-swing period");
+						return;
+					}
+
 					var data = player.getPersistentData();
 
 					// Get attack speed and calculate cooldown

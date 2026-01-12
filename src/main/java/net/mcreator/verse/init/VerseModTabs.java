@@ -23,6 +23,7 @@ public class VerseModTabs {
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE = REGISTRY.register("verse",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse")).icon(() -> new ItemStack(VerseModBlocks.OUTFIT_TABLE.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModBlocks.OUTFIT_TABLE.get().asItem());
+				tabData.accept(VerseModItems.MEGALODAUNT_SPAWN_EGG.get());
 			}).withSearchBar().build());
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE_WEAPONS = REGISTRY.register("verse_weapons",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse_weapons")).icon(() -> new ItemStack(VerseModItems.GRAN_SUDA.get())).displayItems((parameters, tabData) -> {
