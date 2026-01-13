@@ -22,11 +22,6 @@ public class StatMenuOnKeyPressedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		{
-			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-			_vars.guiOpenedTick = entity.tickCount;
-			_vars.markSyncDirty();
-		}
 		if (entity.getData(VerseModVariables.PLAYER_VARIABLES).choseattunement == false) {
 			if (entity instanceof ServerPlayer _ent) {
 				BlockPos _bpos = BlockPos.containing(x, y, z);
@@ -66,6 +61,11 @@ public class StatMenuOnKeyPressedProcedure {
 						return new CardHandMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(_bpos));
 					}
 				}, _bpos);
+			}
+			{
+				VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+				_vars.guiOpenedTick = entity.tickCount;
+				_vars.markSyncDirty();
 			}
 		} else {
 			if (entity instanceof ServerPlayer _ent) {

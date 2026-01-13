@@ -42,9 +42,12 @@ import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.world.inventory.CardHandMenu;
 import net.mcreator.verse.network.VerseModVariables;
+import net.mcreator.verse.network.GetthatshittyasscardouttahereMessage;
+import net.mcreator.verse.network.ClicklogicpacketMessage;
 import net.mcreator.verse.network.CardPacketMessage;
 import net.mcreator.verse.network.CardBurnFreezeOrChooseMessage;
 import net.mcreator.verse.init.VerseModMobEffects;
+import net.mcreator.verse.VerseMod;
 
 import javax.annotation.Nullable;
 
@@ -407,8 +410,6 @@ public class CardHandRenderProcedure {
 		String talent = "";
 		String talentlist = "";
 		String card = "";
-		boolean clickvalid = false;
-		boolean wasLeftClickDown = false;
 		double currentTick = 0;
 		double orbscale = 0;
 		double anchorX = 0;
@@ -436,6 +437,12 @@ public class CardHandRenderProcedure {
 		double cardscale = 0;
 		double frame = 0;
 		double animrepeat = 0;
+		double brightness = 0;
+		double opacity = 0;
+		double cardanimatetick = 0;
+		boolean clickvalid = false;
+		boolean wasLeftClickDown = false;
+		boolean clicking = false;
 		if (Minecraft.getInstance().player != null) {
 			Entity entity = Minecraft.getInstance().player;
 			double x = entity.getX();
@@ -447,6 +454,9 @@ public class CardHandRenderProcedure {
 				if (target(3)) {
 					anchorX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2d;
 					anchorY = 53;
+					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick != 0) {
+						cardanimatetick = entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick);
+					}
 					currentTick = entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).guiOpenedTick - partialTick);
 					orbX = anchorX - 26;
 					orbY = anchorY;
@@ -462,13 +472,13 @@ public class CardHandRenderProcedure {
 						if (Math.hypot(Math.abs(mouseX - aceX), Math.abs(mouseY - aceY)) < 10) {
 							texturechoice = texturechoice.replace("base", "");
 							orbscale = 1.25;
-							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(VerseModMobEffects.CLICKCD)
+							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(VerseModMobEffects.CLICKCD)
 									&& (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(VerseModMobEffects.CLICKCD) ? _livEnt.getEffect(VerseModMobEffects.CLICKCD).getDuration() : 0) < 2) {
 								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 									_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 4, 0, false, false));
 							}
 							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS
-									&& !(entity instanceof LivingEntity _livEnt12 && _livEnt12.hasEffect(VerseModMobEffects.CLICKCD))) {
+									&& !(entity instanceof LivingEntity _livEnt13 && _livEnt13.hasEffect(VerseModMobEffects.CLICKCD))) {
 								if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace).equals(texturechoice)) {
 									if (world.isClientSide())
 										PacketDistributor.sendToServer(new CardPacketMessage(texturechoice));
@@ -519,6 +529,17 @@ public class CardHandRenderProcedure {
 					} else {
 						clickvalid = false;
 					}
+					if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic == false) {
+							clicking = true;
+							if (world.isClientSide())
+								PacketDistributor.sendToServer(new ClicklogicpacketMessage("clickstart"));
+						}
+					} else if (entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic == true && entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic != false) {
+						clicking = false;
+						if (world.isClientSide())
+							PacketDistributor.sendToServer(new ClicklogicpacketMessage("clickend"));
+					}
 					for (int index2 = 0; index2 < (int) talentcount; index2++) {
 						if (clickvalid == true && GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
 							leftclickmodifier = 1;
@@ -567,31 +588,54 @@ public class CardHandRenderProcedure {
 						}
 						card = description.substring((int) description.lastIndexOf("(") + "(".length(), (int) description.lastIndexOf(")"));
 						icon = description.substring((int) description.indexOf("(") + "(".length(), (int) description.indexOf(")"));
-						cardX = xanchor - (talentcount / 2 + renderoffset) * 148 + repeat * 148;
+						cardX = xanchor - (talentcount / 2.01 + 0.5) * 148 + repeat * 148;
 						cardY = yanchor;
 						if (Math.abs(cardY - mouseY) <= 92 && Math.abs(cardX - mouseX) <= 66) {
 							mousehover = 1;
-							if (!(entity instanceof LivingEntity _livEnt39 && _livEnt39.hasEffect(VerseModMobEffects.CLICKCD))
-									&& GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+							if (!(entity instanceof LivingEntity _livEnt43 && _livEnt43.hasEffect(VerseModMobEffects.CLICKCD)) && clicking == true) {
+								VerseMod.LOGGER.info(talent + "was clicked!" + entity.getData(VerseModVariables.PLAYER_VARIABLES).burn);
 								if (world.isClientSide())
-									PacketDistributor.sendToServer(new CardBurnFreezeOrChooseMessage(("[" + entity.getData(VerseModVariables.PLAYER_VARIABLES).ace + ":" + talent + "]")));
+									PacketDistributor.sendToServer(new CardBurnFreezeOrChooseMessage((entity.getData(VerseModVariables.PLAYER_VARIABLES).ace + "" + talent)));
+								clicking = false;
 							}
 						} else {
 							mousehover = 0;
 						}
 						cardY = cardY + mousehover * (-10);
-						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
-						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
-						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
-						renderTexture((float) cardX, (float) cardY, -1, 0, 2, 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
-						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.contains("[burn:" + talent + "b]")) {
-							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xcard".replace("x", "burn")) + ".png")));
-							renderTexture((float) cardX, (float) cardY, 0, 0, (float) (2.2 + 0.075 * Math.sin(currentTick * (1 / (2 * Math.PI)))), 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
-						} else if (entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.contains("[freeze:" + talent + "f]")) {
-							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/xcard".replace("x", "freeze")) + ".png")));
-							renderTexture((float) cardX, (float) cardY, 0, 0, (float) (2.2 + 0.075 * Math.sin(currentTick * (1 / (2 * Math.PI)))), 255 << 24 | 255 << 16 | 255 << 8 | 255, 4);
+						opacity = 255;
+						brightness = 255;
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).burn.contains(talent)) {
+							if (cardanimatetick < 10) {
+								brightness = 255 - 255 * (cardanimatetick / 10);
+							} else {
+								brightness = 0;
+							}
+							if (cardanimatetick < 20) {
+								if (cardanimatetick >= 10) {
+									opacity = 255 - 255 * ((cardanimatetick - 10) / 10);
+								} else {
+									opacity = 255;
+								}
+							} else {
+								opacity = 0;
+							}
+							if (cardanimatetick > 19) {
+								if (world.isClientSide())
+									PacketDistributor.sendToServer(new GetthatshittyasscardouttahereMessage(""));
+							}
+						} else {
+							brightness = 255;
+							opacity = 255;
 						}
-						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -2, 0, (float) nameScale, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains(talent)) {
+							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + "screens/freezecard" + ".png")));
+							renderTexture((float) cardX, (float) cardY, 0, 0, 2, 200 << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+						}
+						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
+						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, (int) opacity << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
+						renderTexture((float) cardX, (float) cardY, -1, 0, 2, (int) opacity << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -2, 0, (float) nameScale, (int) opacity << 24 | 0 << 16 | 0 << 8 | 0, 4);
 						LineRepeat = 0;
 						TalentText = description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("));
 						if (1 + Math.ceil((description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("))).length() / 20d) > 7) {
@@ -607,7 +651,7 @@ public class CardHandRenderProcedure {
 								finalText = TalentText.substring(0, (TalentText).length());
 								LineRepeat = LineRepeat + 1;
 							}
-							renderTexts(finalText, (float) cardX, (float) (cardY + 12 + 8 * lastPos * LineRepeat), -2, 0, (float) lastPos, 235 << 24 | 0 << 16 | 0 << 8 | 0, 4);
+							renderTexts(finalText, (float) cardX, (float) (cardY + 12 + 8 * lastPos * LineRepeat), -2, 0, (float) lastPos, (int) opacity << 24 | 0 << 16 | 0 << 8 | 0, 4);
 							TalentText = TalentText.replace(finalText, "");
 						}
 						talentlist = talentlist.replace(talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length()), "");
@@ -619,6 +663,8 @@ public class CardHandRenderProcedure {
 						}
 						leftclickmodifier = 0;
 						mousehover = 0;
+						brightness = 255;
+						opacity = 255;
 					}
 					release();
 				}

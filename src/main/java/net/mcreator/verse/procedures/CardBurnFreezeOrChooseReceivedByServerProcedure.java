@@ -6,7 +6,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import net.mcreator.verse.network.VerseModVariables;
 import net.mcreator.verse.init.VerseModMobEffects;
-import net.mcreator.verse.VerseMod;
 
 public class CardBurnFreezeOrChooseReceivedByServerProcedure {
 	public static void execute(Entity entity, String inboundString) {
@@ -17,38 +16,33 @@ public class CardBurnFreezeOrChooseReceivedByServerProcedure {
 		String burntcard = "";
 		String frozencard = "";
 		double acecost = 0;
-		VerseMod.LOGGER.info(inboundString);
-		if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.contains("[burn:") || (entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome
-				.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("[burn:") + "[burn:".length(), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("b]")))
-				.equals(entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("[freeze:") + "[freeze:".length(),
-						(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("f]")))) {
-			{
-				VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-				_vars.cardoutcome = "[burn:()b]" + "[freeze:()f]";
-				_vars.markSyncDirty();
-			}
-		}
-		if (inboundString.contains("[freeze:")) {
-			frozencard = inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length());
-			if ((entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("[freeze:") + "[freeze:".length(),
-					(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("f]"))).equals(frozencard)) {
+		if (inboundString.contains("burn")) {
+			if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains(inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()))) {
+				burntcard = inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length());
 				{
 					VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-					_vars.cardoutcome = entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.replace(entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome
-							.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("[freeze:") + "[freeze:".length(), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("f]")), "()");
+					_vars.burn = entity.getData(VerseModVariables.PLAYER_VARIABLES).burn + "" + burntcard;
+					_vars.secondaryguitick = entity.tickCount;
+					_vars.markSyncDirty();
+				}
+			}
+		}
+		if (inboundString.contains("freeze")) {
+			if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains(inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()))) {
+				{
+					VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+					_vars.freeze = inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length());
 					_vars.markSyncDirty();
 				}
 			} else {
 				{
 					VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
-					_vars.cardoutcome = entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.replace(entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome
-							.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("[freeze:") + "[freeze:".length(), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome.indexOf("f]")), frozencard);
+					_vars.freeze = "";
 					_vars.markSyncDirty();
 				}
 			}
 		}
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 5, 0, false, false));
-		VerseMod.LOGGER.info(entity.getData(VerseModVariables.PLAYER_VARIABLES).cardoutcome);
+			_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 10, 0, false, false));
 	}
 }

@@ -2365,6 +2365,74 @@
           "src/main/java/net/mcreator/verse/entity/MegalodauntEntity.java"
         ]
       }
+    },
+    {
+      "name": "Burnthatcard",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "burnthatcard",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/BurnthatcardProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Getthatshittyasscardouttahere",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "getthatshittyasscardouttahere",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/GetthatshittyasscardouttahereMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Clicklogic",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "clicklogic",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "inboundString",
+            "type": "string"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ClicklogicProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Clicklogicpacket",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "clicklogicpacket",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/ClicklogicpacketMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
     }
   ],
   "variable_elements": [
@@ -2591,16 +2659,22 @@
       "value": "0"
     },
     {
+      "name": "secondaryguitick",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
+    },
+    {
       "name": "ace",
       "type": "string",
       "scope": "player_lifetime",
-      "value": "\"\""
+      "value": "norm"
     },
     {
-      "name": "cardoutcome",
-      "type": "string",
-      "scope": "player_persistent",
-      "value": "\"\""
+      "name": "clicklogic",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
     }
   ],
   "sound_elements": [

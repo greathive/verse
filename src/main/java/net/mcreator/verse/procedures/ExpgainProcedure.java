@@ -40,6 +40,7 @@ public class ExpgainProcedure {
 					- entity.getData(VerseModVariables.PLAYER_VARIABLES).Shadowcast) - entity.getData(VerseModVariables.PLAYER_VARIABLES).Ironsing) - entity.getData(VerseModVariables.PLAYER_VARIABLES).Lifeweave)
 					- entity.getData(VerseModVariables.PLAYER_VARIABLES).Bloodrend == 0) {
 				if (false == entity.getData(VerseModVariables.PLAYER_VARIABLES).hasCard) {
+					ValidTalentListProcedure.execute(world, entity);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
 							_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("verse:powerup")), SoundSource.PLAYERS, (float) 0.2, 1);

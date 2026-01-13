@@ -32,9 +32,16 @@ public class TempRightclickedProcedure {
 				_vars.Ironsing = 0;
 				_vars.Lifeweave = 0;
 				_vars.Bloodrend = 0;
+				_vars.strExp = 0;
+				_vars.fortExp = 0;
+				_vars.aglExp = 0;
+				_vars.intExp = 0;
+				_vars.attuneExp = 0;
 				_vars.attunementchooserguivariable = "(flamecharm)(galebreathe)(frostdraw)(thundercall)(shadowcast)(ironsing)(bloodrend)(lifeweave)";
 				_vars.talentlist = "";
 				_vars.validdraw = "";
+				_vars.burn = "";
+				_vars.freeze = "";
 				_vars.choseattunement = false;
 				_vars.hasCard = false;
 				_vars.markSyncDirty();

@@ -100,14 +100,15 @@ public class VerseModVariables {
 		clone.burn = original.burn;
 		clone.freeze = original.freeze;
 		clone.fold = original.fold;
-		clone.cardoutcome = original.cardoutcome;
 		if (!event.isWasDeath()) {
 			clone.currentmantra = original.currentmantra;
 			clone.PlayerIA = original.PlayerIA;
 			clone.choice = original.choice;
 			clone.guiOpenedTick = original.guiOpenedTick;
 			clone.scroll = original.scroll;
+			clone.secondaryguitick = original.secondaryguitick;
 			clone.ace = original.ace;
+			clone.clicklogic = original.clicklogic;
 		}
 		event.getEntity().setData(PLAYER_VARIABLES, clone);
 	}
@@ -151,8 +152,9 @@ public class VerseModVariables {
 		public String burn = "\"\"";
 		public String freeze = "\"\"";
 		public double fold = 0;
-		public String ace = "\"\"";
-		public String cardoutcome = "\"\"";
+		public double secondaryguitick = 0;
+		public String ace = "norm";
+		public boolean clicklogic = false;
 
 		@Override
 		public CompoundTag serializeNBT(HolderLookup.Provider lookupProvider) {
@@ -194,8 +196,9 @@ public class VerseModVariables {
 			nbt.putString("burn", burn);
 			nbt.putString("freeze", freeze);
 			nbt.putDouble("fold", fold);
+			nbt.putDouble("secondaryguitick", secondaryguitick);
 			nbt.putString("ace", ace);
-			nbt.putString("cardoutcome", cardoutcome);
+			nbt.putBoolean("clicklogic", clicklogic);
 			return nbt;
 		}
 
@@ -238,8 +241,9 @@ public class VerseModVariables {
 			burn = nbt.getString("burn");
 			freeze = nbt.getString("freeze");
 			fold = nbt.getDouble("fold");
+			secondaryguitick = nbt.getDouble("secondaryguitick");
 			ace = nbt.getString("ace");
-			cardoutcome = nbt.getString("cardoutcome");
+			clicklogic = nbt.getBoolean("clicklogic");
 		}
 
 		public void markSyncDirty() {
