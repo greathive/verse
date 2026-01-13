@@ -27,17 +27,6 @@ public class ScrollDisable {
 		}
 
 		// Check if currently in a swing
-		CompoundTag data = player.getPersistentData();
 
-		if (data.contains("CustomAttackCooldownUntil")) {
-			long cooldownUntil = data.getLong("CustomAttackCooldownUntil");
-			long currentTime = player.level().getGameTime();
-			long ticksRemaining = cooldownUntil - currentTime;
-
-			// Prevent scroll if on cooldown (except last 5 ticks)
-			if (ticksRemaining > 5) {
-				event.setCanceled(true);
-			}
-		}
 	}
 }

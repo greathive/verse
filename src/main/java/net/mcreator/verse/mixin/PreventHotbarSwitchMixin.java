@@ -33,23 +33,11 @@ public class PreventHotbarSwitchMixin {
             boolean shouldLockHotbar = false;
             
             // Check if player has guardbroken effect - if your effect exists, uncomment this:
-            // if (player.hasEffect(VerseModMobEffects.GUARDBROKEN)) {
-            //     shouldLockHotbar = true;
-            // }
+           if (player.hasEffect(VerseModMobEffects.GUARDBROKEN)) {
+                shouldLockHotbar = true;
+             }
             
-            // Check if holding custom weapon and on cooldown
-            if (!shouldLockHotbar && mainHand.is(ItemTags.create(ResourceLocation.parse("verse:tools")))) {
-                if (data.contains("CustomAttackCooldownUntil")) {
-                    long cooldownUntil = data.getLong("CustomAttackCooldownUntil");
-                    long currentTime = player.level().getGameTime();
-                    long ticksRemaining = cooldownUntil - currentTime;
-                    
-                    // Lock if on cooldown (except last 5 ticks)
-                    if (ticksRemaining > 5) {
-                        shouldLockHotbar = true;
-                    }
-                }
-            }
+
             
             if (shouldLockHotbar) {
                 // Track the slot we were using

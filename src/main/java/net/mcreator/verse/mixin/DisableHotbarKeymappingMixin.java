@@ -28,18 +28,6 @@ public abstract class DisableHotbarKeymappingMixin {
                 }
                 
                 // Check if currently in a swing
-                CompoundTag data = player.getPersistentData();
-                
-                if (data.contains("CustomAttackCooldownUntil")) {
-                    long cooldownUntil = data.getLong("CustomAttackCooldownUntil");
-                    long currentTime = player.level().getGameTime();
-                    long ticksRemaining = cooldownUntil - currentTime;
-                    
-                    // Prevent key press if on cooldown (except last 5 ticks)
-                    if (ticksRemaining > 5) {
-                        cir.setReturnValue(false);
-                    }
-                }
             }
         }
     }

@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-import net.mcreator.verse.util.EndlagDataLoader;
 import net.mcreator.verse.network.PlayPlayerAnimationMessage;
 import net.mcreator.verse.VerseMod;
 
@@ -68,14 +67,6 @@ public class ParrySystem {
             }
         }
         
-        // Clear no swing cooldown when it expires
-        if (data.contains("NoSwingUntil")) {
-            long noSwingUntil = data.getLong("NoSwingUntil");
-            if (currentTime >= noSwingUntil) {
-                data.remove("NoSwingUntil");
-                VerseMod.LOGGER.info("No swing cooldown expired");
-            }
-        }
     }
     
     /**
@@ -156,7 +147,6 @@ public class ParrySystem {
         if (data.contains("ParryCooldownUntil")) {
             long cooldownUntil = data.getLong("ParryCooldownUntil");
             if (currentTime < cooldownUntil) {
-                VerseMod.LOGGER.info("Cannot parry: on cooldown for " + (cooldownUntil - currentTime) + " ticks");
                 return false;
             }
         }
@@ -165,24 +155,9 @@ public class ParrySystem {
         if (player.invulnerableTime > 0) {
             // Set short cooldown and prevent parry
             data.putLong("ParryCooldownUntil", currentTime + 10);
-            VerseMod.LOGGER.info("Cannot parry: in immunity frames, setting 10 tick cooldown");
             return false;
         }
         
-        // Check if in custom weapon swing
-        if (data.contains("CustomAttackCooldownUntil")) {
-            long attackCooldownUntil = data.getLong("CustomAttackCooldownUntil");
-            long ticksRemaining = attackCooldownUntil - currentTime;
-            
-            // Get endlag buffer for current weapon
-            int buffer = EndlagDataLoader.getEndlag(player.getMainHandItem());
-            
-            // Only allow parry if in buffer time
-            if (ticksRemaining > buffer) {
-                VerseMod.LOGGER.info("Cannot parry: in weapon swing, " + ticksRemaining + " ticks remaining (buffer: " + buffer + ")");
-                return false;
-            }
-        }
         
         return true;
     }
@@ -191,15 +166,6 @@ public class ParrySystem {
      * Checks if the player can currently swing a weapon.
      * Returns false if they're in the no-swing period after a parry.
      */
-    public static boolean canSwing(Player player) {
-        CompoundTag data = player.getPersistentData();
-        if (!data.contains("NoSwingUntil")) return true;
-        
-        long currentTime = player.level().getGameTime();
-        long noSwingUntil = data.getLong("NoSwingUntil");
-        
-        return currentTime >= noSwingUntil;
-    }
     
     /**
      * Initiates a parry attempt.
@@ -217,10 +183,8 @@ public class ParrySystem {
         data.putLong("ParryActiveUntil", currentTime + 6);
         data.remove("ParryBonusFrames"); // This is NOT a bonus frame
         
-        // Prevent swinging for 10 ticks after parry attempt
-        data.putLong("NoSwingUntil", currentTime + 10);
         
-        VerseMod.LOGGER.info("Parry initiated! Active until tick: " + (currentTime + 6) + ", No swing until: " + (currentTime + 10));
+
         
         // Play parry animation
         data.putString("PlayerCurrentAnimation", "verse:parry_fist");

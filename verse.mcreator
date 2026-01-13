@@ -1371,18 +1371,6 @@
       "path": "~/attributes"
     },
     {
-      "name": "ClientAttackHandler",
-      "type": "mixin",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "client_attack_handler",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/mixin/ClientAttackHandlerMixin.java"
-        ]
-      }
-    },
-    {
       "name": "PreventMiningOnCooldown",
       "type": "mixin",
       "compiles": true,
@@ -1403,18 +1391,6 @@
       "metadata": {
         "files": [
           "src/main/java/net/mcreator/verse/mixin/PreventHotbarSwitchMixin.java"
-        ]
-      }
-    },
-    {
-      "name": "ContinuousAttack",
-      "type": "mixin",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "continuous_attack",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/mixin/ContinuousAttackMixin.java"
         ]
       }
     },
@@ -2798,7 +2774,6 @@
       "EntityBogged",
       "CUSTOM:Npc"
     ],
-    "ITEMS:minecraft:axes": [],
     "ITEMS:verse:axeanim": [
       "TAG:minecraft:axes",
       "Items.MACE",
@@ -2812,8 +2787,7 @@
       "~CUSTOM:PrayerBeads",
       "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
-    ],
-    "ITEMS:minecraft:swords": []
+    ]
   },
   "tab_element_order": {},
   "language_map": {

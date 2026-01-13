@@ -6,10 +6,8 @@
     "CustomHeartGuiMixin",
     "HumanoidAnimationMixin",
     "ModelnpcmodelMixin",
-    "ClientAttackHandlerMixin",
     "PreventMiningOnCooldownMixin",
     "PreventHotbarSwitchMixin",
-    "ContinuousAttackMixin",
     "PreventBlockInteractionMixin",
     "DisableHotbarKeymappingMixin"
   ],
