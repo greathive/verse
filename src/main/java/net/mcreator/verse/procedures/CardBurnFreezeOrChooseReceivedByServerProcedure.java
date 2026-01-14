@@ -42,6 +42,9 @@ public class CardBurnFreezeOrChooseReceivedByServerProcedure {
 				}
 			}
 		}
+		if (!inboundString.contains("freeze") && !inboundString.contains("burn")) {
+			IwantthiscardpleaseProcedure.execute(entity, inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()));
+		}
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 			_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 10, 0, false, false));
 	}

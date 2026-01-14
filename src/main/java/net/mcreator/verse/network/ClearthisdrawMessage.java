@@ -14,22 +14,22 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 
-import net.mcreator.verse.procedures.ClicklogicProcedure;
+import net.mcreator.verse.procedures.CleartalentdrawProcedure;
 import net.mcreator.verse.VerseMod;
 
 @EventBusSubscriber
-public record ClicklogicpacketMessage(String extradata) implements CustomPacketPayload {
-	public static final Type<ClicklogicpacketMessage> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "clicklogicpacket"));
-	public static final StreamCodec<RegistryFriendlyByteBuf, ClicklogicpacketMessage> STREAM_CODEC = StreamCodec.of((RegistryFriendlyByteBuf buffer, ClicklogicpacketMessage message) -> {
+public record ClearthisdrawMessage(String extradata) implements CustomPacketPayload {
+	public static final Type<ClearthisdrawMessage> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(VerseMod.MODID, "clearthisdraw"));
+	public static final StreamCodec<RegistryFriendlyByteBuf, ClearthisdrawMessage> STREAM_CODEC = StreamCodec.of((RegistryFriendlyByteBuf buffer, ClearthisdrawMessage message) -> {
 		buffer.writeUtf(message.extradata);
-	}, (RegistryFriendlyByteBuf buffer) -> new ClicklogicpacketMessage(buffer.readUtf()));
+	}, (RegistryFriendlyByteBuf buffer) -> new ClearthisdrawMessage(buffer.readUtf()));
 
 	@Override
-	public Type<ClicklogicpacketMessage> type() {
+	public Type<ClearthisdrawMessage> type() {
 		return TYPE;
 	}
 
-	public static void handleData(final ClicklogicpacketMessage message, final IPayloadContext context) {
+	public static void handleData(final ClearthisdrawMessage message, final IPayloadContext context) {
 		if (context.flow() == PacketFlow.SERVERBOUND) {
 			context.enqueueWork(() -> {
 				Player entity = context.player();
@@ -41,7 +41,7 @@ public record ClicklogicpacketMessage(String extradata) implements CustomPacketP
 				if (!world.hasChunkAt(entity.blockPosition()))
 					return;
 
-				ClicklogicProcedure.execute(entity, inboundString);
+				CleartalentdrawProcedure.execute(entity);
 			}).exceptionally(e -> {
 				context.connection().disconnect(Component.literal(e.getMessage()));
 				return null;
@@ -51,6 +51,6 @@ public record ClicklogicpacketMessage(String extradata) implements CustomPacketP
 
 	@SubscribeEvent
 	public static void registerMessage(FMLCommonSetupEvent event) {
-		VerseMod.addNetworkMessage(ClicklogicpacketMessage.TYPE, ClicklogicpacketMessage.STREAM_CODEC, ClicklogicpacketMessage::handleData);
+		VerseMod.addNetworkMessage(ClearthisdrawMessage.TYPE, ClearthisdrawMessage.STREAM_CODEC, ClearthisdrawMessage::handleData);
 	}
 }

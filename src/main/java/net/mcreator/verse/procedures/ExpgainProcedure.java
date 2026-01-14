@@ -53,6 +53,7 @@ public class ExpgainProcedure {
 						_vars.expgain = 0;
 						_vars.power = entity.getData(VerseModVariables.PLAYER_VARIABLES).power + 1;
 						_vars.hasCard = true;
+						_vars.pickedcards = false;
 						_vars.markSyncDirty();
 					}
 				}

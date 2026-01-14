@@ -6,6 +6,8 @@ import org.lwjgl.glfw.GLFW;
 import org.joml.Matrix4fStack;
 import org.joml.Matrix4f;
 
+import org.checkerframework.checker.units.qual.g;
+
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
@@ -43,11 +45,11 @@ import net.minecraft.client.Minecraft;
 import net.mcreator.verse.world.inventory.CardHandMenu;
 import net.mcreator.verse.network.VerseModVariables;
 import net.mcreator.verse.network.GetthatshittyasscardouttahereMessage;
-import net.mcreator.verse.network.ClicklogicpacketMessage;
+import net.mcreator.verse.network.ClearthisdrawMessage;
 import net.mcreator.verse.network.CardPacketMessage;
 import net.mcreator.verse.network.CardBurnFreezeOrChooseMessage;
 import net.mcreator.verse.init.VerseModMobEffects;
-import net.mcreator.verse.VerseMod;
+import net.mcreator.verse.client.ClientClickTracker;
 
 import javax.annotation.Nullable;
 
@@ -410,6 +412,9 @@ public class CardHandRenderProcedure {
 		String talent = "";
 		String talentlist = "";
 		String card = "";
+		boolean clickvalid = false;
+		boolean clicking = false;
+		boolean currentlyClicking = false;
 		double currentTick = 0;
 		double orbscale = 0;
 		double anchorX = 0;
@@ -440,9 +445,10 @@ public class CardHandRenderProcedure {
 		double brightness = 0;
 		double opacity = 0;
 		double cardanimatetick = 0;
-		boolean clickvalid = false;
-		boolean wasLeftClickDown = false;
-		boolean clicking = false;
+		double r = 0;
+		double g = 0;
+		double b = 0;
+		double endoffset = 0;
 		if (Minecraft.getInstance().player != null) {
 			Entity entity = Minecraft.getInstance().player;
 			double x = entity.getX();
@@ -452,6 +458,7 @@ public class CardHandRenderProcedure {
 			ResourceKey<Level> dimension = entity.level().dimension();
 			if (entity instanceof Player _plr0 && _plr0.containerMenu instanceof CardHandMenu) {
 				if (target(3)) {
+					anchorX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2d;
 					anchorX = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2d;
 					anchorY = 53;
 					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick != 0) {
@@ -472,13 +479,13 @@ public class CardHandRenderProcedure {
 						if (Math.hypot(Math.abs(mouseX - aceX), Math.abs(mouseY - aceY)) < 10) {
 							texturechoice = texturechoice.replace("base", "");
 							orbscale = 1.25;
-							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(VerseModMobEffects.CLICKCD)
+							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt10 && _livEnt10.hasEffect(VerseModMobEffects.CLICKCD)
 									&& (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(VerseModMobEffects.CLICKCD) ? _livEnt.getEffect(VerseModMobEffects.CLICKCD).getDuration() : 0) < 2) {
 								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 									_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 4, 0, false, false));
 							}
 							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS
-									&& !(entity instanceof LivingEntity _livEnt13 && _livEnt13.hasEffect(VerseModMobEffects.CLICKCD))) {
+									&& !(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(VerseModMobEffects.CLICKCD))) {
 								if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace).equals(texturechoice)) {
 									if (world.isClientSide())
 										PacketDistributor.sendToServer(new CardPacketMessage(texturechoice));
@@ -530,17 +537,27 @@ public class CardHandRenderProcedure {
 						clickvalid = false;
 					}
 					if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic == false) {
-							clicking = true;
-							if (world.isClientSide())
-								PacketDistributor.sendToServer(new ClicklogicpacketMessage("clickstart"));
-						}
-					} else if (entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic == true && entity.getData(VerseModVariables.PLAYER_VARIABLES).clicklogic != false) {
+						currentlyClicking = true;
+					} else {
+						currentlyClicking = false;
+					}
+					ClientClickTracker.updateClickState(currentlyClicking, entity.tickCount);
+					if (ClientClickTracker.isClickUnderTicks(entity.tickCount, 5)) {
+						clicking = true;
+					} else {
 						clicking = false;
-						if (world.isClientSide())
-							PacketDistributor.sendToServer(new ClicklogicpacketMessage("clickend"));
+					}
+					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == true) {
+						endoffset = 2 * Minecraft.getInstance().getWindow().getGuiScaledHeight() * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35);
+						if (35 <= entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) {
+							if (world.isClientSide())
+								PacketDistributor.sendToServer(new ClearthisdrawMessage(""));
+						}
 					}
 					for (int index2 = 0; index2 < (int) talentcount; index2++) {
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == true) {
+							endoffset = Minecraft.getInstance().getWindow().getGuiScaledHeight() * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35);
+						}
 						if (clickvalid == true && GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
 							leftclickmodifier = 1;
 						} else {
@@ -557,6 +574,7 @@ public class CardHandRenderProcedure {
 							yanchor = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
 						}
 						talent = talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length());
+						yanchor = yanchor + endoffset;
 						if ((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length() > 14) {
 							nameScale = 14d / (talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length();
 						} else {
@@ -592,8 +610,7 @@ public class CardHandRenderProcedure {
 						cardY = yanchor;
 						if (Math.abs(cardY - mouseY) <= 92 && Math.abs(cardX - mouseX) <= 66) {
 							mousehover = 1;
-							if (!(entity instanceof LivingEntity _livEnt43 && _livEnt43.hasEffect(VerseModMobEffects.CLICKCD)) && clicking == true) {
-								VerseMod.LOGGER.info(talent + "was clicked!" + entity.getData(VerseModVariables.PLAYER_VARIABLES).burn);
+							if (!(entity instanceof LivingEntity _livEnt48 && _livEnt48.hasEffect(VerseModMobEffects.CLICKCD)) && clicking == true && entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == false) {
 								if (world.isClientSide())
 									PacketDistributor.sendToServer(new CardBurnFreezeOrChooseMessage((entity.getData(VerseModVariables.PLAYER_VARIABLES).ace + "" + talent)));
 								clicking = false;
@@ -601,18 +618,20 @@ public class CardHandRenderProcedure {
 						} else {
 							mousehover = 0;
 						}
-						cardY = cardY + mousehover * (-10);
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == false) {
+							cardY = cardY + mousehover * (-10);
+						}
 						opacity = 255;
 						brightness = 255;
 						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).burn.contains(talent)) {
-							if (cardanimatetick < 10) {
-								brightness = 255 - 255 * (cardanimatetick / 10);
+							if (cardanimatetick < 10.1) {
+								brightness = 255 - 255 * ((cardanimatetick + 0.1) / 10.1);
 							} else {
 								brightness = 0;
 							}
 							if (cardanimatetick < 20) {
 								if (cardanimatetick >= 10) {
-									opacity = 255 - 255 * ((cardanimatetick - 10) / 10);
+									opacity = 255 - 255 * ((cardanimatetick + 0.1) / 10.1);
 								} else {
 									opacity = 255;
 								}
@@ -623,18 +642,34 @@ public class CardHandRenderProcedure {
 								if (world.isClientSide())
 									PacketDistributor.sendToServer(new GetthatshittyasscardouttahereMessage(""));
 							}
+							if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == true) {
+								if (world.isClientSide())
+									PacketDistributor.sendToServer(new GetthatshittyasscardouttahereMessage(""));
+							}
 						} else {
 							brightness = 255;
 							opacity = 255;
 						}
+						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.contains(talent)) {
+							yanchor = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
+							opacity = 255 - 255 * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35.5);
+						}
+						r = brightness;
+						g = brightness;
+						b = brightness;
 						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains(talent)) {
+							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + "screens/freezecardsolid" + ".png")));
+							renderTexture((float) cardX, (float) cardY, -5, 0, 2, 255 << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
 							RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + "screens/freezecard" + ".png")));
-							renderTexture((float) cardX, (float) cardY, 0, 0, 2, 200 << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+							renderTexture((float) cardX, (float) cardY, 0, 0, 2, 255 << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+							r = 200;
+							g = 240;
+							b = 255;
 						}
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
-						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, (int) opacity << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, 200 << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
-						renderTexture((float) cardX, (float) cardY, -1, 0, 2, (int) opacity << 24 | (int) brightness << 16 | (int) brightness << 8 | (int) brightness, 4);
+						renderTexture((float) cardX, (float) cardY, -1, 0, 2, 200 << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
 						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -2, 0, (float) nameScale, (int) opacity << 24 | 0 << 16 | 0 << 8 | 0, 4);
 						LineRepeat = 0;
 						TalentText = description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("));

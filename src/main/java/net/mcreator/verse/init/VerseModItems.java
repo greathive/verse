@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 
@@ -19,8 +20,6 @@ public class VerseModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(VerseMod.MODID);
 	public static final DeferredItem<Item> TEMP;
 	public static final DeferredItem<Item> NPC_SPAWN_EGG;
-	public static final DeferredItem<Item> OUTFIT_RESETER;
-	public static final DeferredItem<Item> OUTFIT_TABLE;
 	public static final DeferredItem<Item> GRANT_FLAME_WITHIN;
 	public static final DeferredItem<Item> TALENTCHECKER;
 	public static final DeferredItem<Item> GRAN_SUDA;
@@ -30,11 +29,10 @@ public class VerseModItems {
 	public static final DeferredItem<Item> TRAINING_VEST;
 	public static final DeferredItem<Item> DEEPSPINDLE;
 	public static final DeferredItem<Item> MEGALODAUNT_SPAWN_EGG;
+	public static final DeferredItem<Item> ORCHESTRATOR_BASIN;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
-		OUTFIT_RESETER = REGISTRY.register("outfit_reseter", OutfitReseterItem::new);
-		OUTFIT_TABLE = block(VerseModBlocks.OUTFIT_TABLE);
 		GRANT_FLAME_WITHIN = REGISTRY.register("grant_flame_within", GrantFlameWithinItem::new);
 		TALENTCHECKER = REGISTRY.register("talentchecker", TalentcheckerItem::new);
 		GRAN_SUDA = REGISTRY.register("gran_suda", GranSudaItem::new);
@@ -44,6 +42,7 @@ public class VerseModItems {
 		TRAINING_VEST = REGISTRY.register("training_vest", TrainingVestItem::new);
 		DEEPSPINDLE = REGISTRY.register("deepspindle", DeepspindleItem::new);
 		MEGALODAUNT_SPAWN_EGG = REGISTRY.register("megalodaunt_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.MEGALODAUNT, -13210, -13261, new Item.Properties()));
+		ORCHESTRATOR_BASIN = block(VerseModBlocks.ORCHESTRATOR_BASIN, new Item.Properties().rarity(Rarity.UNCOMMON));
 	}
 
 	// Start of user code block custom items

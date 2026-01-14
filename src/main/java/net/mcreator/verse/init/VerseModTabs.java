@@ -20,16 +20,11 @@ import net.mcreator.verse.VerseMod;
 @EventBusSubscriber
 public class VerseModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, VerseMod.MODID);
-	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE = REGISTRY.register("verse",
-			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse")).icon(() -> new ItemStack(VerseModBlocks.OUTFIT_TABLE.get())).displayItems((parameters, tabData) -> {
-				tabData.accept(VerseModBlocks.OUTFIT_TABLE.get().asItem());
-				tabData.accept(VerseModItems.MEGALODAUNT_SPAWN_EGG.get());
-			}).withSearchBar().build());
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE_WEAPONS = REGISTRY.register("verse_weapons",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse_weapons")).icon(() -> new ItemStack(VerseModItems.GRAN_SUDA.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.GRAN_SUDA.get());
 				tabData.accept(VerseModItems.DEEPSPINDLE.get());
-			}).withTabsBefore(VERSE.getId()).build());
+			}).build());
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TRAINING_GEAR = REGISTRY.register("training_gear",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.training_gear")).icon(() -> new ItemStack(VerseModItems.ANKLE_WEIGHTS.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.ANKLE_WEIGHTS.get());
@@ -37,6 +32,11 @@ public class VerseModTabs {
 				tabData.accept(VerseModItems.PRAYER_BEADS.get());
 				tabData.accept(VerseModItems.TRAINING_VEST.get());
 			}).withTabsBefore(VERSE_WEAPONS.getId()).build());
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE = REGISTRY.register("verse",
+			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse")).icon(() -> new ItemStack(VerseModBlocks.ORCHESTRATOR_BASIN.get())).displayItems((parameters, tabData) -> {
+				tabData.accept(VerseModItems.MEGALODAUNT_SPAWN_EGG.get());
+				tabData.accept(VerseModBlocks.ORCHESTRATOR_BASIN.get().asItem());
+			}).withSearchBar().withTabsBefore(TRAINING_GEAR.getId()).build());
 
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
@@ -44,7 +44,6 @@ public class VerseModTabs {
 			if (tabData.hasPermissions()) {
 				tabData.accept(VerseModItems.TEMP.get());
 				tabData.accept(VerseModItems.NPC_SPAWN_EGG.get());
-				tabData.accept(VerseModItems.OUTFIT_RESETER.get());
 				tabData.accept(VerseModItems.GRANT_FLAME_WITHIN.get());
 				tabData.accept(VerseModItems.TALENTCHECKER.get());
 			}

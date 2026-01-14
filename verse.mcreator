@@ -1093,105 +1093,6 @@
       "path": "~/humanoidMob"
     },
     {
-      "name": "OutfitReseter",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "outfit_reseter",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/item/OutfitReseterItem.java",
-          "src/main/resources/assets/verse/models/item/outfit_reseter.json"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
-      "name": "OutfitReseterRightclicked",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "outfit_reseter_rightclicked",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/OutfitReseterRightclickedProcedure.java"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
-      "name": "RenderOutfit",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "render_outfit",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "entityModel",
-            "type": "model"
-          },
-          {
-            "name": "playerRenderEvent",
-            "type": "playerrendering"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/RenderOutfitProcedure.java"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
-      "name": "GetTexture",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "get_texture",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "return_type": "texturelocation",
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/GetTextureProcedure.java"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
-      "name": "KleidersHideArm",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "kleiders_hide_arm",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/KleidersHideArmProcedure.java"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
       "name": "ToggleVisibilityGui",
       "type": "procedure",
       "compiles": true,
@@ -1293,23 +1194,6 @@
       }
     },
     {
-      "name": "OutfitTable",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "outfit_table",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/verse/loot_table/blocks/outfit_table.json",
-          "src/main/resources/assets/verse/blockstates/outfit_table.json",
-          "src/main/java/net/mcreator/verse/block/OutfitTableBlock.java",
-          "src/main/resources/assets/verse/models/item/outfit_table.json",
-          "src/main/resources/assets/verse/models/block/outfit_table.json"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
       "name": "Verse",
       "type": "tab",
       "compiles": true,
@@ -1330,34 +1214,6 @@
           "src/main/java/net/mcreator/verse/mixin/ModelnpcmodelMixin.java"
         ]
       }
-    },
-    {
-      "name": "OutfitCrafting",
-      "type": "gui",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "outfit_crafting",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/client/gui/OutfitCraftingScreen.java",
-          "src/main/java/net/mcreator/verse/world/inventory/OutfitCraftingMenu.java"
-        ]
-      },
-      "path": "~/outfit"
-    },
-    {
-      "name": "OutfitTableRender",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "outfit_table_render",
-      "metadata": {
-        "dependencies": [],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/OutfitTableRenderProcedure.java"
-        ]
-      },
-      "path": "~/outfit"
     },
     {
       "name": "SwingSpeed",
@@ -2375,11 +2231,11 @@
       "path": "~/menus/Talent"
     },
     {
-      "name": "Clicklogic",
+      "name": "Iwantthiscardplease",
       "type": "procedure",
       "compiles": true,
       "locked_code": false,
-      "registry_name": "clicklogic",
+      "registry_name": "iwantthiscardplease",
       "metadata": {
         "dependencies": [
           {
@@ -2392,23 +2248,91 @@
           }
         ],
         "files": [
-          "src/main/java/net/mcreator/verse/procedures/ClicklogicProcedure.java"
+          "src/main/java/net/mcreator/verse/procedures/IwantthiscardpleaseProcedure.java"
         ]
       },
       "path": "~/menus/Talent"
     },
     {
-      "name": "Clicklogicpacket",
-      "type": "packet",
+      "name": "Cleartalentdraw",
+      "type": "procedure",
       "compiles": true,
       "locked_code": false,
-      "registry_name": "clicklogicpacket",
+      "registry_name": "cleartalentdraw",
       "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
         "files": [
-          "src/main/java/net/mcreator/verse/network/ClicklogicpacketMessage.java"
+          "src/main/java/net/mcreator/verse/procedures/CleartalentdrawProcedure.java"
         ]
       },
       "path": "~/menus/Talent"
+    },
+    {
+      "name": "Clearthisdraw",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "clearthisdraw",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/ClearthisdrawMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "OrchestratorBasinBlockValidPlacementCondition",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orchestrator_basin_block_valid_placement_condition",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/OrchestratorBasinBlockValidPlacementConditionProcedure.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "OrchestratorBasin",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orchestrator_basin",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/OrchestratorBasinBlock.java",
+          "src/main/resources/assets/verse/blockstates/orchestrator_basin.json",
+          "src/main/resources/data/verse/loot_table/blocks/orchestrator_basin.json",
+          "src/main/resources/assets/verse/models/item/orchestrator_basin.json",
+          "src/main/resources/assets/verse/models/block/orchestrator_basin.json"
+        ]
+      },
+      "path": "~/mantra"
     }
   ],
   "variable_elements": [
@@ -2512,12 +2436,6 @@
       "name": "expgain",
       "type": "number",
       "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "PlayerIA",
-      "type": "number",
-      "scope": "player_lifetime",
       "value": "0"
     },
     {
@@ -2647,7 +2565,7 @@
       "value": "norm"
     },
     {
-      "name": "clicklogic",
+      "name": "pickedcards",
       "type": "logic",
       "scope": "player_lifetime",
       "value": "false"
@@ -2787,6 +2705,12 @@
       "~CUSTOM:PrayerBeads",
       "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
+    ],
+    "BLOCKS:minecraft:mineable/pickaxe": [
+      "~CUSTOM:OrchestratorBasin"
+    ],
+    "BLOCKS:minecraft:needs_stone_tool": [
+      "~CUSTOM:OrchestratorBasin"
     ]
   },
   "tab_element_order": {},
@@ -2809,12 +2733,10 @@
       "key.categories.verse": "Verse",
       "entity.verse.npc": "Npc",
       "item.verse.npc_spawn_egg": "Npc Spawn Egg",
-      "item.verse.outfit_reseter": "Outfit Reseter",
       "gui.verse.main_gui.button_t": "t",
       "gui.verse.main_gui.tooltip_toggles_the_visibility_of_your_o": "Toggles the visibility of your outfit.",
       "subtitles.powerup": "player power increases",
       "attribute.verse.mantra_speed": "Mantra Speed",
-      "block.verse.outfit_table": "Outfit Table",
       "item_group.verse.verse": "Verse",
       "attribute.verse.swing_speed": "Swing Speed",
       "subtitles.swordswing1": "weapon swing",
@@ -2856,7 +2778,8 @@
       "effect.verse.clickcd": "Clickcd",
       "entity.verse.megalodaunt": "Megalodaunt",
       "item.verse.megalodaunt_spawn_egg": "Megalodaunt Spawn Egg",
-      "subtitles.heavystep": "heavy footstep"
+      "subtitles.heavystep": "heavy footstep",
+      "block.verse.orchestrator_basin": "Orchestrator Basin"
     }
   },
   "metadata": {
@@ -2936,10 +2859,6 @@
         "children": []
       },
       {
-        "name": "outfit",
-        "children": []
-      },
-      {
         "name": "combat",
         "children": []
       },
@@ -2959,6 +2878,10 @@
             "children": []
           }
         ]
+      },
+      {
+        "name": "mantra",
+        "children": []
       }
     ]
   },

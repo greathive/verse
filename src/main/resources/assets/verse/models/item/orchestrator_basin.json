@@ -1,5 +1,5 @@
 {
-  "parent": "verse:block/outfit_table",
+  "parent": "verse:block/orchestrator_basin",
   "display": {
     "thirdperson": {
       "rotation": [

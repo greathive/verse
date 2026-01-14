@@ -16,12 +16,10 @@
   "key.categories.verse": "Verse",
   "entity.verse.npc": "Npc",
   "item.verse.npc_spawn_egg": "Npc Spawn Egg",
-  "item.verse.outfit_reseter": "Outfit Reseter",
   "gui.verse.main_gui.button_t": "t",
   "gui.verse.main_gui.tooltip_toggles_the_visibility_of_your_o": "Toggles the visibility of your outfit.",
   "subtitles.powerup": "player power increases",
   "attribute.verse.mantra_speed": "Mantra Speed",
-  "block.verse.outfit_table": "Outfit Table",
   "item_group.verse.verse": "Verse",
   "attribute.verse.swing_speed": "Swing Speed",
   "subtitles.swordswing1": "weapon swing",
@@ -63,5 +61,6 @@
   "effect.verse.clickcd": "Clickcd",
   "entity.verse.megalodaunt": "Megalodaunt",
   "item.verse.megalodaunt_spawn_egg": "Megalodaunt Spawn Egg",
-  "subtitles.heavystep": "heavy footstep"
+  "subtitles.heavystep": "heavy footstep",
+  "block.verse.orchestrator_basin": "Orchestrator Basin"
 }

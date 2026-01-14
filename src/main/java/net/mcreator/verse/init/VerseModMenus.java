@@ -16,7 +16,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.world.inventory.TalentDisplayMenu;
-import net.mcreator.verse.world.inventory.OutfitCraftingMenu;
 import net.mcreator.verse.world.inventory.MainGuiMenu;
 import net.mcreator.verse.world.inventory.CardHandMenu;
 import net.mcreator.verse.world.inventory.AttunmentChoiceMenu;
@@ -29,7 +28,6 @@ public class VerseModMenus {
 	public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(Registries.MENU, VerseMod.MODID);
 	public static final DeferredHolder<MenuType<?>, MenuType<MainGuiMenu>> MAIN_GUI = REGISTRY.register("main_gui", () -> IMenuTypeExtension.create(MainGuiMenu::new));
 	public static final DeferredHolder<MenuType<?>, MenuType<AttunmentChoiceMenu>> ATTUNMENT_CHOICE = REGISTRY.register("attunment_choice", () -> IMenuTypeExtension.create(AttunmentChoiceMenu::new));
-	public static final DeferredHolder<MenuType<?>, MenuType<OutfitCraftingMenu>> OUTFIT_CRAFTING = REGISTRY.register("outfit_crafting", () -> IMenuTypeExtension.create(OutfitCraftingMenu::new));
 	public static final DeferredHolder<MenuType<?>, MenuType<TalentDisplayMenu>> TALENT_DISPLAY = REGISTRY.register("talent_display", () -> IMenuTypeExtension.create(TalentDisplayMenu::new));
 	public static final DeferredHolder<MenuType<?>, MenuType<CardHandMenu>> CARD_HAND = REGISTRY.register("card_hand", () -> IMenuTypeExtension.create(CardHandMenu::new));
 

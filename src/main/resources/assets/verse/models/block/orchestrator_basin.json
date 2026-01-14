@@ -1,0 +1,10 @@
+{
+  "parent": "verse:custom/orchastratorbasin",
+  "textures": {
+    "all": "verse:block/orchastratorbasin",
+    "particle": "verse:block/orchastratorbasin",
+    "1": "verse:block/orchastratorbasin",
+    "2": "verse:block/orchastratorbasinpool"
+  },
+  "render_type": "solid"
+}

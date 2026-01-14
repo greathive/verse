@@ -4,7 +4,7 @@
   "definition": {
     "name": "Verse",
     "icon": {
-      "value": "CUSTOM:OutfitTable"
+      "value": "CUSTOM:OrchestratorBasin"
     },
     "showSearch": true
   }

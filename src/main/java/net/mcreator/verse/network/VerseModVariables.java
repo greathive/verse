@@ -102,13 +102,12 @@ public class VerseModVariables {
 		clone.fold = original.fold;
 		if (!event.isWasDeath()) {
 			clone.currentmantra = original.currentmantra;
-			clone.PlayerIA = original.PlayerIA;
 			clone.choice = original.choice;
 			clone.guiOpenedTick = original.guiOpenedTick;
 			clone.scroll = original.scroll;
 			clone.secondaryguitick = original.secondaryguitick;
 			clone.ace = original.ace;
-			clone.clicklogic = original.clicklogic;
+			clone.pickedcards = original.pickedcards;
 		}
 		event.getEntity().setData(PLAYER_VARIABLES, clone);
 	}
@@ -132,7 +131,6 @@ public class VerseModVariables {
 		public double Lifeweave = 0;
 		public double Bloodrend = 0;
 		public double expgain = 0;
-		public double PlayerIA = 0;
 		public String talentlist = "\"\"";
 		public String validdraw = "\"\"";
 		public String life = "\"\"";
@@ -154,7 +152,7 @@ public class VerseModVariables {
 		public double fold = 0;
 		public double secondaryguitick = 0;
 		public String ace = "norm";
-		public boolean clicklogic = false;
+		public boolean pickedcards = false;
 
 		@Override
 		public CompoundTag serializeNBT(HolderLookup.Provider lookupProvider) {
@@ -176,7 +174,6 @@ public class VerseModVariables {
 			nbt.putDouble("Lifeweave", Lifeweave);
 			nbt.putDouble("Bloodrend", Bloodrend);
 			nbt.putDouble("expgain", expgain);
-			nbt.putDouble("PlayerIA", PlayerIA);
 			nbt.putString("talentlist", talentlist);
 			nbt.putString("validdraw", validdraw);
 			nbt.putString("life", life);
@@ -198,7 +195,7 @@ public class VerseModVariables {
 			nbt.putDouble("fold", fold);
 			nbt.putDouble("secondaryguitick", secondaryguitick);
 			nbt.putString("ace", ace);
-			nbt.putBoolean("clicklogic", clicklogic);
+			nbt.putBoolean("pickedcards", pickedcards);
 			return nbt;
 		}
 
@@ -221,7 +218,6 @@ public class VerseModVariables {
 			Lifeweave = nbt.getDouble("Lifeweave");
 			Bloodrend = nbt.getDouble("Bloodrend");
 			expgain = nbt.getDouble("expgain");
-			PlayerIA = nbt.getDouble("PlayerIA");
 			talentlist = nbt.getString("talentlist");
 			validdraw = nbt.getString("validdraw");
 			life = nbt.getString("life");
@@ -243,7 +239,7 @@ public class VerseModVariables {
 			fold = nbt.getDouble("fold");
 			secondaryguitick = nbt.getDouble("secondaryguitick");
 			ace = nbt.getString("ace");
-			clicklogic = nbt.getBoolean("clicklogic");
+			pickedcards = nbt.getBoolean("pickedcards");
 		}
 
 		public void markSyncDirty() {

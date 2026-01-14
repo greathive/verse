@@ -8,14 +8,14 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 import net.minecraft.world.level.block.Block;
 
-import net.mcreator.verse.block.OutfitTableBlock;
+import net.mcreator.verse.block.OrchestratorBasinBlock;
 import net.mcreator.verse.VerseMod;
 
 public class VerseModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(VerseMod.MODID);
-	public static final DeferredBlock<Block> OUTFIT_TABLE;
+	public static final DeferredBlock<Block> ORCHESTRATOR_BASIN;
 	static {
-		OUTFIT_TABLE = REGISTRY.register("outfit_table", OutfitTableBlock::new);
+		ORCHESTRATOR_BASIN = REGISTRY.register("orchestrator_basin", OrchestratorBasinBlock::new);
 	}
 	// Start of user code block custom blocks
 	// End of user code block custom blocks

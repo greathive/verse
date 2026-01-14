@@ -1,6 +1,6 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "verse:blocks/outfit_table",
+  "random_sequence": "verse:blocks/orchestrator_basin",
   "pools": [
     {
       "rolls": 1.0,
@@ -12,7 +12,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "verse:outfit_table"
+          "name": "verse:orchestrator_basin"
         }
       ]
     }
