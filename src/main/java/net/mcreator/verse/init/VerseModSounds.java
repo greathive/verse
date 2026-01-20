@@ -28,4 +28,7 @@ public class VerseModSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> FREEZE = REGISTRY.register("freeze", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "freeze")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> BURN = REGISTRY.register("burn", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "burn")));
 	public static final DeferredHolder<SoundEvent, SoundEvent> HEAVYSTEP = REGISTRY.register("heavystep", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "heavystep")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> MANTRAACTIVE = REGISTRY.register("mantraactive", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "mantraactive")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> MANTRADEACTIVE = REGISTRY.register("mantradeactive", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "mantradeactive")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> PELAGIC_SLUMBER = REGISTRY.register("pelagic-slumber", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("verse", "pelagic-slumber")));
 }

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "verse:tearstone_slab",
+    "verse:soakstone_slab",
+    "verse:cobbled_tearstone_slab"
+  ]
+}

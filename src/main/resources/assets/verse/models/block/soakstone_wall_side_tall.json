@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_wall_side_tall",
+  "textures": {
+    "wall": "verse:block/roofblock",
+    "particle": "verse:block/roofblock"
+  },
+  "render_type": "solid"
+}

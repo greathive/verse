@@ -8,6 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
 
+import net.mcreator.verse.client.particle.BubbleParticle;
 import net.mcreator.verse.client.particle.BloodParticle;
 
 @EventBusSubscriber(Dist.CLIENT)
@@ -15,5 +16,6 @@ public class VerseModParticles {
 	@SubscribeEvent
 	public static void registerParticles(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(VerseModParticleTypes.BLOOD.get(), BloodParticle::provider);
+		event.registerSpriteSet(VerseModParticleTypes.BUBBLE.get(), BubbleParticle::provider);
 	}
 }

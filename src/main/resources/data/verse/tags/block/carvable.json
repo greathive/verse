@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "verse:cobbled_tearstone",
+    "verse:tearstone",
+    "verse:floodstone",
+    "verse:deepsand",
+    "minecraft:bedrock"
+  ]
+}

@@ -40,6 +40,13 @@ public class ExpgainProcedure {
 					- entity.getData(VerseModVariables.PLAYER_VARIABLES).Shadowcast) - entity.getData(VerseModVariables.PLAYER_VARIABLES).Ironsing) - entity.getData(VerseModVariables.PLAYER_VARIABLES).Lifeweave)
 					- entity.getData(VerseModVariables.PLAYER_VARIABLES).Bloodrend == 0) {
 				if (false == entity.getData(VerseModVariables.PLAYER_VARIABLES).hasCard) {
+					if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.contains("(")) {
+						{
+							VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
+							_vars.talentlist = "()";
+							_vars.markSyncDirty();
+						}
+					}
 					ValidTalentListProcedure.execute(world, entity);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {

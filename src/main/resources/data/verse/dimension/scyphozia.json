@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:the_nether",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "biomes": [
+        {
+          "biome": "verse:forest_of_lights",
+          "parameters": {
+            "temperature": 0.92,
+            "humidity": 1.01,
+            "continentalness": 0.96,
+            "erosion": 1,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "verse:coral_forest",
+          "parameters": {
+            "temperature": 0.99,
+            "humidity": 0.86,
+            "continentalness": 0.95,
+            "erosion": 1,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0.1
+          }
+        },
+        {
+          "biome": "verse:celtorian_wastes",
+          "parameters": {
+            "continentalness": 0.975,
+            "depth": 0,
+            "erosion": 1,
+            "humidity": 0.8,
+            "offset": 0,
+            "temperature": 1,
+            "weirdness": 0.01
+          }
+        },
+        {
+          "biome": "verse:celtorian_chasms",
+          "parameters": {
+            "continentalness": 0,
+            "depth": 0,
+            "erosion": 1,
+            "humidity": -1,
+            "offset": 0,
+            "temperature": 1,
+            "weirdness": 0
+          }
+        }
+      ],
+      "type": "minecraft:multi_noise"
+    },
+    "settings": "verse:schiphozia_noise"
+  }
+}

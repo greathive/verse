@@ -8,14 +8,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.network.chat.Component;
-import net.minecraft.client.Minecraft;
 
-import net.mcreator.verse.procedures.AnkleWeightsSpecialInformationProcedure;
-import net.mcreator.verse.procedures.AnkleWeightsRightclickedProcedure;
+import net.mcreator.verse.procedures.DumbbellRightclickedProcedure;
 
 import java.util.List;
 
@@ -28,19 +25,14 @@ public class DumbbellItem extends Item {
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		Entity entity = itemstack.getEntityRepresentation() != null ? itemstack.getEntityRepresentation() : Minecraft.getInstance().player;
-		String hoverText = AnkleWeightsSpecialInformationProcedure.execute(itemstack);
-		if (hoverText != null) {
-			for (String line : hoverText.split("\n")) {
-				list.add(Component.literal(line));
-			}
-		}
+		list.add(Component.translatable("item.verse.dumbbell.description_0"));
+		list.add(Component.translatable("item.verse.dumbbell.description_1"));
 	}
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
 		InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-		AnkleWeightsRightclickedProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, ar.getObject());
+		DumbbellRightclickedProcedure.execute(entity);
 		return ar;
 	}
 }

@@ -124,5 +124,32 @@
         "stream": false
       }
     ]
+  },
+  "mantraactive": {
+    "subtitle": "subtitles.mantraactive",
+    "sounds": [
+      {
+        "name": "verse:mantraactive",
+        "stream": false
+      }
+    ]
+  },
+  "mantradeactive": {
+    "subtitle": "subtitles.mantradeactive",
+    "sounds": [
+      {
+        "name": "verse:mantradeactive",
+        "stream": false
+      }
+    ]
+  },
+  "pelagic-slumber": {
+    "subtitle": "subtitles.pelagic-slumber",
+    "sounds": [
+      {
+        "name": "verse:depthsambience",
+        "stream": false
+      }
+    ]
   }
 }

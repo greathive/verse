@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verse:block/cobbled_tearstone_slab"
+    },
+    "type=top": {
+      "model": "verse:block/cobbled_tearstone_slab_top"
+    },
+    "type=double": {
+      "model": "verse:block/cobbled_tearstone_slab_full"
+    }
+  }
+}

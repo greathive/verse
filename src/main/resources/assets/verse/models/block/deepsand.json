@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/seasand",
+    "up": "verse:block/seasand",
+    "north": "verse:block/seasand",
+    "east": "verse:block/seasand",
+    "south": "verse:block/seasand",
+    "west": "verse:block/seasand",
+    "particle": "verse:block/seasand"
+  },
+  "render_type": "solid"
+}

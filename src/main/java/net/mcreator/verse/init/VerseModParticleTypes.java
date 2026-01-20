@@ -15,4 +15,5 @@ import net.mcreator.verse.VerseMod;
 public class VerseModParticleTypes {
 	public static final DeferredRegister<ParticleType<?>> REGISTRY = DeferredRegister.create(Registries.PARTICLE_TYPE, VerseMod.MODID);
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOD = REGISTRY.register("blood", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BUBBLE = REGISTRY.register("bubble", () -> new SimpleParticleType(true));
 }

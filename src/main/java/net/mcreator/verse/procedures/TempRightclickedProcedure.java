@@ -44,6 +44,7 @@ public class TempRightclickedProcedure {
 				_vars.freeze = "";
 				_vars.choseattunement = false;
 				_vars.hasCard = false;
+				_vars.pickedcards = false;
 				_vars.markSyncDirty();
 			}
 		}

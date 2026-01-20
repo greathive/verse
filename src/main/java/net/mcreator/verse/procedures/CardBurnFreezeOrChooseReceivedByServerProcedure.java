@@ -1,14 +1,16 @@
 package net.mcreator.verse.procedures;
 
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import net.mcreator.verse.network.VerseModVariables;
 import net.mcreator.verse.init.VerseModMobEffects;
+import net.mcreator.verse.VerseMod;
 
 public class CardBurnFreezeOrChooseReceivedByServerProcedure {
-	public static void execute(Entity entity, String inboundString) {
+	public static void execute(LevelAccessor world, Entity entity, String inboundString) {
 		if (entity == null || inboundString == null)
 			return;
 		String outcome = "";
@@ -16,6 +18,8 @@ public class CardBurnFreezeOrChooseReceivedByServerProcedure {
 		String burntcard = "";
 		String frozencard = "";
 		double acecost = 0;
+		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 20, 0, false, false));
 		if (inboundString.contains("burn")) {
 			if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains(inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()))) {
 				burntcard = inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length());
@@ -43,9 +47,10 @@ public class CardBurnFreezeOrChooseReceivedByServerProcedure {
 			}
 		}
 		if (!inboundString.contains("freeze") && !inboundString.contains("burn")) {
-			IwantthiscardpleaseProcedure.execute(entity, inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()));
+			entity.getPersistentData().putString("lastchoice", (inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length())));
+			VerseMod.queueServerWork(20, () -> {
+				IwantthiscardpleaseProcedure.execute(entity, inboundString.substring((int) inboundString.indexOf("("), (int) inboundString.indexOf(")") + ")".length()));
+			});
 		}
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 10, 0, false, false));
 	}
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "verse:block/tearstone",
+    "bottom": "verse:block/tearstone",
+    "top": "verse:block/tearstone",
+    "side": "verse:block/tearstone"
+  },
+  "render_type": "solid"
+}

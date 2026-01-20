@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "verse:blocks/tearstone_wall",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "verse:tearstone_wall"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/cobbled_marinerock",
+    "up": "verse:block/cobbled_marinerock",
+    "north": "verse:block/cobbled_marinerock",
+    "east": "verse:block/cobbled_marinerock",
+    "south": "verse:block/cobbled_marinerock",
+    "west": "verse:block/cobbled_marinerock",
+    "particle": "verse:block/cobbled_marinerock"
+  },
+  "render_type": "solid"
+}

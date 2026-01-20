@@ -41,7 +41,7 @@ public record CardBurnFreezeOrChooseMessage(String extradata) implements CustomP
 				if (!world.hasChunkAt(entity.blockPosition()))
 					return;
 
-				CardBurnFreezeOrChooseReceivedByServerProcedure.execute(entity, inboundString);
+				CardBurnFreezeOrChooseReceivedByServerProcedure.execute(world, entity, inboundString);
 			}).exceptionally(e -> {
 				context.connection().disconnect(Component.literal(e.getMessage()));
 				return null;

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "verse:soakstoneblocks"
+  },
+  "result": {
+    "id": "verse:soakstone_wall",
+    "count": 1
+  }
+}

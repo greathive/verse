@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "verse:block/roofblock",
+    "bottom": "verse:block/roofblock",
+    "top": "verse:block/roofblock",
+    "side": "verse:block/roofblock"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "verse:cobbledtearstoneblocks"
+  },
+  "result": {
+    "id": "verse:cobbled_tearstone",
+    "count": 1
+  }
+}

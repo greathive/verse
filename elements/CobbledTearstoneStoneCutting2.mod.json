@@ -1,0 +1,23 @@
+{
+  "_fv": 79,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Stone cutting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "unlockingItems": [],
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "stoneCuttingInputStack": {
+      "value": "TAG:verse:cobbledtearstoneblocks"
+    },
+    "stoneCuttingReturnStack": {
+      "value": "CUSTOM:CobbledTearstoneStair"
+    },
+    "name": "cobbled_tearstone_stone_cutting_2",
+    "namespace": "mod"
+  }
+}

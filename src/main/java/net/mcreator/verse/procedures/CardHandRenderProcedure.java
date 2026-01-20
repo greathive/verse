@@ -25,7 +25,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
@@ -43,11 +42,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.verse.world.inventory.CardHandMenu;
-import net.mcreator.verse.network.VerseModVariables;
-import net.mcreator.verse.network.GetthatshittyasscardouttahereMessage;
-import net.mcreator.verse.network.ClearthisdrawMessage;
-import net.mcreator.verse.network.CardPacketMessage;
-import net.mcreator.verse.network.CardBurnFreezeOrChooseMessage;
+import net.mcreator.verse.network.*;
 import net.mcreator.verse.init.VerseModMobEffects;
 import net.mcreator.verse.client.ClientClickTracker;
 
@@ -404,6 +399,9 @@ public class CardHandRenderProcedure {
 	}
 
 	private static void execute(@Nullable Event event, double mouseX, double mouseY, double partialTick) {
+		boolean clickvalid = false;
+		boolean clicking = false;
+		boolean currentlyClicking = false;
 		String texturechoice = "";
 		String TalentText = "";
 		String icon = "";
@@ -412,9 +410,7 @@ public class CardHandRenderProcedure {
 		String talent = "";
 		String talentlist = "";
 		String card = "";
-		boolean clickvalid = false;
-		boolean clicking = false;
-		boolean currentlyClicking = false;
+		String testforendlist = "";
 		double currentTick = 0;
 		double orbscale = 0;
 		double anchorX = 0;
@@ -449,6 +445,8 @@ public class CardHandRenderProcedure {
 		double g = 0;
 		double b = 0;
 		double endoffset = 0;
+		double phase = 0;
+		double stage = 0;
 		if (Minecraft.getInstance().player != null) {
 			Entity entity = Minecraft.getInstance().player;
 			double x = entity.getX();
@@ -473,19 +471,25 @@ public class CardHandRenderProcedure {
 					texturechoice = "burnbase";
 					repeat = 1;
 					orbscale = 1;
+					if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
+						currentlyClicking = true;
+					} else {
+						currentlyClicking = false;
+					}
+					ClientClickTracker.updateClickState(currentlyClicking, entity.tickCount);
+					if (ClientClickTracker.isClickUnderTicks(entity.tickCount, 5)) {
+						clicking = true;
+					} else {
+						clicking = false;
+					}
 					for (int index0 = 0; index0 < 2; index0++) {
 						aceX = (anchorX - 16 * repeat) - 6;
 						aceY = anchorY + 60;
 						if (Math.hypot(Math.abs(mouseX - aceX), Math.abs(mouseY - aceY)) < 10) {
 							texturechoice = texturechoice.replace("base", "");
 							orbscale = 1.25;
-							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS && entity instanceof LivingEntity _livEnt10 && _livEnt10.hasEffect(VerseModMobEffects.CLICKCD)
-									&& (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(VerseModMobEffects.CLICKCD) ? _livEnt.getEffect(VerseModMobEffects.CLICKCD).getDuration() : 0) < 2) {
-								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(VerseModMobEffects.CLICKCD, 4, 0, false, false));
-							}
-							if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS
-									&& !(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(VerseModMobEffects.CLICKCD))) {
+							if (clicking && !(entity instanceof LivingEntity _livEnt10 && _livEnt10.hasEffect(VerseModMobEffects.CLICKCD))) {
+								clicking = false;
 								if (!(entity.getData(VerseModVariables.PLAYER_VARIABLES).ace).equals(texturechoice)) {
 									if (world.isClientSide())
 										PacketDistributor.sendToServer(new CardPacketMessage(texturechoice));
@@ -526,16 +530,33 @@ public class CardHandRenderProcedure {
 						texturechoice = "mantra";
 						repeat = -1;
 					}
-					talentlist = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("{") + "{".length(),
-							(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.indexOf("}"));
+					talentlist = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw;
+					if ((talentlist.substring((int) talentlist.indexOf("{"), (int) talentlist.indexOf("}") + "}".length())).contains(entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist
+							.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf("("), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf(")") + ")".length()))) {
+						stage = 2;
+						talentlist = talentlist.replace(talentlist.substring((int) talentlist.indexOf("{"), (int) talentlist.indexOf("}") + "}".length()), "");
+					} else {
+						stage = 1;
+						talentlist = talentlist.substring((int) talentlist.indexOf("{"), (int) talentlist.indexOf("}") + "}".length());
+					}
+					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw
+							.contains(entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf("("),
+									(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf(")") + ")".length()))
+							&& entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.contains((entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.replace(entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist
+									.substring((int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf("("), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf(")") + ")".length()), ""))
+									.substring(
+											(int) (entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.replace(entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.substring(
+													(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf("("), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf(")") + ")".length()), ""))
+													.lastIndexOf("("),
+											(int) (entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.replace(entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.substring(
+													(int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf("("), (int) entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.lastIndexOf(")") + ")".length()), ""))
+													.lastIndexOf(")") + ")".length()))) {
+						if (world.isClientSide())
+							PacketDistributor.sendToServer(new EndpowerpacketMessage(""));
+					}
 					talentcount = ReturnCountOfTheseTalentsProcedure.execute(entity, talentlist);
 					repeat = 1;
 					description = "placeholder";
-					if (repeat * 11 > currentTick) {
-						clickvalid = true;
-					} else {
-						clickvalid = false;
-					}
 					if (GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
 						currentlyClicking = true;
 					} else {
@@ -548,21 +569,19 @@ public class CardHandRenderProcedure {
 						clicking = false;
 					}
 					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == true) {
-						endoffset = 2 * Minecraft.getInstance().getWindow().getGuiScaledHeight() * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35);
-						if (35 <= entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) {
+						endoffset = 2 * Minecraft.getInstance().getWindow().getGuiScaledHeight() * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 20);
+						if (20 <= entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) {
 							if (world.isClientSide())
 								PacketDistributor.sendToServer(new ClearthisdrawMessage(""));
 						}
 					}
 					for (int index2 = 0; index2 < (int) talentcount; index2++) {
-						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == true) {
-							endoffset = Minecraft.getInstance().getWindow().getGuiScaledHeight() * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35);
-						}
-						if (clickvalid == true && GLFW.glfwGetMouseButton(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) == GLFW.GLFW_PRESS) {
-							leftclickmodifier = 1;
+						if (repeat * 11 > currentTick) {
+							clickvalid = true;
 						} else {
-							leftclickmodifier = 0;
+							clickvalid = false;
 						}
+						endoffset = 0;
 						localtalenttick = currentTick - (repeat - 1) * 10;
 						if (talentcount % 2 == 0) {
 							renderoffset = 0.5;
@@ -571,10 +590,9 @@ public class CardHandRenderProcedure {
 						if (10 > localtalenttick) {
 							yanchor = (Math.pow(localtalenttick, 0.7) / Math.pow(10, 0.7)) * Minecraft.getInstance().getWindow().getGuiScaledHeight() - Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
 						} else {
-							yanchor = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
+							yanchor = 1 * (Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d);
 						}
 						talent = talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length());
-						yanchor = yanchor + endoffset;
 						if ((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length() > 14) {
 							nameScale = 14d / (talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))).length();
 						} else {
@@ -607,7 +625,7 @@ public class CardHandRenderProcedure {
 						card = description.substring((int) description.lastIndexOf("(") + "(".length(), (int) description.lastIndexOf(")"));
 						icon = description.substring((int) description.indexOf("(") + "(".length(), (int) description.indexOf(")"));
 						cardX = xanchor - (talentcount / 2.01 + 0.5) * 148 + repeat * 148;
-						cardY = yanchor;
+						cardY = yanchor + endoffset;
 						if (Math.abs(cardY - mouseY) <= 92 && Math.abs(cardX - mouseX) <= 66) {
 							mousehover = 1;
 							if (!(entity instanceof LivingEntity _livEnt48 && _livEnt48.hasEffect(VerseModMobEffects.CLICKCD)) && clicking == true && entity.getData(VerseModVariables.PLAYER_VARIABLES).pickedcards == false) {
@@ -650,8 +668,8 @@ public class CardHandRenderProcedure {
 							brightness = 255;
 							opacity = 255;
 						}
-						if (entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw.contains(talent)) {
-							yanchor = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
+						if ((entity.getPersistentData().getString("lastchoice")).contains(talent)) {
+							cardY = Minecraft.getInstance().getWindow().getGuiScaledHeight() / 2d;
 							opacity = 255 - 255 * ((entity.tickCount - (entity.getData(VerseModVariables.PLAYER_VARIABLES).secondaryguitick - partialTick)) / 35.5);
 						}
 						r = brightness;
@@ -667,9 +685,9 @@ public class CardHandRenderProcedure {
 							b = 255;
 						}
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("icon/x".replace("x", icon)) + ".png")));
-						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, 200 << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
+						renderTexture((float) cardX, (float) (cardY - 30), -2, 0, 2, (int) opacity << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
 						RenderSystem.setShaderTexture(0, ResourceLocation.parse(("verse" + ":textures/" + ("screens/x".replace("x", card)) + ".png")));
-						renderTexture((float) cardX, (float) cardY, -1, 0, 2, 200 << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
+						renderTexture((float) cardX, (float) cardY, -1, 0, 2, (int) opacity << 24 | (int) r << 16 | (int) g << 8 | (int) b, 4);
 						renderTexts((talent.substring((int) talent.indexOf("(") + "(".length(), (int) talent.indexOf(")"))), (float) cardX, (float) (cardY - 73), -2, 0, (float) nameScale, (int) opacity << 24 | 0 << 16 | 0 << 8 | 0, 4);
 						LineRepeat = 0;
 						TalentText = description.substring((int) description.indexOf(")") + ")".length(), (int) description.lastIndexOf("("));
@@ -690,12 +708,7 @@ public class CardHandRenderProcedure {
 							TalentText = TalentText.replace(finalText, "");
 						}
 						talentlist = talentlist.replace(talentlist.substring((int) talentlist.indexOf("("), (int) talentlist.indexOf(")") + ")".length()), "");
-						if (4 > repeat) {
-							repeat = repeat + 1;
-						} else {
-							repeat = 1;
-							yrepeat = yrepeat + 1;
-						}
+						repeat = repeat + 1;
 						leftclickmodifier = 0;
 						mousehover = 0;
 						brightness = 255;

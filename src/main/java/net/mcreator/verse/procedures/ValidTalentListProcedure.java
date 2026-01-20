@@ -59,17 +59,13 @@ public class ValidTalentListProcedure {
 		double checkmutual = 0;
 		double handcount = 0;
 		double randomchoice = 0;
+		double rarecount = 0;
 		{
 			VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 			_vars.validdraw = "";
 			_vars.markSyncDirty();
 		}
 		required = "";
-		if (entity.isShiftKeyDown()) {
-			rare = 1;
-		} else {
-			rare = 0;
-		}
 		{
 			if (world instanceof ServerLevel srvlvl_) {
 				class Output implements PackResources.ResourceOutput {
@@ -107,6 +103,9 @@ public class ValidTalentListProcedure {
 					tesdt = tesdt + 1;
 					mainJOBJ = jsoniterator;
 					name = mainJOBJ.get("name").getAsString();
+					if (entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.contains("(" + name + ")") && mainJOBJ.get("rarity").getAsDouble() == 1) {
+						rarecount = rarecount + 1;
+					}
 					if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).talentlist.contains("(" + name + ")") && !entity.getData(VerseModVariables.PLAYER_VARIABLES).burn.contains("(" + name + ")")) {
 						if (!entity.getData(VerseModVariables.PLAYER_VARIABLES).freeze.contains("(" + name + ")")) {
 							power = mainJOBJ.get("power").getAsDouble();
@@ -187,7 +186,7 @@ public class ValidTalentListProcedure {
 			handcount = 2;
 			count = 5;
 		} else {
-			handcount = 3;
+			handcount = 2;
 			count = 4;
 		}
 		if (!((ReturnCountOfTheseTalentsProcedure.execute(entity, primary) + ReturnCountOfTheseTalentsProcedure.execute(entity, reserve)) / count > handcount + entity.getData(VerseModVariables.PLAYER_VARIABLES).fold)) {
@@ -220,21 +219,19 @@ public class ValidTalentListProcedure {
 						VerseMod.LOGGER.info("choice" + choice);
 						reserve = reserve.replace(choice, "");
 					}
-					if (count == ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext) && validrare.contains("(")) {
-						finaltext = finaltext + "" + validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length());
-						validrare = validrare.replace(validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length()), "");
-					} else {
-						finaltext = finaltext + "" + choice;
-					}
-					VerseMod.LOGGER.info("hand: " + finaltext);
+					finaltext = finaltext + "" + choice;
+				}
+				if (20 > rarecount && 4 == ReturnCountOfTheseTalentsProcedure.execute(entity, finaltext) && validrare.contains("(")) {
+					finaltext = finaltext + "" + validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length());
+					validrare = validrare.replace(validrare.substring((int) validrare.indexOf("("), (int) validrare.indexOf(")") + ")".length()), "");
 				}
 			}
-			VerseMod.LOGGER.info("hand: " + finaltext);
 			{
 				VerseModVariables.PlayerVariables _vars = entity.getData(VerseModVariables.PLAYER_VARIABLES);
 				_vars.validdraw = entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw + "{" + finaltext + "}";
 				_vars.markSyncDirty();
 			}
+			VerseMod.LOGGER.info("hand: " + entity.getData(VerseModVariables.PLAYER_VARIABLES).validdraw);
 			finaltext = "";
 		}
 	}

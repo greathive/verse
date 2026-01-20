@@ -11,11 +11,7 @@
     "animations": [],
     "name": "Prayer Beads",
     "rarity": "COMMON",
-    "creativeTabs": [
-      {
-        "value": "CUSTOM:TrainingGear"
-      }
-    ],
+    "creativeTabs": [],
     "stackSize": 1,
     "enchantability": 0,
     "useDuration": 0,
@@ -35,17 +31,13 @@
       "fixedValue": [
         "Right-Click to enable effects.",
         "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active."
-      ],
-      "name": "AnkleWeightsSpecialInformation"
+      ]
     },
     "glowCondition": {
       "fixedValue": false
     },
     "inventorySize": 9,
     "inventoryStackSize": 99,
-    "onRightClickedInAir": {
-      "name": "AnkleWeightsRightclicked"
-    },
     "enableRanged": false,
     "shootConstantly": false,
     "rangedItemChargesPower": false,

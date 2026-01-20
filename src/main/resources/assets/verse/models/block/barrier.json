@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/skylight",
+    "up": "verse:block/skylight",
+    "north": "verse:block/skylight",
+    "east": "verse:block/skylight",
+    "south": "verse:block/skylight",
+    "west": "verse:block/skylight",
+    "particle": "verse:block/skylight"
+  },
+  "render_type": "solid"
+}

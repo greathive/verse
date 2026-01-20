@@ -16,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
 
 import net.mcreator.verse.network.StatMenuMessage;
+import net.mcreator.verse.network.MantraSelectionMessage;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class VerseModKeyMappings {
@@ -33,11 +34,25 @@ public class VerseModKeyMappings {
 			isDownOld = isDown;
 		}
 	};
+	public static final KeyMapping MANTRA_SELECTION = new KeyMapping("key.verse.mantra_selection", GLFW.GLFW_KEY_B, "key.categories.verse") {
+		private boolean isDownOld = false;
+
+		@Override
+		public void setDown(boolean isDown) {
+			super.setDown(isDown);
+			if (isDownOld != isDown && isDown) {
+				PacketDistributor.sendToServer(new MantraSelectionMessage(0, 0));
+				MantraSelectionMessage.pressAction(Minecraft.getInstance().player, 0, 0);
+			}
+			isDownOld = isDown;
+		}
+	};
 
 	@SubscribeEvent
 	public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
 		event.register(PARRY);
 		event.register(STAT_MENU);
+		event.register(MANTRA_SELECTION);
 	}
 
 	@EventBusSubscriber(Dist.CLIENT)
@@ -46,6 +61,7 @@ public class VerseModKeyMappings {
 		public static void onClientTick(ClientTickEvent.Post event) {
 			if (Minecraft.getInstance().screen == null) {
 				STAT_MENU.consumeClick();
+				MANTRA_SELECTION.consumeClick();
 			}
 		}
 	}

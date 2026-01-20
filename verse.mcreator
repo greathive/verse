@@ -979,33 +979,6 @@
       "path": "~/menus/statbuttons"
     },
     {
-      "name": "StrengthGain",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "strength_gain",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "blockstate",
-            "type": "blockstate"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/StrengthGainProcedure.java"
-        ]
-      },
-      "path": "~/menus/statEXP"
-    },
-    {
       "name": "ReturnStatExpCount",
       "type": "procedure",
       "compiles": true,
@@ -1025,33 +998,6 @@
         "return_type": "number",
         "files": [
           "src/main/java/net/mcreator/verse/procedures/ReturnStatExpCountProcedure.java"
-        ]
-      },
-      "path": "~/menus/statEXP"
-    },
-    {
-      "name": "StrengthGainCombat",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "strength_gain_combat",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "immediatesourceentity",
-            "type": "entity"
-          },
-          {
-            "name": "amount",
-            "type": "number"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/StrengthGainCombatProcedure.java"
         ]
       },
       "path": "~/menus/statEXP"
@@ -1086,30 +1032,10 @@
         "files": [
           "src/main/java/net/mcreator/verse/client/renderer/NpcRenderer.java",
           "src/main/java/net/mcreator/verse/entity/NpcEntity.java",
-          "src/main/resources/data/verse/neoforge/biome_modifier/npc_biome_modifier.json",
           "src/main/resources/assets/verse/models/item/npc_spawn_egg.json"
         ]
       },
       "path": "~/humanoidMob"
-    },
-    {
-      "name": "ToggleVisibilityGui",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "toggle_visibility_gui",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/ToggleVisibilityGuiProcedure.java"
-        ]
-      },
-      "path": "~/menus"
     },
     {
       "name": "ReturnRequiredExp",
@@ -1774,92 +1700,6 @@
       "path": "~/items/training gear"
     },
     {
-      "name": "AnkleWeightsRightclicked",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "ankle_weights_rightclicked",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsRightclickedProcedure.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "AgilityTraining",
-      "type": "potioneffect",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "agility_training",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/potion/AgilityTrainingMobEffect.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "TrainingGear",
-      "type": "tab",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "training_gear",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "AgilityTrainingOnEffectActiveTick",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "agility_training_on_effect_active_tick",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/AgilityTrainingOnEffectActiveTickProcedure.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
       "name": "Dumbbell",
       "type": "item",
       "compiles": true,
@@ -1883,95 +1723,6 @@
         "files": [
           "src/main/resources/assets/verse/models/item/prayer_beads.json",
           "src/main/java/net/mcreator/verse/item/PrayerBeadsItem.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "TrainingVest",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "training_vest",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/item/TrainingVestItem.java",
-          "src/main/resources/assets/verse/models/item/training_vest.json"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "AnkleWeightsSpecialInformation",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "ankle_weights_special_information",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ],
-        "return_type": "string",
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/AnkleWeightsSpecialInformationProcedure.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "StrengthTraining",
-      "type": "potioneffect",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "strength_training",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/verse/potion/StrengthTrainingMobEffect.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "StrengthTrainingOnEffectActiveTick",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "strength_training_on_effect_active_tick",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/StrengthTrainingOnEffectActiveTickProcedure.java"
-        ]
-      },
-      "path": "~/items/training gear"
-    },
-    {
-      "name": "StrengthExp",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "strength_exp",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ],
-        "files": [
-          "src/main/java/net/mcreator/verse/procedures/StrengthExpProcedure.java"
         ]
       },
       "path": "~/items/training gear"
@@ -2162,6 +1913,10 @@
           {
             "name": "inboundString",
             "type": "string"
+          },
+          {
+            "name": "world",
+            "type": "world"
           }
         ],
         "files": [
@@ -2333,110 +2088,909 @@
         ]
       },
       "path": "~/mantra"
+    },
+    {
+      "name": "DumbbellRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dumbbell_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/DumbbellRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/items/training gear"
+    },
+    {
+      "name": "Endpower",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "endpower",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/EndpowerProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "Endpowerpacket",
+      "type": "packet",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "endpowerpacket",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/EndpowerpacketMessage.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "ReturnCountOfTalentHand",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "return_count_of_talent_hand",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "talents",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnCountOfTalentHandProcedure.java"
+        ]
+      },
+      "path": "~/menus/Talent"
+    },
+    {
+      "name": "MantraSelection",
+      "type": "keybind",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mantra_selection",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/network/MantraSelectionMessage.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "Mantratestingitem",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mantratestingitem",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/mantratestingitem.json",
+          "src/main/java/net/mcreator/verse/item/MantratestingitemItem.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "MantratestingitemRightclicked",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mantratestingitem_rightclicked",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/MantratestingitemRightclickedProcedure.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "MantraSelectionOnKeyPressed",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mantra_selection_on_key_pressed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/MantraSelectionOnKeyPressedProcedure.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "RenderMantraSelection",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "render_mantra_selection",
+      "metadata": {
+        "dependencies": [],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/RenderMantraSelectionProcedure.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "VanillaOverlayHider",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "vanilla_overlay_hider",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/VanillaOverlayHider.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "DisableHotbarDuringMantraSelection",
+      "type": "mixin",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "disable_hotbar_during_mantra_selection",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/mixin/DisableHotbarDuringMantraSelectionMixin.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "DisableScrollForMantra",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "disable_scroll_for_mantra",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/DisableScrollForMantra.java"
+        ]
+      }
+    },
+    {
+      "name": "ReturnMantraCount",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "return_mantra_count",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "mantras",
+            "type": "string"
+          }
+        ],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ReturnMantraCountProcedure.java"
+        ]
+      },
+      "path": "~/mantra"
+    },
+    {
+      "name": "Tearstone",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/TearstoneBlock.java",
+          "src/main/resources/assets/verse/models/item/tearstone.json",
+          "src/main/resources/assets/verse/models/block/tearstone.json",
+          "src/main/resources/data/verse/loot_table/blocks/tearstone.json",
+          "src/main/resources/assets/verse/blockstates/tearstone.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneStair",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_stair",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/TearstoneStairBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/tearstone_stair.json",
+          "src/main/resources/assets/verse/models/item/tearstone_stair.json",
+          "src/main/resources/assets/verse/models/block/tearstone_stair.json",
+          "src/main/resources/assets/verse/blockstates/tearstone_stair.json",
+          "src/main/resources/assets/verse/models/block/tearstone_stair_inner.json",
+          "src/main/resources/assets/verse/models/block/tearstone_stair_outer.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/tearstone_slab.json",
+          "src/main/resources/assets/verse/models/block/tearstone_slab_full.json",
+          "src/main/resources/data/verse/loot_table/blocks/tearstone_slab.json",
+          "src/main/resources/assets/verse/models/block/tearstone_slab.json",
+          "src/main/resources/assets/verse/blockstates/tearstone_slab.json",
+          "src/main/java/net/mcreator/verse/block/TearstoneSlabBlock.java",
+          "src/main/resources/assets/verse/models/block/tearstone_slab_top.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneWall",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_wall",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/TearstoneWallBlock.java",
+          "src/main/resources/assets/verse/models/block/tearstone_wall_post.json",
+          "src/main/resources/assets/verse/models/item/tearstone_wall.json",
+          "src/main/resources/assets/verse/blockstates/tearstone_wall.json",
+          "src/main/resources/assets/verse/models/block/tearstone_wall_side_tall.json",
+          "src/main/resources/assets/verse/models/block/tearstone_wall_inventory.json",
+          "src/main/resources/data/verse/loot_table/blocks/tearstone_wall.json",
+          "src/main/resources/assets/verse/models/block/tearstone_wall.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneStonecutting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_stonecutting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/tearstone_stonecutting.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneStonecutting2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_stonecutting_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/tearstone_stonecutting_2.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneStonecutting3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_stonecutting_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/tearstone_stonecutting_3.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "TearstoneStonecutting4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tearstone_stonecutting_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/tearstone_stonecutting_4.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstone",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/cobbled_tearstone.json",
+          "src/main/java/net/mcreator/verse/block/CobbledTearstoneBlock.java",
+          "src/main/resources/assets/verse/models/item/cobbled_tearstone.json",
+          "src/main/resources/assets/verse/blockstates/cobbled_tearstone.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneStair",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_stair",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/cobbled_tearstone_stair.json",
+          "src/main/java/net/mcreator/verse/block/CobbledTearstoneStairBlock.java",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_stair_outer.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_stair.json",
+          "src/main/resources/assets/verse/blockstates/cobbled_tearstone_stair.json",
+          "src/main/resources/data/verse/loot_table/blocks/cobbled_tearstone_stair.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_stair_inner.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/cobbled_tearstone_slab.json",
+          "src/main/resources/assets/verse/models/item/cobbled_tearstone_slab.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_slab_top.json",
+          "src/main/resources/assets/verse/blockstates/cobbled_tearstone_slab.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_slab_full.json",
+          "src/main/java/net/mcreator/verse/block/CobbledTearstoneSlabBlock.java",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_slab.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneWall",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_wall",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/CobbledTearstoneWallBlock.java",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_wall_post.json",
+          "src/main/resources/assets/verse/models/item/cobbled_tearstone_wall.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_wall.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_wall_side_tall.json",
+          "src/main/resources/assets/verse/models/block/cobbled_tearstone_wall_inventory.json",
+          "src/main/resources/data/verse/loot_table/blocks/cobbled_tearstone_wall.json",
+          "src/main/resources/assets/verse/blockstates/cobbled_tearstone_wall.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneStoneCutting1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_stone_cutting_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/cobbled_tearstone_stone_cutting_1.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneStoneCutting2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_stone_cutting_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/cobbled_tearstone_stone_cutting_2.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneStoneCutting3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_stone_cutting_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/cobbled_tearstone_stone_cutting_3.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneStoneCutting4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_stone_cutting_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/cobbled_tearstone_stone_cutting_4.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CobbledTearstoneSmelt",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cobbled_tearstone_smelt",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/cobbled_tearstone_smelt.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "Deepsand",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deepsand",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/DeepsandBlock.java",
+          "src/main/resources/assets/verse/models/block/deepsand.json",
+          "src/main/resources/data/verse/loot_table/blocks/deepsand.json",
+          "src/main/resources/assets/verse/blockstates/deepsand.json",
+          "src/main/resources/assets/verse/models/item/deepsand.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "Soakstone",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/block/soakstone.json",
+          "src/main/java/net/mcreator/verse/block/SoakstoneBlock.java",
+          "src/main/resources/assets/verse/blockstates/soakstone.json",
+          "src/main/resources/assets/verse/models/item/soakstone.json",
+          "src/main/resources/data/verse/loot_table/blocks/soakstone.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneStair",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_stair",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/SoakstoneStairBlock.java",
+          "src/main/resources/assets/verse/models/block/soakstone_stair_inner.json",
+          "src/main/resources/assets/verse/models/block/soakstone_stair.json",
+          "src/main/resources/assets/verse/models/block/soakstone_stair_outer.json",
+          "src/main/resources/assets/verse/blockstates/soakstone_stair.json",
+          "src/main/resources/assets/verse/models/item/soakstone_stair.json",
+          "src/main/resources/data/verse/loot_table/blocks/soakstone_stair.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/soakstone_slab.json",
+          "src/main/resources/assets/verse/models/item/soakstone_slab.json",
+          "src/main/resources/assets/verse/models/block/soakstone_slab_top.json",
+          "src/main/resources/assets/verse/models/block/soakstone_slab_full.json",
+          "src/main/java/net/mcreator/verse/block/SoakstoneSlabBlock.java",
+          "src/main/resources/assets/verse/models/block/soakstone_slab.json",
+          "src/main/resources/assets/verse/blockstates/soakstone_slab.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneWall",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_wall",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/SoakstoneWallBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/soakstone_wall.json",
+          "src/main/resources/assets/verse/models/block/soakstone_wall_post.json",
+          "src/main/resources/assets/verse/models/block/soakstone_wall_inventory.json",
+          "src/main/resources/assets/verse/blockstates/soakstone_wall.json",
+          "src/main/resources/assets/verse/models/block/soakstone_wall.json",
+          "src/main/resources/assets/verse/models/item/soakstone_wall.json",
+          "src/main/resources/assets/verse/models/block/soakstone_wall_side_tall.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneRecipe1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_recipe_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/soakstone_recipe_1.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneRecipe2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_recipe_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/soakstone_recipe_2.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneRecipe3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_recipe_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/soakstone_recipe_3.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "SoakstoneRecipe4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soakstone_recipe_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/recipe/soakstone_recipe_4.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "Floodstone",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "floodstone",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/blockstates/floodstone.json",
+          "src/main/java/net/mcreator/verse/block/FloodstoneBlock.java",
+          "src/main/resources/assets/verse/models/item/floodstone.json",
+          "src/main/resources/data/verse/loot_table/blocks/floodstone.json",
+          "src/main/resources/assets/verse/models/block/floodstone.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "Barrier",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "barrier",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/blockstates/barrier.json",
+          "src/main/resources/assets/verse/models/block/barrier.json",
+          "src/main/java/net/mcreator/verse/block/BarrierBlock.java",
+          "src/main/resources/assets/verse/models/item/barrier.json",
+          "src/main/resources/data/verse/loot_table/blocks/barrier.json"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "CeltorianWastes",
+      "type": "biome",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "celtorian_wastes",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/worldgen/configured_feature/celtorian_wastes_tree.json",
+          "src/main/resources/data/verse/worldgen/biome/celtorian_wastes.json",
+          "src/main/resources/data/verse/worldgen/placed_feature/celtorian_wastes_tree.json"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "Chasm",
+      "type": "feature",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chasm",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/worldgen/configured_feature/chasm.json"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "LowGrav",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "low_grav",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/LowGravProcedure.java"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "ScyphoziaFog",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "scyphozia_fog",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/ScyphoziaFogProcedure.java"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "BubbleParticleVisualScale",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bubble_particle_visual_scale",
+      "metadata": {
+        "dependencies": [],
+        "return_type": "number",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/BubbleParticleVisualScaleProcedure.java"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "Bubble",
+      "type": "particle",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bubble",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/particles/bubble.json",
+          "src/main/java/net/mcreator/verse/client/particle/BubbleParticle.java"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "CeltorianChasms",
+      "type": "biome",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "celtorian_chasms",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/worldgen/configured_feature/celtorian_chasms_tree.json",
+          "src/main/resources/data/verse/worldgen/placed_feature/celtorian_chasms_tree.json",
+          "src/main/resources/data/verse/worldgen/biome/celtorian_chasms.json"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "CoralForest",
+      "type": "biome",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "coral_forest",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/worldgen/biome/coral_forest.json",
+          "src/main/resources/data/verse/worldgen/placed_feature/coral_forest_tree.json",
+          "src/main/resources/data/verse/worldgen/configured_feature/coral_forest_tree.json"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "ForestOfLights",
+      "type": "biome",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "forest_of_lights",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/worldgen/configured_feature/forest_of_lights_tree.json",
+          "src/main/resources/data/verse/worldgen/biome/forest_of_lights.json",
+          "src/main/resources/data/verse/worldgen/placed_feature/forest_of_lights_tree.json"
+        ]
+      },
+      "path": "~/worldgen"
+    },
+    {
+      "name": "Deeplight",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deeplight",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/block/deeplight.json",
+          "src/main/resources/assets/verse/models/item/deeplight.json",
+          "src/main/resources/assets/verse/blockstates/deeplight.json",
+          "src/main/resources/data/verse/loot_table/blocks/deeplight.json",
+          "src/main/java/net/mcreator/verse/block/DeeplightBlock.java"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "DeeplightBlockValidPlacementCondition",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deeplight_block_valid_placement_condition",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ],
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/verse/procedures/DeeplightBlockValidPlacementConditionProcedure.java"
+        ]
+      },
+      "path": "~/block"
+    },
+    {
+      "name": "DepthsCoral",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "depths_coral",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/depths_coral.json",
+          "src/main/resources/assets/verse/blockstates/depths_coral.json",
+          "src/main/java/net/mcreator/verse/block/DepthsCoralBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/depths_coral.json",
+          "src/main/resources/assets/verse/models/block/depths_coral.json"
+        ]
+      },
+      "path": "~/block/coralwood"
     }
   ],
   "variable_elements": [
     {
-      "name": "currentmantra",
-      "type": "string",
-      "scope": "player_lifetime",
-      "value": ""
-    },
-    {
-      "name": "power",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "1.0"
-    },
-    {
-      "name": "str",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "fort",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "intel",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "agility",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "attunementchooserguivariable",
+      "name": "validdraw",
       "type": "string",
       "scope": "player_persistent",
-      "value": "(flamecharm)(galebreathe)(frostdraw)(thundercall)(shadowcast)(ironsing)(bloodrend)(lifeweave)"
-    },
-    {
-      "name": "choseattunement",
-      "type": "logic",
-      "scope": "player_persistent",
-      "value": "false"
-    },
-    {
-      "name": "Flamecharm",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Galebreathe",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Thundercall",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Frostdraw",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Shadowcast",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Ironsing",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Lifeweave",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "Bloodrend",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "expgain",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
+      "value": "\"\""
     },
     {
       "name": "talentlist",
@@ -2445,97 +2999,19 @@
       "value": "\"\""
     },
     {
-      "name": "validdraw",
-      "type": "string",
-      "scope": "player_persistent",
-      "value": "\"\""
-    },
-    {
-      "name": "life",
-      "type": "string",
-      "scope": "player_persistent",
-      "value": "\"\""
-    },
-    {
-      "name": "choice",
-      "type": "string",
-      "scope": "player_lifetime",
-      "value": "\"\""
-    },
-    {
-      "name": "echoes",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "echoUpgrades",
-      "type": "string",
-      "scope": "player_persistent",
-      "value": "\"\""
-    },
-    {
-      "name": "strExp",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "fortExp",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "aglExp",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "intExp",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "attuneExp",
-      "type": "number",
-      "scope": "player_persistent",
-      "value": "0"
-    },
-    {
-      "name": "outfit",
+      "name": "mantrastorage",
       "type": "string",
       "scope": "player_persistent",
       "value": ""
     },
     {
-      "name": "outfitVisible",
-      "type": "logic",
+      "name": "mantrahotbar",
+      "type": "string",
       "scope": "player_persistent",
-      "value": "true"
+      "value": ""
     },
     {
-      "name": "guiOpenedTick",
-      "type": "number",
-      "scope": "player_lifetime",
-      "value": "0"
-    },
-    {
-      "name": "scroll",
-      "type": "number",
-      "scope": "player_lifetime",
-      "value": "0"
-    },
-    {
-      "name": "hasCard",
-      "type": "logic",
-      "scope": "player_persistent",
-      "value": "false"
-    },
-    {
-      "name": "burn",
+      "name": "life",
       "type": "string",
       "scope": "player_persistent",
       "value": "\"\""
@@ -2547,7 +3023,55 @@
       "value": "\"\""
     },
     {
-      "name": "fold",
+      "name": "echoUpgrades",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "choice",
+      "type": "string",
+      "scope": "player_lifetime",
+      "value": "\"\""
+    },
+    {
+      "name": "burn",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "\"\""
+    },
+    {
+      "name": "attunementchooserguivariable",
+      "type": "string",
+      "scope": "player_persistent",
+      "value": "(flamecharm)(galebreathe)(frostdraw)(thundercall)(shadowcast)(ironsing)(bloodrend)(lifeweave)"
+    },
+    {
+      "name": "ace",
+      "type": "string",
+      "scope": "player_lifetime",
+      "value": "norm"
+    },
+    {
+      "name": "Thundercall",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "strExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "str",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Shadowcast",
       "type": "number",
       "scope": "player_persistent",
       "value": "0"
@@ -2559,15 +3083,135 @@
       "value": "0"
     },
     {
-      "name": "ace",
-      "type": "string",
+      "name": "scroll",
+      "type": "number",
       "scope": "player_lifetime",
-      "value": "norm"
+      "value": "0"
+    },
+    {
+      "name": "power",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "1.0"
+    },
+    {
+      "name": "Lifeweave",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Ironsing",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "intExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "intel",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "guiOpenedTick",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
+    },
+    {
+      "name": "Galebreathe",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Frostdraw",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "fortExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "fort",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "fold",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Flamecharm",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "expgain",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "echoes",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "Bloodrend",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "attuneExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "aglExp",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
+    },
+    {
+      "name": "agility",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
     },
     {
       "name": "pickedcards",
       "type": "logic",
       "scope": "player_lifetime",
+      "value": "false"
+    },
+    {
+      "name": "hasCard",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "choseattunement",
+      "type": "logic",
+      "scope": "player_persistent",
       "value": "false"
     }
   ],
@@ -2683,6 +3327,30 @@
       ],
       "category": "hostile",
       "subtitle": "heavy footstep"
+    },
+    {
+      "name": "mantraactive",
+      "files": [
+        "mantraactive"
+      ],
+      "category": "player",
+      "subtitle": "mantras active"
+    },
+    {
+      "name": "mantradeactive",
+      "files": [
+        "mantradeactive"
+      ],
+      "category": "player",
+      "subtitle": "mantras deactive"
+    },
+    {
+      "name": "pelagic-slumber",
+      "files": [
+        "depthsambience"
+      ],
+      "category": "ambient",
+      "subtitle": "ambience"
     }
   ],
   "tag_elements": {
@@ -2701,7 +3369,6 @@
       "TAG:minecraft:swords"
     ],
     "ITEMS:minecraft:enchantable/durability": [
-      "~CUSTOM:TrainingVest",
       "~CUSTOM:PrayerBeads",
       "~CUSTOM:Dumbbell",
       "~CUSTOM:AnkleWeights"
@@ -2711,6 +3378,59 @@
     ],
     "BLOCKS:minecraft:needs_stone_tool": [
       "~CUSTOM:OrchestratorBasin"
+    ],
+    "BLOCKS:minecraft:walls": [
+      "~CUSTOM:TearstoneWall",
+      "~CUSTOM:CobbledTearstoneWall",
+      "~CUSTOM:SoakstoneWall"
+    ],
+    "BLOCKS:minecraft:slabs": [
+      "~CUSTOM:TearstoneSlab",
+      "~CUSTOM:CobbledTearstoneSlab",
+      "~CUSTOM:SoakstoneSlab"
+    ],
+    "BLOCKS:minecraft:stairs": [
+      "~CUSTOM:TearstoneStair",
+      "~CUSTOM:CobbledTearstoneStair",
+      "~CUSTOM:SoakstoneStair"
+    ],
+    "BLOCKS:verse:tearstoneblocks": [
+      "CUSTOM:Tearstone",
+      "CUSTOM:TearstoneStair",
+      "CUSTOM:TearstoneSlab",
+      "CUSTOM:TearstoneWall"
+    ],
+    "BLOCKS:verse:carvable": [
+      "Blocks.BEDROCK",
+      "CUSTOM:Tearstone",
+      "CUSTOM:CobbledTearstone",
+      "CUSTOM:Deepsand",
+      "CUSTOM:Floodstone"
+    ],
+    "BLOCKS:verse:cobbledtearstoneblocks": [
+      "CUSTOM:CobbledTearstone",
+      "CUSTOM:CobbledTearstoneStair",
+      "CUSTOM:CobbledTearstoneSlab",
+      "CUSTOM:CobbledTearstoneWall"
+    ],
+    "BLOCKS:verse:soakstoneblocks": [
+      "CUSTOM:Soakstone",
+      "CUSTOM:SoakstoneStair",
+      "CUSTOM:SoakstoneSlab",
+      "CUSTOM:SoakstoneWall"
+    ],
+    "BLOCKS:minecraft:overworld_carver_replaceables": [
+      "CUSTOM:Tearstone",
+      "CUSTOM:CobbledTearstone",
+      "CUSTOM:Deepsand",
+      "CUSTOM:Floodstone"
+    ],
+    "BIOMES:verse:scyphozia": [
+      "CUSTOM:CeltorianWastes",
+      "CUSTOM:CeltorianChasms"
+    ],
+    "BLOCKS:minecraft:mineable/axe": [
+      "~CUSTOM:DepthsCoral"
     ]
   },
   "tab_element_order": {},
@@ -2758,8 +3478,6 @@
       "item.verse.ankle_weights.description_0": "Right-Click to enable effects.",
       "item.verse.ankle_weights.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
       "item.verse.ankle_weights": "Ankle Weights",
-      "effect.verse.agility_training": "Agility Training",
-      "item_group.verse.training_gear": "Training Gear",
       "item.verse.dumbbell": "Dumbbell",
       "item.verse.dumbbell.description_0": "Right-Click to enable effects.",
       "item.verse.dumbbell.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
@@ -2768,8 +3486,6 @@
       "item.verse.prayer_beads": "Prayer Beads",
       "item.verse.training_vest.description_0": "Right-Click to enable effects.",
       "item.verse.training_vest.description_1": "When enabled, gain agility stat exp both passively and when you gain normal experience, however you will be slowed while it is active.",
-      "item.verse.training_vest": "Training Vest",
-      "effect.verse.strength_training": "Agility Training",
       "effect.verse.guardbroken": "Guardbroken",
       "subtitles.posturebreak": "guardbroken",
       "item.verse.deepspindle": "Deepspindle",
@@ -2779,7 +3495,34 @@
       "entity.verse.megalodaunt": "Megalodaunt",
       "item.verse.megalodaunt_spawn_egg": "Megalodaunt Spawn Egg",
       "subtitles.heavystep": "heavy footstep",
-      "block.verse.orchestrator_basin": "Orchestrator Basin"
+      "block.verse.orchestrator_basin": "Orchestrator Basin",
+      "key.verse.mantra_selection": "Mantra Selection",
+      "item.verse.mantratestingitem": "Mantratestingitem",
+      "subtitles.mantraactive": "mantras active",
+      "subtitles.mantradeactive": "mantras deactive",
+      "block.verse.floodstone": "Tearstone",
+      "block.verse.soakstone_wall": "Soakstone Wall",
+      "block.verse.soakstone_slab": "Soakstone Slab",
+      "block.verse.soakstone_stair": "Soakstone Stair",
+      "block.verse.soakstone": "Soakstone",
+      "block.verse.deepsand": "Deepsand",
+      "block.verse.cobbled_tearstone_wall": "Cobbled Tearstone Wall",
+      "block.verse.cobbled_tearstone_slab": "Cobbled Tearstone Slab",
+      "block.verse.cobbled_tearstone": "Cobbled Tearstone",
+      "block.verse.cobbled_tearstone_stair": "Cobbled Tearstone Stair",
+      "block.verse.tearstone": "Tearstone",
+      "block.verse.tearstone_stair": "Tearstone Stair",
+      "block.verse.tearstone_slab": "Tearstone Slab",
+      "block.verse.tearstone_wall": "Tearstone Wall",
+      "block.verse.barrier": "Depths Barrier",
+      "biome.verse.celtorian_chasms": "Celtorian Wastes",
+      "biome.verse.celtorian_wastes": "Celtorian Wastes",
+      "subtitles.pelagic_slumber": "ambience",
+      "subtitles.pelagic-slumber": "ambience",
+      "biome.verse.coral_forest": "Celtorian Wastes",
+      "biome.verse.forest_of_lights": "Forest Of Lights",
+      "block.verse.deeplight": "Deeplight",
+      "block.verse.depths_coral": "Depths Coral"
     }
   },
   "metadata": {
@@ -2882,6 +3625,23 @@
       {
         "name": "mantra",
         "children": []
+      },
+      {
+        "name": "talents",
+        "children": []
+      },
+      {
+        "name": "worldgen",
+        "children": []
+      },
+      {
+        "name": "block",
+        "children": [
+          {
+            "name": "coralwood",
+            "children": []
+          }
+        ]
       }
     ]
   },

@@ -26,10 +26,27 @@ public class VerseModItems {
 	public static final DeferredItem<Item> ANKLE_WEIGHTS;
 	public static final DeferredItem<Item> DUMBBELL;
 	public static final DeferredItem<Item> PRAYER_BEADS;
-	public static final DeferredItem<Item> TRAINING_VEST;
 	public static final DeferredItem<Item> DEEPSPINDLE;
 	public static final DeferredItem<Item> MEGALODAUNT_SPAWN_EGG;
 	public static final DeferredItem<Item> ORCHESTRATOR_BASIN;
+	public static final DeferredItem<Item> MANTRATESTINGITEM;
+	public static final DeferredItem<Item> TEARSTONE;
+	public static final DeferredItem<Item> TEARSTONE_STAIR;
+	public static final DeferredItem<Item> TEARSTONE_SLAB;
+	public static final DeferredItem<Item> TEARSTONE_WALL;
+	public static final DeferredItem<Item> COBBLED_TEARSTONE;
+	public static final DeferredItem<Item> COBBLED_TEARSTONE_STAIR;
+	public static final DeferredItem<Item> COBBLED_TEARSTONE_SLAB;
+	public static final DeferredItem<Item> COBBLED_TEARSTONE_WALL;
+	public static final DeferredItem<Item> DEEPSAND;
+	public static final DeferredItem<Item> SOAKSTONE;
+	public static final DeferredItem<Item> SOAKSTONE_STAIR;
+	public static final DeferredItem<Item> SOAKSTONE_SLAB;
+	public static final DeferredItem<Item> SOAKSTONE_WALL;
+	public static final DeferredItem<Item> FLOODSTONE;
+	public static final DeferredItem<Item> BARRIER;
+	public static final DeferredItem<Item> DEEPLIGHT;
+	public static final DeferredItem<Item> DEPTHS_CORAL;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
@@ -39,10 +56,27 @@ public class VerseModItems {
 		ANKLE_WEIGHTS = REGISTRY.register("ankle_weights", AnkleWeightsItem::new);
 		DUMBBELL = REGISTRY.register("dumbbell", DumbbellItem::new);
 		PRAYER_BEADS = REGISTRY.register("prayer_beads", PrayerBeadsItem::new);
-		TRAINING_VEST = REGISTRY.register("training_vest", TrainingVestItem::new);
 		DEEPSPINDLE = REGISTRY.register("deepspindle", DeepspindleItem::new);
 		MEGALODAUNT_SPAWN_EGG = REGISTRY.register("megalodaunt_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.MEGALODAUNT, -13210, -13261, new Item.Properties()));
 		ORCHESTRATOR_BASIN = block(VerseModBlocks.ORCHESTRATOR_BASIN, new Item.Properties().rarity(Rarity.UNCOMMON));
+		MANTRATESTINGITEM = REGISTRY.register("mantratestingitem", MantratestingitemItem::new);
+		TEARSTONE = block(VerseModBlocks.TEARSTONE);
+		TEARSTONE_STAIR = block(VerseModBlocks.TEARSTONE_STAIR);
+		TEARSTONE_SLAB = block(VerseModBlocks.TEARSTONE_SLAB);
+		TEARSTONE_WALL = block(VerseModBlocks.TEARSTONE_WALL);
+		COBBLED_TEARSTONE = block(VerseModBlocks.COBBLED_TEARSTONE);
+		COBBLED_TEARSTONE_STAIR = block(VerseModBlocks.COBBLED_TEARSTONE_STAIR);
+		COBBLED_TEARSTONE_SLAB = block(VerseModBlocks.COBBLED_TEARSTONE_SLAB);
+		COBBLED_TEARSTONE_WALL = block(VerseModBlocks.COBBLED_TEARSTONE_WALL);
+		DEEPSAND = block(VerseModBlocks.DEEPSAND);
+		SOAKSTONE = block(VerseModBlocks.SOAKSTONE);
+		SOAKSTONE_STAIR = block(VerseModBlocks.SOAKSTONE_STAIR);
+		SOAKSTONE_SLAB = block(VerseModBlocks.SOAKSTONE_SLAB);
+		SOAKSTONE_WALL = block(VerseModBlocks.SOAKSTONE_WALL);
+		FLOODSTONE = block(VerseModBlocks.FLOODSTONE);
+		BARRIER = block(VerseModBlocks.BARRIER);
+		DEEPLIGHT = block(VerseModBlocks.DEEPLIGHT);
+		DEPTHS_CORAL = block(VerseModBlocks.DEPTHS_CORAL);
 	}
 
 	// Start of user code block custom items

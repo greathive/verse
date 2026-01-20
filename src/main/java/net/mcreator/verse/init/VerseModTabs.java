@@ -25,18 +25,26 @@ public class VerseModTabs {
 				tabData.accept(VerseModItems.GRAN_SUDA.get());
 				tabData.accept(VerseModItems.DEEPSPINDLE.get());
 			}).build());
-	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TRAINING_GEAR = REGISTRY.register("training_gear",
-			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.training_gear")).icon(() -> new ItemStack(VerseModItems.ANKLE_WEIGHTS.get())).displayItems((parameters, tabData) -> {
-				tabData.accept(VerseModItems.ANKLE_WEIGHTS.get());
-				tabData.accept(VerseModItems.DUMBBELL.get());
-				tabData.accept(VerseModItems.PRAYER_BEADS.get());
-				tabData.accept(VerseModItems.TRAINING_VEST.get());
-			}).withTabsBefore(VERSE_WEAPONS.getId()).build());
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VERSE = REGISTRY.register("verse",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.verse.verse")).icon(() -> new ItemStack(VerseModBlocks.ORCHESTRATOR_BASIN.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(VerseModItems.MEGALODAUNT_SPAWN_EGG.get());
 				tabData.accept(VerseModBlocks.ORCHESTRATOR_BASIN.get().asItem());
-			}).withSearchBar().withTabsBefore(TRAINING_GEAR.getId()).build());
+				tabData.accept(VerseModBlocks.TEARSTONE.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_STAIR.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_WALL.get().asItem());
+				tabData.accept(VerseModBlocks.COBBLED_TEARSTONE.get().asItem());
+				tabData.accept(VerseModBlocks.COBBLED_TEARSTONE_STAIR.get().asItem());
+				tabData.accept(VerseModBlocks.COBBLED_TEARSTONE_WALL.get().asItem());
+				tabData.accept(VerseModBlocks.DEEPSAND.get().asItem());
+				tabData.accept(VerseModBlocks.SOAKSTONE.get().asItem());
+				tabData.accept(VerseModBlocks.SOAKSTONE_STAIR.get().asItem());
+				tabData.accept(VerseModBlocks.SOAKSTONE_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.SOAKSTONE_WALL.get().asItem());
+				tabData.accept(VerseModBlocks.FLOODSTONE.get().asItem());
+				tabData.accept(VerseModBlocks.DEEPLIGHT.get().asItem());
+				tabData.accept(VerseModBlocks.DEPTHS_CORAL.get().asItem());
+			}).withSearchBar().withTabsBefore(VERSE_WEAPONS.getId()).build());
 
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
@@ -46,6 +54,7 @@ public class VerseModTabs {
 				tabData.accept(VerseModItems.NPC_SPAWN_EGG.get());
 				tabData.accept(VerseModItems.GRANT_FLAME_WITHIN.get());
 				tabData.accept(VerseModItems.TALENTCHECKER.get());
+				tabData.accept(VerseModItems.MANTRATESTINGITEM.get());
 			}
 		}
 	}

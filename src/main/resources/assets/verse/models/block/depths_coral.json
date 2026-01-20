@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/coral",
+    "up": "verse:block/coral",
+    "north": "verse:block/coral",
+    "east": "verse:block/coral",
+    "south": "verse:block/coral",
+    "west": "verse:block/coral",
+    "particle": "verse:block/coral"
+  },
+  "render_type": "solid"
+}

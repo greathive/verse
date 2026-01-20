@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/tearstone",
+    "up": "verse:block/tearstone",
+    "north": "verse:block/tearstone",
+    "east": "verse:block/tearstone",
+    "south": "verse:block/tearstone",
+    "west": "verse:block/tearstone",
+    "particle": "verse:block/tearstone"
+  },
+  "render_type": "solid"
+}
