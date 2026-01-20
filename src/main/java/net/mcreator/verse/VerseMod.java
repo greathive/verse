@@ -40,6 +40,7 @@ public class VerseMod {
 		modEventBus.addListener(this::registerNetworking);
 		VerseModSounds.REGISTRY.register(modEventBus);
 		VerseModBlocks.REGISTRY.register(modEventBus);
+		VerseModBlockEntities.REGISTRY.register(modEventBus);
 		VerseModItems.REGISTRY.register(modEventBus);
 		VerseModEntities.REGISTRY.register(modEventBus);
 		VerseModTabs.REGISTRY.register(modEventBus);

@@ -2922,12 +2922,13 @@
       "name": "Deeplight",
       "type": "block",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "deeplight",
       "metadata": {
         "files": [
           "src/main/resources/assets/verse/models/block/deeplight.json",
           "src/main/resources/assets/verse/models/item/deeplight.json",
+          "src/main/java/net/mcreator/verse/block/entity/DeeplightBlockEntity.java",
           "src/main/resources/assets/verse/blockstates/deeplight.json",
           "src/main/resources/data/verse/loot_table/blocks/deeplight.json",
           "src/main/java/net/mcreator/verse/block/DeeplightBlock.java"
@@ -3536,6 +3537,7 @@
       "src/main/java/net/mcreator/verse/init/VerseModParticleTypes.java",
       "src/main/java/net/mcreator/verse/init/VerseModMobEffects.java",
       "src/main/java/net/mcreator/verse/init/VerseModBlocks.java",
+      "src/main/java/net/mcreator/verse/init/VerseModBlockEntities.java",
       "src/main/java/net/mcreator/verse/init/VerseModItems.java",
       "src/main/java/net/mcreator/verse/init/VerseModEntities.java",
       "src/main/java/net/mcreator/verse/init/VerseModEntityRenderers.java",
