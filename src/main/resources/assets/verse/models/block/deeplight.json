@@ -3,7 +3,7 @@
   "textures": {
     "all": "verse:block/deeplightfinal",
     "particle": "verse:block/deeplightfinal",
-    "2": "verse:block/deeplightfinal"
+    "0": "verse:block/deeplightfinal"
   },
   "render_type": "cutout_mipped"
 }
