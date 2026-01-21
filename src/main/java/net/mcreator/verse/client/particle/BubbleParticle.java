@@ -3,6 +3,7 @@ package net.mcreator.verse.client.particle;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.api.distmarker.Dist;
 
+import net.minecraft.world.level.Level;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.particle.SpriteSet;
@@ -10,6 +11,8 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.multiplayer.ClientLevel;
+
+import net.mcreator.verse.procedures.BubbleParticleVisualScaleProcedure;
 
 @OnlyIn(Dist.CLIENT)
 public class BubbleParticle extends TextureSheetParticle {
@@ -47,6 +50,12 @@ public class BubbleParticle extends TextureSheetParticle {
 	@Override
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	}
+
+	@Override
+	public float getQuadSize(float scale) {
+		Level world = this.level;
+		return super.getQuadSize(scale) * (float) BubbleParticleVisualScaleProcedure.execute(age);
 	}
 
 	@Override

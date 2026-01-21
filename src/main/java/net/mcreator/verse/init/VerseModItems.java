@@ -47,6 +47,7 @@ public class VerseModItems {
 	public static final DeferredItem<Item> BARRIER;
 	public static final DeferredItem<Item> DEEPLIGHT;
 	public static final DeferredItem<Item> DEPTHS_CORAL;
+	public static final DeferredItem<Item> DEEPLIGHTSPIKE;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
@@ -77,6 +78,7 @@ public class VerseModItems {
 		BARRIER = block(VerseModBlocks.BARRIER);
 		DEEPLIGHT = block(VerseModBlocks.DEEPLIGHT);
 		DEPTHS_CORAL = block(VerseModBlocks.DEPTHS_CORAL);
+		DEEPLIGHTSPIKE = block(VerseModBlocks.DEEPLIGHTSPIKE);
 	}
 
 	// Start of user code block custom items

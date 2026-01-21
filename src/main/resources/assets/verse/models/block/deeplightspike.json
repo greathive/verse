@@ -1,0 +1,9 @@
+{
+  "parent": "verse:custom/deeplightspike",
+  "textures": {
+    "all": "verse:block/deeplightfinal",
+    "particle": "verse:block/deeplightfinal",
+    "0": "verse:block/deeplightfinal"
+  },
+  "render_type": "solid"
+}

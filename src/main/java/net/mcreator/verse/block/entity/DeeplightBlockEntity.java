@@ -51,18 +51,29 @@ public class DeeplightBlockEntity extends BlockEntity {
 	}
 
 	/**
-	 * Get the index of this block in the vertical stack (0 = top)
+	 * Get the index of this block in the vertical stack counting from the TOP (0 = topmost block)
 	 */
 	public int getStackIndex() {
 		if (level == null) return 0;
 
-		int index = 0;
-		BlockPos checkPos = worldPosition.above();
+		// Find the topmost block first
+		BlockPos topPos = worldPosition;
+		while (level.getBlockEntity(topPos.above()) instanceof DeeplightBlockEntity) {
+			topPos = topPos.above();
+		}
 
-		// Count blocks above
-		while (level.getBlockEntity(checkPos) instanceof DeeplightBlockEntity) {
+		// Now count down from the top to this block
+		int index = 0;
+		BlockPos checkPos = topPos;
+
+		while (!checkPos.equals(worldPosition)) {
 			index++;
-			checkPos = checkPos.above();
+			checkPos = checkPos.below();
+
+			// Safety check to prevent infinite loop
+			if (!(level.getBlockEntity(checkPos) instanceof DeeplightBlockEntity)) {
+				return 0;
+			}
 		}
 
 		return index;

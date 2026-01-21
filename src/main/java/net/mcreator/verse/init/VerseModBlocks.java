@@ -31,6 +31,7 @@ public class VerseModBlocks {
 	public static final DeferredBlock<Block> BARRIER;
 	public static final DeferredBlock<Block> DEEPLIGHT;
 	public static final DeferredBlock<Block> DEPTHS_CORAL;
+	public static final DeferredBlock<Block> DEEPLIGHTSPIKE;
 	static {
 		ORCHESTRATOR_BASIN = REGISTRY.register("orchestrator_basin", OrchestratorBasinBlock::new);
 		TEARSTONE = REGISTRY.register("tearstone", TearstoneBlock::new);
@@ -50,6 +51,7 @@ public class VerseModBlocks {
 		BARRIER = REGISTRY.register("barrier", BarrierBlock::new);
 		DEEPLIGHT = REGISTRY.register("deeplight", DeeplightBlock::new);
 		DEPTHS_CORAL = REGISTRY.register("depths_coral", DepthsCoralBlock::new);
+		DEEPLIGHTSPIKE = REGISTRY.register("deeplightspike", DeeplightspikeBlock::new);
 	}
 	// Start of user code block custom blocks
 	// End of user code block custom blocks

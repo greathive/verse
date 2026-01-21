@@ -8,7 +8,8 @@
     "width": 0.2,
     "height": 0.2,
     "scale": {
-      "fixedValue": 1.0
+      "fixedValue": 1.0,
+      "name": "BubbleParticleVisualScale"
     },
     "speedFactor": 1.0,
     "gravity": -0.4,

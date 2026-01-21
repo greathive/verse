@@ -11,9 +11,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.mcreator.verse.block.entity.DeeplightBlockEntity;
+import net.mcreator.verse.init.VerseModBlocks;
 
 public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBlockEntity> {
 
@@ -37,11 +39,34 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
         poseStack.mulPose(Axis.ZP.rotationDegrees(swingZ));
         poseStack.mulPose(Axis.XP.rotationDegrees(swingX));
 
+        // Calculate scale based on position in stack
+        float scale = calculateScale(blockEntity);
+
+        // Apply scale
+        poseStack.scale(scale, scale, scale);
+
         // Move back to corner for model rendering
         poseStack.translate(-0.5, -0.5, -0.5);
 
-        // Render the block model with the rotation applied
-        BlockState blockState = blockEntity.getBlockState();
+        // Determine which model to use based on stack position
+        boolean isBottomBlock = !blockEntity.hasBlockBelow();
+
+        // Get the appropriate block state
+        BlockState blockState;
+
+        if (isBottomBlock) {
+            // Try to use the deeplightspike block state
+            try {
+                blockState = VerseModBlocks.DEEPLIGHTSPIKE.get().defaultBlockState();
+            } catch (Exception e) {
+                // If deeplightspike doesn't exist, use regular deeplight
+                blockState = blockEntity.getBlockState();
+            }
+        } else {
+            // Use the regular deeplight model
+            blockState = blockEntity.getBlockState();
+        }
+
         BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(blockState);
 
         // Use a small depth offset to prevent z-fighting
@@ -70,12 +95,133 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
         // Move back to center for line rendering
         poseStack.translate(0.5, 0.5, 0.5);
 
-        // Draw connection line to block below (if exists)
-        if (blockEntity.hasBlockBelow()) {
-            drawConnectionLine(blockEntity, partialTick, poseStack, bufferSource, combinedLight);
+        poseStack.popPose();
+
+        // Only render the full chain line if this is the TOP block
+        // Render OUTSIDE the rotation transform so the line doesn't rotate
+        if (!blockEntity.hasBlockAbove() && blockEntity.hasBlockBelow()) {
+            poseStack.pushPose();
+            poseStack.translate(0.5, 0.5, 0.5);
+            drawFullChainLine(blockEntity, partialTick, poseStack, bufferSource, combinedLight);
+            poseStack.popPose();
+        }
+    }
+
+    /**
+     * Calculate the scale for this block based on its position in the stack.
+     * Top 5 blocks get scaled: 1/5, 2/5, 3/5, 4/5, 5/5 (from top to bottom)
+     */
+    private float calculateScale(DeeplightBlockEntity blockEntity) {
+        int stackHeight = blockEntity.getStackHeight();
+        int indexFromTop = blockEntity.getStackIndex();
+
+        // Determine how many blocks should be scaled (max 5, or total height if less)
+        int scaledBlockCount = Math.min(5, stackHeight);
+
+        // Check if this block is within the top scaled blocks
+        if (indexFromTop < scaledBlockCount) {
+            // Scale increases from top to bottom: 1/5, 2/5, 3/5, 4/5, 5/5
+            return (indexFromTop + 1) / 5.0f;
         }
 
-        poseStack.popPose();
+        // Blocks below the top 5 (or top N if less than 5) are full scale
+        return 1.0f;
+    }
+
+    /**
+     * Draw a single continuous line from the top of the stack to the bottom
+     */
+    private void drawFullChainLine(DeeplightBlockEntity blockEntity, float partialTick,
+                                   PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight) {
+
+        // Count how many blocks are below this one
+        int blocksBelow = 0;
+        DeeplightBlockEntity checkBlock = blockEntity;
+
+        while (checkBlock.hasBlockBelow()) {
+            BlockPos belowPos = checkBlock.getBlockPos().below();
+            if (checkBlock.getLevel().getBlockEntity(belowPos) instanceof DeeplightBlockEntity belowEntity) {
+                checkBlock = belowEntity;
+                blocksBelow++;
+            } else {
+                break;
+            }
+        }
+
+        // Start point: top of the current (topmost) block
+        float startY = 0.5f; // Top face of this block
+
+        // End point: center of the bottom block
+        // Each block is 1.0 unit tall, so we go down blocksBelow blocks, then 0.5 more to reach center
+        float endY = -(blocksBelow + 0.5f);
+
+        // Get camera position for billboarding
+        Minecraft mc = Minecraft.getInstance();
+        Vec3 cameraPos = mc.gameRenderer.getMainCamera().getPosition();
+        Vec3 blockPos = new Vec3(
+                blockEntity.getBlockPos().getX() + 0.5,
+                blockEntity.getBlockPos().getY() + 0.5,
+                blockEntity.getBlockPos().getZ() + 0.5
+        );
+
+        // Calculate direction to camera (for billboarding)
+        Vec3 toCamera = cameraPos.subtract(blockPos).normalize();
+
+        // Calculate perpendicular vectors for billboarding
+        Vec3 up = new Vec3(0, 1, 0);
+        Vec3 right = toCamera.cross(up).normalize();
+        Vec3 actualUp = right.cross(toCamera).normalize();
+
+        // Draw a glowing line/beam
+        VertexConsumer buffer = bufferSource.getBuffer(RenderType.lightning());
+
+        // Get the pose matrices
+        PoseStack.Pose pose = poseStack.last();
+
+        // Draw multiple lines for thickness and glow effect
+        for (int i = 0; i < 13; i++) {
+            float offset = (i - 6f) * 0.015f; // Reduced from 8 iterations and 0.03f spacing
+
+            // Calculate billboard offsets using the right vector
+            float offsetX = (float)(right.x * offset);
+            float offsetY = (float)(right.y * offset);
+            float offsetZ = (float)(right.z * offset);
+
+            // Line 1 - using right vector for billboarding
+            buffer.addVertex(pose, offsetX, startY + offsetY, offsetZ)
+                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
+                    .setUv(0, 0)
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(120)
+                    .setNormal(pose, 0, 1, 0);
+
+            buffer.addVertex(pose, offsetX, endY + offsetY, offsetZ)
+                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
+                    .setUv(0, 1)
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(120)
+                    .setNormal(pose, 0, 1, 0);
+
+            // Calculate perpendicular offset using up vector
+            float offsetX2 = (float)(actualUp.x * offset);
+            float offsetY2 = (float)(actualUp.y * offset);
+            float offsetZ2 = (float)(actualUp.z * offset);
+
+            // Line 2 - using up vector for billboarding (perpendicular to line 1)
+            buffer.addVertex(pose, offsetX2, startY + offsetY2, offsetZ2)
+                    .setColor(11, 20, 116, 180) // #0b1474 with higher opacity
+                    .setUv(0, 0)
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(240)
+                    .setNormal(pose, 0, 1, 0);
+
+            buffer.addVertex(pose, offsetX2, endY + offsetY2, offsetZ2)
+                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
+                    .setUv(0, 1)
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(120)
+                    .setNormal(pose, 0, 1, 0);
+        }
     }
 
     private void drawConnectionLine(DeeplightBlockEntity blockEntity, float partialTick,
@@ -91,67 +237,101 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
         float belowSwingX = belowEntity.getSwingAngleX(partialTick);
         float belowSwingZ = belowEntity.getSwingAngleZ(partialTick);
 
-        // Calculate the position of the bottom of the current block (already rotated)
-        Vec3 startPos = new Vec3(0, -0.5, 0);
+        // Start at the bottom face of the current block (y = 0 in block space)
+        // From block center (0.5, 0.5, 0.5), bottom face is at y = 0, so offset is -0.5
+        float startY = -0.5f;
 
-        // Calculate where the top of the below block is (with its rotation)
-        poseStack.pushPose();
+        // Get camera position for billboarding
+        Minecraft mc = Minecraft.getInstance();
+        Vec3 cameraPos = mc.gameRenderer.getMainCamera().getPosition();
+        Vec3 blockPos = new Vec3(
+                blockEntity.getBlockPos().getX() + 0.5,
+                blockEntity.getBlockPos().getY() + 0.5,
+                blockEntity.getBlockPos().getZ() + 0.5
+        );
 
-        // Move to world position of below block
-        poseStack.translate(0, -1, 0);
-
-        // Apply below block's rotation
-        poseStack.mulPose(Axis.ZP.rotationDegrees(belowSwingZ));
-        poseStack.mulPose(Axis.XP.rotationDegrees(belowSwingX));
-
-        // End position is at top of below block
-        Vec3 endPos = new Vec3(0, 0.5, 0);
-
-        poseStack.popPose();
+        // Calculate direction to camera (for billboarding)
+        Vec3 toCamera = cameraPos.subtract(blockPos).normalize();
 
         // Draw a glowing line/beam between the blocks
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.lightning());
 
-        // Calculate actual end position with below block's rotation
-        double radX = Math.toRadians(belowSwingX);
-        double radZ = Math.toRadians(belowSwingZ);
+        // Calculate end position
+        // If this is the last block (bottom block has no block below it), end at its center
+        // Otherwise, end at the top face of the block below
+        double endX, endY, endZ;
 
-        // Simple rotation calculation for end point
-        double endY = -0.5 + Math.cos(radX) * Math.cos(radZ);
-        double endX = Math.sin(radZ);
-        double endZ = Math.sin(radX);
+        boolean belowIsBottom = !belowEntity.hasBlockBelow();
+
+        if (belowIsBottom) {
+            // End at the center of the bottom block
+            // We need to account for the below block's rotation
+            double radX = Math.toRadians(belowSwingX);
+            double radZ = Math.toRadians(belowSwingZ);
+
+            // Center of the below block is at y = -1.0 from current block center
+            endY = -1.0;
+            endX = 0;
+            endZ = 0;
+        } else {
+            // End at the top face of the below block (y = 1.0 in that block's space)
+            // From current block center, that's y = -0.5 (one block down, then to top face)
+            // The rotation of the below block shifts where its top face center is
+            double radX = Math.toRadians(belowSwingX);
+            double radZ = Math.toRadians(belowSwingZ);
+
+            // Top face of below block, accounting for its rotation
+            endY = -0.5;
+            endX = 0;
+            endZ = 0;
+        }
 
         // Get the pose matrices
         PoseStack.Pose pose = poseStack.last();
 
-        // Draw multiple lines for thickness and glow effect
-        for (int i = 0; i < 4; i++) {
-            float offset = (i - 1.5f) * 0.02f;
+        // Calculate perpendicular vectors for billboarding
+        Vec3 up = new Vec3(0, 1, 0);
+        Vec3 right = toCamera.cross(up).normalize();
+        Vec3 actualUp = right.cross(toCamera).normalize();
 
-            // Line 1
-            buffer.addVertex(pose, offset, (float)startPos.y, 0)
+        // Draw multiple lines for thickness and glow effect (increased from 4 to 8 iterations)
+        for (int i = 0; i < 8; i++) {
+            float offset = (i - 3.5f) * 0.03f; // Increased spacing from 0.02f to 0.03f
+
+            // Calculate billboard offsets using the right vector
+            float offsetX = (float)(right.x * offset);
+            float offsetY = (float)(right.y * offset);
+            float offsetZ = (float)(right.z * offset);
+
+            // Line 1 - using right vector for billboarding
+            buffer.addVertex(pose, offsetX, startY + offsetY, offsetZ)
                     .setColor(135, 206, 235, 128) // Light blue with transparency
                     .setUv(0, 0)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setLight(240) // Full brightness
                     .setNormal(pose, 0, 1, 0);
 
-            buffer.addVertex(pose, (float)endX + offset, (float)endY, (float)endZ)
+            buffer.addVertex(pose, (float)endX + offsetX, (float)endY + offsetY, (float)endZ + offsetZ)
                     .setColor(135, 206, 235, 128)
                     .setUv(0, 1)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setLight(240)
                     .setNormal(pose, 0, 1, 0);
 
-            // Line 2 (perpendicular for thickness)
-            buffer.addVertex(pose, 0, (float)startPos.y, offset)
+            // Calculate perpendicular offset using up vector
+            float offsetX2 = (float)(actualUp.x * offset);
+            float offsetY2 = (float)(actualUp.y * offset);
+            float offsetZ2 = (float)(actualUp.z * offset);
+
+            // Line 2 - using up vector for billboarding (perpendicular to line 1)
+            buffer.addVertex(pose, offsetX2, startY + offsetY2, offsetZ2)
                     .setColor(135, 206, 235, 128)
                     .setUv(0, 0)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setLight(240)
                     .setNormal(pose, 0, 1, 0);
 
-            buffer.addVertex(pose, (float)endX, (float)endY, (float)endZ + offset)
+            buffer.addVertex(pose, (float)endX + offsetX2, (float)endY + offsetY2, (float)endZ + offsetZ2)
                     .setColor(135, 206, 235, 128)
                     .setUv(0, 1)
                     .setOverlay(OverlayTexture.NO_OVERLAY)

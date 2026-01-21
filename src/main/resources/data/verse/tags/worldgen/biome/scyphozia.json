@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "verse:forest_of_lights",
+    "verse:coral_forest",
     "verse:celtorian_chasms",
     "verse:celtorian_wastes"
   ]

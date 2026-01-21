@@ -2851,7 +2851,12 @@
       "locked_code": false,
       "registry_name": "bubble_particle_visual_scale",
       "metadata": {
-        "dependencies": [],
+        "dependencies": [
+          {
+            "name": "age",
+            "type": "number"
+          }
+        ],
         "return_type": "number",
         "files": [
           "src/main/java/net/mcreator/verse/procedures/BubbleParticleVisualScaleProcedure.java"
@@ -2983,6 +2988,23 @@
         ]
       },
       "path": "~/block/coralwood"
+    },
+    {
+      "name": "Deeplightspike",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deeplightspike",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/deeplightspike.json",
+          "src/main/resources/assets/verse/blockstates/deeplightspike.json",
+          "src/main/resources/assets/verse/models/block/deeplightspike.json",
+          "src/main/resources/data/verse/loot_table/blocks/deeplightspike.json",
+          "src/main/java/net/mcreator/verse/block/DeeplightspikeBlock.java"
+        ]
+      },
+      "path": "~/block"
     }
   ],
   "variable_elements": [
@@ -3427,7 +3449,9 @@
     ],
     "BIOMES:verse:scyphozia": [
       "CUSTOM:CeltorianWastes",
-      "CUSTOM:CeltorianChasms"
+      "CUSTOM:CeltorianChasms",
+      "CUSTOM:CoralForest",
+      "CUSTOM:ForestOfLights"
     ],
     "BLOCKS:minecraft:mineable/axe": [
       "~CUSTOM:DepthsCoral"
@@ -3522,7 +3546,8 @@
       "biome.verse.coral_forest": "Celtorian Wastes",
       "biome.verse.forest_of_lights": "Forest Of Lights",
       "block.verse.deeplight": "Deeplight",
-      "block.verse.depths_coral": "Depths Coral"
+      "block.verse.depths_coral": "Depths Coral",
+      "block.verse.deeplightspike": "Deeplightspike"
     }
   },
   "metadata": {
