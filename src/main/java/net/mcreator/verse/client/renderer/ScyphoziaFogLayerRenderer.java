@@ -159,7 +159,8 @@ public class ScyphoziaFogLayerRenderer {
 				}
 
 				// Only render fog if terrain is below fog level (or in Celtorian Chasms)
-				if (data.height >= FOG_TOP_HEIGHT && !data.isCeltorianChasms) {
+				// Allow fog to render even slightly above threshold to prevent gaps
+				if (data.height > FOG_TOP_HEIGHT + 4 && !data.isCeltorianChasms) {
 					continue;
 				}
 
@@ -177,12 +178,13 @@ public class ScyphoziaFogLayerRenderer {
 				float dist3 = calculateDistanceToLand(level, worldX, worldZ + GRID_SIZE, GRID_SIZE);
 				float dist4 = calculateDistanceToLand(level, worldX + GRID_SIZE, worldZ + GRID_SIZE, GRID_SIZE);
 
-				// Convert distances to colors
-				float maxDistance = 64.0f;
-				float color1 = 0.6f - (Math.min(dist1 / maxDistance, 1.0f) * 0.45f);
-				float color2 = 0.6f - (Math.min(dist2 / maxDistance, 1.0f) * 0.45f);
-				float color3 = 0.6f - (Math.min(dist3 / maxDistance, 1.0f) * 0.45f);
-				float color4 = 0.6f - (Math.min(dist4 / maxDistance, 1.0f) * 0.45f);
+				// Convert distances to colors with longer gradient range and smoother curve
+				float maxDistance = 128.0f; // Increased from 64 to 128 for longer blend
+				// Use smoothstep function for more gradual transition
+				float color1 = calculateSmoothColor(dist1, maxDistance);
+				float color2 = calculateSmoothColor(dist2, maxDistance);
+				float color3 = calculateSmoothColor(dist3, maxDistance);
+				float color4 = calculateSmoothColor(dist4, maxDistance);
 
 				// Calculate wave animation for each corner
 				float wave1 = (float)(Math.sin(time + worldX * 0.05 + worldZ * 0.05) * 1.5);
@@ -223,6 +225,21 @@ public class ScyphoziaFogLayerRenderer {
 		poseStack.popPose();
 	}
 
+	private static float calculateSmoothColor(float distance, float maxDistance) {
+		// Normalize distance to 0-1 range
+		float t = Math.min(distance / maxDistance, 1.0f);
+
+		// Use smoothstep function for gradual transition: t^2 * (3 - 2*t)
+		float smoothT = t * t * (3.0f - 2.0f * t);
+
+		// Map to color range: 15/255 (dark, close) to 40/255 (light, far)
+		float darkGrey = 0.0f / 255.0f;   // 0.059 - close to land
+		float lightGrey = 10.0f / 255.0f;  // 0.157 - far from land
+
+		// Reversed: start dark, get lighter with distance
+		return darkGrey + (smoothT * (lightGrey - darkGrey));
+	}
+
 	private static float calculateDistanceToLand(ClientLevel level, int centerX, int centerZ, int gridSize) {
 		// Check cache first
 		long cacheKey = ((long)centerX << 32) | (centerZ & 0xFFFFFFFFL);
@@ -232,19 +249,30 @@ public class ScyphoziaFogLayerRenderer {
 		}
 
 		// Check in expanding rings to find nearest high terrain
-		int maxCheckDistance = 64;
-		int checkStep = gridSize * 2; // Check every 2 grid cells for performance
+		int maxCheckDistance = 128; // Increased to match gradient range
+		int checkStep = gridSize; // Check every grid cell for accuracy near edges
 
-		for (int radius = checkStep; radius <= maxCheckDistance; radius += checkStep) {
-			// Check 8 directions at this radius
-			int[][] directions = {
-					{radius, 0}, {-radius, 0}, {0, radius}, {0, -radius},
-					{radius, radius}, {radius, -radius}, {-radius, radius}, {-radius, -radius}
-			};
+		float minDistance = maxCheckDistance;
 
-			for (int[] dir : directions) {
-				int checkX = centerX + dir[0];
-				int checkZ = centerZ + dir[1];
+		for (int radius = 0; radius <= maxCheckDistance; radius += checkStep) {
+			if (radius == 0) {
+				// Check center point first
+				long terrainKey = ((long)centerX << 32) | (centerZ & 0xFFFFFFFFL);
+				TerrainData centerData = terrainCache.get(terrainKey);
+
+				if (centerData != null && centerData.height >= FOG_TOP_HEIGHT && !centerData.isCeltorianChasms) {
+					distanceCache.put(cacheKey, 0.0f);
+					return 0.0f;
+				}
+				continue;
+			}
+
+			// Check 16 directions at this radius for smoother detection
+			int numDirections = 16;
+			for (int i = 0; i < numDirections; i++) {
+				double angle = (i * 2.0 * Math.PI) / numDirections;
+				int checkX = centerX + (int)(Math.cos(angle) * radius);
+				int checkZ = centerZ + (int)(Math.sin(angle) * radius);
 
 				// Align to grid
 				checkX = (checkX / gridSize) * gridSize;
@@ -265,16 +293,21 @@ public class ScyphoziaFogLayerRenderer {
 					neighborData = new TerrainData(height, false);
 				}
 
-				// If we found high terrain, cache and return the distance
+				// If we found high terrain, track minimum distance
 				if (neighborData.height >= FOG_TOP_HEIGHT && !neighborData.isCeltorianChasms) {
-					distanceCache.put(cacheKey, (float)radius);
-					return radius;
+					float actualDistance = (float)Math.sqrt((checkX - centerX) * (checkX - centerX) + (checkZ - centerZ) * (checkZ - centerZ));
+					minDistance = Math.min(minDistance, actualDistance);
 				}
+			}
+
+			// Early exit if we found nearby land
+			if (minDistance < radius + checkStep) {
+				break;
 			}
 		}
 
-		// No high terrain found within range, cache result
-		distanceCache.put(cacheKey, (float)maxCheckDistance);
-		return maxCheckDistance;
+		// Cache and return result
+		distanceCache.put(cacheKey, minDistance);
+		return minDistance;
 	}
 }

@@ -43,9 +43,9 @@
     "moodSoundDelay": 6000,
     "spawnParticles": true,
     "particleToSpawn": {
-      "value": "CUSTOM:Blood"
+      "value": "CUSTOM:Bubble"
     },
-    "particlesProbability": 1.0,
+    "particlesProbability": 0.01,
     "rainingPossibility": 0.5,
     "temperature": 0.5,
     "spawnBiome": false,

@@ -151,5 +151,14 @@
         "stream": false
       }
     ]
+  },
+  "pelagicslumber": {
+    "subtitle": "subtitles.pelagicslumber",
+    "sounds": [
+      {
+        "name": "verse:depthsambience",
+        "stream": true
+      }
+    ]
   }
 }

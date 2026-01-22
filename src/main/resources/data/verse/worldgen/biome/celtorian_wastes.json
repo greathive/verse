@@ -3,7 +3,7 @@
   "temperature": 0.5,
   "downfall": 0.5,
   "effects": {
-    "ambient_sound": "verse:pelagic-slumber",
+    "ambient_sound": "verse:pelagicslumber",
     "particle": {
       "options": {
         "type": "verse:bubble"
@@ -28,7 +28,13 @@
     "misc": []
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
   "features": [
     [],
     [],

@@ -3170,17 +3170,15 @@
       "path": "~/block/coralwood"
     },
     {
-      "name": "MushroomCoralFeature",
-      "type": "feature",
+      "name": "Returnvalidfeatureplacement",
+      "type": "procedure",
       "compiles": true,
       "locked_code": false,
-      "registry_name": "mushroom_coral_feature",
+      "registry_name": "returnvalidfeatureplacement",
       "metadata": {
-        "has_nbt_structure": true,
+        "dependencies": [],
         "files": [
-          "src/main/resources/data/verse/neoforge/biome_modifier/mushroom_coral_feature_biome_modifier.json",
-          "src/main/resources/data/verse/worldgen/configured_feature/mushroom_coral_feature.json",
-          "src/main/resources/data/verse/worldgen/placed_feature/mushroom_coral_feature.json"
+          "src/main/java/net/mcreator/verse/procedures/ReturnvalidfeatureplacementProcedure.java"
         ]
       },
       "path": "~/worldgen/Features"
@@ -3552,6 +3550,14 @@
       ],
       "category": "ambient",
       "subtitle": "ambience"
+    },
+    {
+      "name": "pelagicslumber",
+      "files": [
+        "depthsambience"
+      ],
+      "category": "music",
+      "subtitle": "pelagicslumber"
     }
   ],
   "tag_elements": {
@@ -3648,7 +3654,8 @@
       "~CUSTOM:DrownedCoral",
       "~CUSTOM:AlestrianCoral",
       "~CUSTOM:DepthsCoral"
-    ]
+    ],
+    "BLOCKS:verse:featureblock": []
   },
   "tab_element_order": {},
   "language_map": {
@@ -3749,7 +3756,8 @@
       "block.verse.alestrian_coral_slab": "Alestrian Coral Slab",
       "block.verse.drowned_coral_slab": "Drowned Coral Slab",
       "block.verse.wheat_coral_slab": "Wheat Coral Slab",
-      "block.verse.mushroom_coral_slab": "Mushroom Coral Slab"
+      "block.verse.mushroom_coral_slab": "Mushroom Coral Slab",
+      "subtitles.pelagicslumber": "pelagicslumber"
     }
   },
   "metadata": {
