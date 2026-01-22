@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/mushroomcoral",
+    "up": "verse:block/mushroomcoral",
+    "north": "verse:block/mushroomcoral",
+    "east": "verse:block/mushroomcoral",
+    "south": "verse:block/mushroomcoral",
+    "west": "verse:block/mushroomcoral",
+    "particle": "verse:block/mushroomcoral"
+  },
+  "render_type": "solid"
+}

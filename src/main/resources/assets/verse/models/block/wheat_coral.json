@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/wheat_coral",
+    "up": "verse:block/wheat_coral",
+    "north": "verse:block/wheat_coral",
+    "east": "verse:block/wheat_coral",
+    "south": "verse:block/wheat_coral",
+    "west": "verse:block/wheat_coral",
+    "particle": "verse:block/wheat_coral"
+  },
+  "render_type": "solid"
+}

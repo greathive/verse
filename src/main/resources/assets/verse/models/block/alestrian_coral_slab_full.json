@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "verse:block/alestrian_coral",
+    "bottom": "verse:block/alestrian_coral",
+    "top": "verse:block/alestrian_coral",
+    "side": "verse:block/alestrian_coral"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "particle": "verse:block/wheat_coral",
+    "bottom": "verse:block/wheat_coral",
+    "top": "verse:block/wheat_coral",
+    "side": "verse:block/wheat_coral"
+  },
+  "render_type": "solid"
+}

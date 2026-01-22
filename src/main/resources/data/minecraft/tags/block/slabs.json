@@ -1,8 +1,13 @@
 {
   "replace": false,
   "values": [
+    "verse:drowned_coral_slab",
+    "verse:alestrian_coral_slab",
+    "verse:depths_coral_slab",
     "verse:tearstone_slab",
     "verse:soakstone_slab",
-    "verse:cobbled_tearstone_slab"
+    "verse:mushroom_coral_slab",
+    "verse:cobbled_tearstone_slab",
+    "verse:wheat_coral_slab"
   ]
 }

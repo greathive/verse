@@ -1,6 +1,15 @@
 {
   "replace": false,
   "values": [
-    "verse:depths_coral"
+    "verse:drowned_coral_slab",
+    "verse:alestrian_coral_slab",
+    "verse:drowned_coral",
+    "verse:wheat_coral",
+    "verse:depths_coral_slab",
+    "verse:alestrian_coral",
+    "verse:mushroom_coral",
+    "verse:mushroom_coral_slab",
+    "verse:depths_coral",
+    "verse:wheat_coral_slab"
   ]
 }

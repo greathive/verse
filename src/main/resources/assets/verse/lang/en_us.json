@@ -86,5 +86,14 @@
   "biome.verse.forest_of_lights": "Forest Of Lights",
   "block.verse.deeplight": "Deeplight",
   "block.verse.depths_coral": "Depths Coral",
-  "block.verse.deeplightspike": "Deeplightspike"
+  "block.verse.deeplightspike": "Deeplightspike",
+  "block.verse.alestrian_coral": "Alestrian Coral",
+  "block.verse.drowned_coral": "Drowned Coral",
+  "block.verse.wheat_coral": "Wheat Coral",
+  "block.verse.mushroom_coral": "Mushroom Coral",
+  "block.verse.depths_coral_slab": "Depths Coral Slab",
+  "block.verse.alestrian_coral_slab": "Alestrian Coral Slab",
+  "block.verse.drowned_coral_slab": "Drowned Coral Slab",
+  "block.verse.wheat_coral_slab": "Wheat Coral Slab",
+  "block.verse.mushroom_coral_slab": "Mushroom Coral Slab"
 }

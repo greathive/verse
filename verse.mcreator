@@ -3005,6 +3005,185 @@
         ]
       },
       "path": "~/block"
+    },
+    {
+      "name": "AlestrianCoral",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "alestrian_coral",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/alestrian_coral.json",
+          "src/main/resources/assets/verse/models/item/alestrian_coral.json",
+          "src/main/resources/assets/verse/blockstates/alestrian_coral.json",
+          "src/main/java/net/mcreator/verse/block/AlestrianCoralBlock.java",
+          "src/main/resources/assets/verse/models/block/alestrian_coral.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "DrownedCoral",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "drowned_coral",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/block/drowned_coral.json",
+          "src/main/resources/assets/verse/models/item/drowned_coral.json",
+          "src/main/java/net/mcreator/verse/block/DrownedCoralBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/drowned_coral.json",
+          "src/main/resources/assets/verse/blockstates/drowned_coral.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "WheatCoral",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wheat_coral",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/blockstates/wheat_coral.json",
+          "src/main/java/net/mcreator/verse/block/WheatCoralBlock.java",
+          "src/main/resources/assets/verse/models/item/wheat_coral.json",
+          "src/main/resources/data/verse/loot_table/blocks/wheat_coral.json",
+          "src/main/resources/assets/verse/models/block/wheat_coral.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "MushroomCoral",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mushroom_coral",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/item/mushroom_coral.json",
+          "src/main/resources/assets/verse/blockstates/mushroom_coral.json",
+          "src/main/java/net/mcreator/verse/block/MushroomCoralBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/mushroom_coral.json",
+          "src/main/resources/assets/verse/models/block/mushroom_coral.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "DepthsCoralSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "depths_coral_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/blockstates/depths_coral_slab.json",
+          "src/main/resources/data/verse/loot_table/blocks/depths_coral_slab.json",
+          "src/main/resources/assets/verse/models/item/depths_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/depths_coral_slab_top.json",
+          "src/main/java/net/mcreator/verse/block/DepthsCoralSlabBlock.java",
+          "src/main/resources/assets/verse/models/block/depths_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/depths_coral_slab_full.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "AlestrianCoralSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "alestrian_coral_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/verse/loot_table/blocks/alestrian_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/alestrian_coral_slab_top.json",
+          "src/main/java/net/mcreator/verse/block/AlestrianCoralSlabBlock.java",
+          "src/main/resources/assets/verse/blockstates/alestrian_coral_slab.json",
+          "src/main/resources/assets/verse/models/item/alestrian_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/alestrian_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/alestrian_coral_slab_full.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "DrownedCoralSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "drowned_coral_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/blockstates/drowned_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/drowned_coral_slab_full.json",
+          "src/main/resources/assets/verse/models/item/drowned_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/drowned_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/drowned_coral_slab_top.json",
+          "src/main/java/net/mcreator/verse/block/DrownedCoralSlabBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/drowned_coral_slab.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "WheatCoralSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wheat_coral_slab",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/verse/models/block/wheat_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/wheat_coral_slab_full.json",
+          "src/main/java/net/mcreator/verse/block/WheatCoralSlabBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/wheat_coral_slab.json",
+          "src/main/resources/assets/verse/blockstates/wheat_coral_slab.json",
+          "src/main/resources/assets/verse/models/item/wheat_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/wheat_coral_slab_top.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "MushroomCoralSlab",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mushroom_coral_slab",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/verse/block/MushroomCoralSlabBlock.java",
+          "src/main/resources/data/verse/loot_table/blocks/mushroom_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/mushroom_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/mushroom_coral_slab_full.json",
+          "src/main/resources/assets/verse/models/item/mushroom_coral_slab.json",
+          "src/main/resources/assets/verse/blockstates/mushroom_coral_slab.json",
+          "src/main/resources/assets/verse/models/block/mushroom_coral_slab_top.json"
+        ]
+      },
+      "path": "~/block/coralwood"
+    },
+    {
+      "name": "MushroomCoralFeature",
+      "type": "feature",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mushroom_coral_feature",
+      "metadata": {
+        "has_nbt_structure": true,
+        "files": [
+          "src/main/resources/data/verse/neoforge/biome_modifier/mushroom_coral_feature_biome_modifier.json",
+          "src/main/resources/data/verse/worldgen/configured_feature/mushroom_coral_feature.json",
+          "src/main/resources/data/verse/worldgen/placed_feature/mushroom_coral_feature.json"
+        ]
+      },
+      "path": "~/worldgen/Features"
     }
   ],
   "variable_elements": [
@@ -3407,6 +3586,11 @@
       "~CUSTOM:SoakstoneWall"
     ],
     "BLOCKS:minecraft:slabs": [
+      "~CUSTOM:MushroomCoralSlab",
+      "~CUSTOM:WheatCoralSlab",
+      "~CUSTOM:DrownedCoralSlab",
+      "~CUSTOM:AlestrianCoralSlab",
+      "~CUSTOM:DepthsCoralSlab",
       "~CUSTOM:TearstoneSlab",
       "~CUSTOM:CobbledTearstoneSlab",
       "~CUSTOM:SoakstoneSlab"
@@ -3454,6 +3638,15 @@
       "CUSTOM:ForestOfLights"
     ],
     "BLOCKS:minecraft:mineable/axe": [
+      "~CUSTOM:MushroomCoralSlab",
+      "~CUSTOM:WheatCoralSlab",
+      "~CUSTOM:DrownedCoralSlab",
+      "~CUSTOM:AlestrianCoralSlab",
+      "~CUSTOM:DepthsCoralSlab",
+      "~CUSTOM:MushroomCoral",
+      "~CUSTOM:WheatCoral",
+      "~CUSTOM:DrownedCoral",
+      "~CUSTOM:AlestrianCoral",
       "~CUSTOM:DepthsCoral"
     ]
   },
@@ -3547,7 +3740,16 @@
       "biome.verse.forest_of_lights": "Forest Of Lights",
       "block.verse.deeplight": "Deeplight",
       "block.verse.depths_coral": "Depths Coral",
-      "block.verse.deeplightspike": "Deeplightspike"
+      "block.verse.deeplightspike": "Deeplightspike",
+      "block.verse.alestrian_coral": "Alestrian Coral",
+      "block.verse.drowned_coral": "Drowned Coral",
+      "block.verse.wheat_coral": "Wheat Coral",
+      "block.verse.mushroom_coral": "Mushroom Coral",
+      "block.verse.depths_coral_slab": "Depths Coral Slab",
+      "block.verse.alestrian_coral_slab": "Alestrian Coral Slab",
+      "block.verse.drowned_coral_slab": "Drowned Coral Slab",
+      "block.verse.wheat_coral_slab": "Wheat Coral Slab",
+      "block.verse.mushroom_coral_slab": "Mushroom Coral Slab"
     }
   },
   "metadata": {
@@ -3657,7 +3859,12 @@
       },
       {
         "name": "worldgen",
-        "children": []
+        "children": [
+          {
+            "name": "Features",
+            "children": []
+          }
+        ]
       },
       {
         "name": "block",

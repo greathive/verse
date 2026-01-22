@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/drowned_coral",
+    "up": "verse:block/drowned_coral",
+    "north": "verse:block/drowned_coral",
+    "east": "verse:block/drowned_coral",
+    "south": "verse:block/drowned_coral",
+    "west": "verse:block/drowned_coral",
+    "particle": "verse:block/drowned_coral"
+  },
+  "render_type": "solid"
+}

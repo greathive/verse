@@ -44,6 +44,15 @@ public class VerseModTabs {
 				tabData.accept(VerseModBlocks.FLOODSTONE.get().asItem());
 				tabData.accept(VerseModBlocks.DEEPLIGHT.get().asItem());
 				tabData.accept(VerseModBlocks.DEPTHS_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.ALESTRIAN_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.DROWNED_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.WHEAT_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.MUSHROOM_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.DEPTHS_CORAL_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.ALESTRIAN_CORAL_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.DROWNED_CORAL_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.WHEAT_CORAL_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.MUSHROOM_CORAL_SLAB.get().asItem());
 			}).withSearchBar().withTabsBefore(VERSE_WEAPONS.getId()).build());
 
 	@SubscribeEvent

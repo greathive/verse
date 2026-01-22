@@ -32,6 +32,15 @@ public class VerseModBlocks {
 	public static final DeferredBlock<Block> DEEPLIGHT;
 	public static final DeferredBlock<Block> DEPTHS_CORAL;
 	public static final DeferredBlock<Block> DEEPLIGHTSPIKE;
+	public static final DeferredBlock<Block> ALESTRIAN_CORAL;
+	public static final DeferredBlock<Block> DROWNED_CORAL;
+	public static final DeferredBlock<Block> WHEAT_CORAL;
+	public static final DeferredBlock<Block> MUSHROOM_CORAL;
+	public static final DeferredBlock<Block> DEPTHS_CORAL_SLAB;
+	public static final DeferredBlock<Block> ALESTRIAN_CORAL_SLAB;
+	public static final DeferredBlock<Block> DROWNED_CORAL_SLAB;
+	public static final DeferredBlock<Block> WHEAT_CORAL_SLAB;
+	public static final DeferredBlock<Block> MUSHROOM_CORAL_SLAB;
 	static {
 		ORCHESTRATOR_BASIN = REGISTRY.register("orchestrator_basin", OrchestratorBasinBlock::new);
 		TEARSTONE = REGISTRY.register("tearstone", TearstoneBlock::new);
@@ -52,6 +61,15 @@ public class VerseModBlocks {
 		DEEPLIGHT = REGISTRY.register("deeplight", DeeplightBlock::new);
 		DEPTHS_CORAL = REGISTRY.register("depths_coral", DepthsCoralBlock::new);
 		DEEPLIGHTSPIKE = REGISTRY.register("deeplightspike", DeeplightspikeBlock::new);
+		ALESTRIAN_CORAL = REGISTRY.register("alestrian_coral", AlestrianCoralBlock::new);
+		DROWNED_CORAL = REGISTRY.register("drowned_coral", DrownedCoralBlock::new);
+		WHEAT_CORAL = REGISTRY.register("wheat_coral", WheatCoralBlock::new);
+		MUSHROOM_CORAL = REGISTRY.register("mushroom_coral", MushroomCoralBlock::new);
+		DEPTHS_CORAL_SLAB = REGISTRY.register("depths_coral_slab", DepthsCoralSlabBlock::new);
+		ALESTRIAN_CORAL_SLAB = REGISTRY.register("alestrian_coral_slab", AlestrianCoralSlabBlock::new);
+		DROWNED_CORAL_SLAB = REGISTRY.register("drowned_coral_slab", DrownedCoralSlabBlock::new);
+		WHEAT_CORAL_SLAB = REGISTRY.register("wheat_coral_slab", WheatCoralSlabBlock::new);
+		MUSHROOM_CORAL_SLAB = REGISTRY.register("mushroom_coral_slab", MushroomCoralSlabBlock::new);
 	}
 	// Start of user code block custom blocks
 	// End of user code block custom blocks

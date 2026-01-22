@@ -48,6 +48,15 @@ public class VerseModItems {
 	public static final DeferredItem<Item> DEEPLIGHT;
 	public static final DeferredItem<Item> DEPTHS_CORAL;
 	public static final DeferredItem<Item> DEEPLIGHTSPIKE;
+	public static final DeferredItem<Item> ALESTRIAN_CORAL;
+	public static final DeferredItem<Item> DROWNED_CORAL;
+	public static final DeferredItem<Item> WHEAT_CORAL;
+	public static final DeferredItem<Item> MUSHROOM_CORAL;
+	public static final DeferredItem<Item> DEPTHS_CORAL_SLAB;
+	public static final DeferredItem<Item> ALESTRIAN_CORAL_SLAB;
+	public static final DeferredItem<Item> DROWNED_CORAL_SLAB;
+	public static final DeferredItem<Item> WHEAT_CORAL_SLAB;
+	public static final DeferredItem<Item> MUSHROOM_CORAL_SLAB;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
@@ -79,6 +88,15 @@ public class VerseModItems {
 		DEEPLIGHT = block(VerseModBlocks.DEEPLIGHT);
 		DEPTHS_CORAL = block(VerseModBlocks.DEPTHS_CORAL);
 		DEEPLIGHTSPIKE = block(VerseModBlocks.DEEPLIGHTSPIKE);
+		ALESTRIAN_CORAL = block(VerseModBlocks.ALESTRIAN_CORAL);
+		DROWNED_CORAL = block(VerseModBlocks.DROWNED_CORAL);
+		WHEAT_CORAL = block(VerseModBlocks.WHEAT_CORAL);
+		MUSHROOM_CORAL = block(VerseModBlocks.MUSHROOM_CORAL);
+		DEPTHS_CORAL_SLAB = block(VerseModBlocks.DEPTHS_CORAL_SLAB);
+		ALESTRIAN_CORAL_SLAB = block(VerseModBlocks.ALESTRIAN_CORAL_SLAB);
+		DROWNED_CORAL_SLAB = block(VerseModBlocks.DROWNED_CORAL_SLAB);
+		WHEAT_CORAL_SLAB = block(VerseModBlocks.WHEAT_CORAL_SLAB);
+		MUSHROOM_CORAL_SLAB = block(VerseModBlocks.MUSHROOM_CORAL_SLAB);
 	}
 
 	// Start of user code block custom items

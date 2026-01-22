@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "verse:block/mushroomcoral",
+    "bottom": "verse:block/mushroomcoral",
+    "top": "verse:block/mushroomcoral",
+    "side": "verse:block/mushroomcoral"
+  },
+  "render_type": "solid"
+}

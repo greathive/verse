@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "verse:celtorian_wastes",
+    "verse:coral_forest",
+    "verse:forest_of_lights"
+  ],
+  "features": "verse:mushroom_coral_feature",
+  "step": "vegetal_decoration"
+}

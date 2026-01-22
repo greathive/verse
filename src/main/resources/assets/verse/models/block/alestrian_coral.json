@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/alestrian_coral",
+    "up": "verse:block/alestrian_coral",
+    "north": "verse:block/alestrian_coral",
+    "east": "verse:block/alestrian_coral",
+    "south": "verse:block/alestrian_coral",
+    "west": "verse:block/alestrian_coral",
+    "particle": "verse:block/alestrian_coral"
+  },
+  "render_type": "solid"
+}

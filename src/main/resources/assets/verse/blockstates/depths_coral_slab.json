@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verse:block/depths_coral_slab"
+    },
+    "type=top": {
+      "model": "verse:block/depths_coral_slab_top"
+    },
+    "type=double": {
+      "model": "verse:block/depths_coral_slab_full"
+    }
+  }
+}
