@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "verse:blocks/small_tearstone_brick_stair",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "verse:small_tearstone_brick_stair"
+        }
+      ]
+    }
+  ]
+}

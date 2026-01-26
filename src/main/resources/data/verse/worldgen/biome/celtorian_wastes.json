@@ -3,7 +3,7 @@
   "temperature": 0.5,
   "downfall": 0.5,
   "effects": {
-    "ambient_sound": "verse:pelagicslumber",
+    "ambient_sound": "verse:pelagic-slumber",
     "particle": {
       "options": {
         "type": "verse:bubble"
@@ -32,7 +32,8 @@
     "air": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
-      "minecraft:canyon"
+      "minecraft:canyon",
+      "verse:schiphoziacanyon"
     ]
   },
   "features": [

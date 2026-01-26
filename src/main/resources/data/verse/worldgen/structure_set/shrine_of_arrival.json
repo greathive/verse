@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "verse:shrine_of_arrival",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 64,
+    "separation": 60,
+    "salt": 1979882385
+  }
+}

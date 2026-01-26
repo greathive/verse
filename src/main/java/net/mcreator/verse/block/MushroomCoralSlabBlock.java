@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.SlabBlock;
 
 public class MushroomCoralSlabBlock extends SlabBlock {
 	public MushroomCoralSlabBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(5f, 10f));
+		super(BlockBehaviour.Properties.of().sound(SoundType.CORAL_BLOCK).strength(5f, 10f));
 	}
 }

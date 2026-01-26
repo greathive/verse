@@ -2,8 +2,10 @@
   "replace": false,
   "values": [
     "verse:drowned_coral_slab",
+    "verse:tearstone_brick_slab",
     "verse:alestrian_coral_slab",
     "verse:depths_coral_slab",
+    "verse:small_tearstone_brick_slab",
     "verse:tearstone_slab",
     "verse:soakstone_slab",
     "verse:mushroom_coral_slab",

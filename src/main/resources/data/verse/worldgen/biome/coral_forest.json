@@ -4,12 +4,6 @@
   "downfall": 0.5,
   "effects": {
     "ambient_sound": "verse:pelagicslumber",
-    "particle": {
-      "options": {
-        "type": "verse:bubble"
-      },
-      "probability": 0.0001
-    },
     "foliage_color": 10387789,
     "grass_color": 9470285,
     "sky_color": -16710907,
@@ -28,7 +22,14 @@
     "misc": []
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon",
+      "verse:schiphoziacanyon"
+    ]
+  },
   "features": [
     [],
     [],
@@ -58,7 +59,7 @@
     [],
     [],
     [
-      "verse:celtorian_wastes_tree"
+      "verse:coral_forest_tree"
     ],
     []
   ]

@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "verse:coral_forest",
+    "verse:celtorian_wastes"
+  ],
+  "features": "verse:coral_tree_feature",
+  "step": "strongholds"
+}

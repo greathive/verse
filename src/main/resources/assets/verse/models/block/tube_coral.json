@@ -1,0 +1,9 @@
+{
+  "parent": "verse:custom/tubecoral",
+  "textures": {
+    "all": "verse:block/tubecoral",
+    "particle": "verse:block/tubecoral",
+    "1": "verse:block/tubecoral"
+  },
+  "render_type": "solid"
+}

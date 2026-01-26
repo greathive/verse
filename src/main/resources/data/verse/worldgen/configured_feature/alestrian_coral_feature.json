@@ -1,0 +1,52 @@
+{
+  "type": "verse:alestrian_coral_feature",
+  "config": {
+    "default": {
+      "feature": {
+        "type": "minecraft:no_op",
+        "config": {}
+      },
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:alestriancoral1",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -2,
+                0,
+                -2
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:alestriancoral2",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -3,
+                0,
+                -3
+              ]
+            }
+          },
+          "placement": []
+        }
+      }
+    ]
+  }
+}

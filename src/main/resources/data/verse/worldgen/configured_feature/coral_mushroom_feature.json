@@ -1,0 +1,13 @@
+{
+  "type": "verse:coral_mushroom_feature",
+  "config": {
+    "structure": "verse:mushroomcoral",
+    "random_rotation": true,
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      -6,
+      -3,
+      -6
+    ]
+  }
+}

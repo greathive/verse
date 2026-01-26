@@ -1,0 +1,9 @@
+{
+  "parent": "verse:custom/deeplightbulb",
+  "textures": {
+    "all": "verse:block/deeplightbulb",
+    "particle": "verse:block/deeplightbulb",
+    "0": "verse:block/deeplightbulb"
+  },
+  "render_type": "cutout_mipped"
+}

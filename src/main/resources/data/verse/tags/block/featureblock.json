@@ -1,4 +1,23 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "verse:drowned_coral_slab",
+    "verse:soakstone_stair",
+    "verse:drowned_coral",
+    "verse:deeplight_bulb",
+    "verse:alestrian_coral",
+    "verse:mushroom_coral",
+    "verse:deeplight",
+    "verse:soakstone_slab",
+    "verse:soakstone",
+    "verse:depths_coral",
+    "verse:deeplightspike",
+    "verse:tube_coral",
+    "verse:alestrian_coral_slab",
+    "verse:wheat_coral",
+    "verse:depths_coral_slab",
+    "verse:soakstone_wall",
+    "verse:mushroom_coral_slab",
+    "verse:wheat_coral_slab"
+  ]
 }

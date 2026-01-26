@@ -1,0 +1,90 @@
+{
+  "type": "verse:med_coral_tree_feature",
+  "config": {
+    "default": {
+      "feature": {
+        "type": "minecraft:no_op",
+        "config": {}
+      },
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree3",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -3,
+                -2,
+                -3
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree4",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -4,
+                -3,
+                -4
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree5",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -4,
+                -3,
+                -4
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree9",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -4,
+                -3,
+                -3
+              ]
+            }
+          },
+          "placement": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_fv": 79,
+  "_type": "structure",
+  "definition": {
+    "structure": "arrivalshrine1",
+    "projection": "terrain_matching",
+    "ignoredBlocks": [
+      {
+        "value": "Blocks.STRUCTURE_BLOCK"
+      }
+    ],
+    "spacing": 64,
+    "separation": 60,
+    "restrictionBiomes": [
+      {
+        "value": "CUSTOM:CeltorianWastes"
+      },
+      {
+        "value": "CUSTOM:CoralForest"
+      },
+      {
+        "value": "CUSTOM:ForestOfLights"
+      }
+    ],
+    "terrainAdaptation": "beard_box",
+    "generationStep": "UNDERGROUND_STRUCTURES",
+    "surfaceDetectionType": "WORLD_SURFACE",
+    "useStartHeight": true,
+    "startHeightProviderType": "UNIFORM",
+    "startHeightMin": 60,
+    "startHeightMax": 110,
+    "size": 1,
+    "maxDistanceFromCenter": 64,
+    "jigsawPools": []
+  }
+}

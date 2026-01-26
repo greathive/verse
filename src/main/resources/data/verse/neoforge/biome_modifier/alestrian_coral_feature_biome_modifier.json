@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "verse:celtorian_wastes",
+    "verse:forest_of_lights",
+    "verse:coral_forest"
+  ],
+  "features": "verse:alestrian_coral_feature",
+  "step": "fluid_springs"
+}

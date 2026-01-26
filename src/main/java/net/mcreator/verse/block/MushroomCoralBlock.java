@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 
 public class MushroomCoralBlock extends Block {
 	public MushroomCoralBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(5f, 10f));
+		super(BlockBehaviour.Properties.of().sound(SoundType.CORAL_BLOCK).strength(5f, 10f));
 	}
 
 	@Override

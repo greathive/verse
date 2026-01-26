@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/brick3",
+    "up": "verse:block/brick3",
+    "north": "verse:block/brick3",
+    "east": "verse:block/brick3",
+    "south": "verse:block/brick3",
+    "west": "verse:block/brick3",
+    "particle": "verse:block/brick3"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "verse:block/brick1alt",
+    "bottom": "verse:block/brick1alt",
+    "top": "verse:block/brick1alt",
+    "side": "verse:block/brick1alt"
+  },
+  "render_type": "solid"
+}

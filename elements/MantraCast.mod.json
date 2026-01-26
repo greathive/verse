@@ -1,0 +1,9 @@
+{
+  "_fv": 79,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "G",
+    "keyBindingName": "Mantra Cast",
+    "keyBindingCategoryKey": "verse"
+  }
+}

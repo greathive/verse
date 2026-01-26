@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "verse:forest_of_lights",
+    "verse:coral_forest"
+  ],
+  "features": "verse:coral_tube_feature",
+  "step": "top_layer_modification"
+}

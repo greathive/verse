@@ -53,6 +53,16 @@ public class VerseModTabs {
 				tabData.accept(VerseModBlocks.DROWNED_CORAL_SLAB.get().asItem());
 				tabData.accept(VerseModBlocks.WHEAT_CORAL_SLAB.get().asItem());
 				tabData.accept(VerseModBlocks.MUSHROOM_CORAL_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.DEEPLIGHT_BULB.get().asItem());
+				tabData.accept(VerseModBlocks.TUBE_CORAL.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_BRICK.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_BRICK_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_BRICK_STAIR.get().asItem());
+				tabData.accept(VerseModBlocks.TEARSTONE_BRICK_WALL.get().asItem());
+				tabData.accept(VerseModBlocks.SMALL_TEARSTONE_BRICK.get().asItem());
+				tabData.accept(VerseModBlocks.SMALL_TEARSTONE_BRICK_SLAB.get().asItem());
+				tabData.accept(VerseModBlocks.SMALL_TEARSTONE_BRICK_STAIR.get().asItem());
+				tabData.accept(VerseModBlocks.SMALL_TEARSTONE_BRICK_WALL.get().asItem());
 			}).withSearchBar().withTabsBefore(VERSE_WEAPONS.getId()).build());
 
 	@SubscribeEvent

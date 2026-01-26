@@ -1,0 +1,80 @@
+{
+  "type": "verse:coralbulbfeature",
+  "config": {
+    "default": {
+      "feature": {
+        "type": "verse:structure_feature",
+        "config": {
+          "structure": "verse:coralbulb1",
+          "random_rotation": true,
+          "ignored_blocks": "minecraft:air",
+          "offset": [
+            -1,
+            0,
+            -1
+          ]
+        }
+      },
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coralbulb1",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -1,
+                0,
+                -1
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coralbulb2",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -1,
+                0,
+                -1
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coralbulb3",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -1,
+                0,
+                -1
+              ]
+            }
+          },
+          "placement": []
+        }
+      }
+    ]
+  }
+}

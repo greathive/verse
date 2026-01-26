@@ -2,7 +2,7 @@
   "_fv": 79,
   "_type": "biome",
   "definition": {
-    "name": "Celtorian Wastes",
+    "name": "Coral Forest",
     "groundBlock": {
       "value": "CUSTOM:Tearstone"
     },
@@ -29,7 +29,7 @@
       "falpha": 0.0
     },
     "ambientSound": {
-      "value": "CUSTOM:pelagic-slumber"
+      "value": "CUSTOM:pelagicslumber"
     },
     "additionsSound": {
       "value": ""
@@ -41,7 +41,7 @@
       "value": ""
     },
     "moodSoundDelay": 6000,
-    "spawnParticles": true,
+    "spawnParticles": false,
     "particleToSpawn": {
       "value": "CUSTOM:Blood"
     },

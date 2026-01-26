@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "verse:forest_of_lights",
+  "features": "verse:biglightcoraltreefeature",
+  "step": "strongholds"
+}

@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "verse:block/deeplight_bulb"
+    },
+    "facing=east": {
+      "model": "verse:block/deeplight_bulb",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "verse:block/deeplight_bulb",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "verse:block/deeplight_bulb",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "verse:block/deeplight_bulb",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "verse:block/deeplight_bulb",
+      "x": 90
+    }
+  }
+}

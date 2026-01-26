@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.SlabBlock;
 
 public class WheatCoralSlabBlock extends SlabBlock {
 	public WheatCoralSlabBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(5f, 10f));
+		super(BlockBehaviour.Properties.of().sound(SoundType.CORAL_BLOCK).strength(5f, 10f));
 	}
 }

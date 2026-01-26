@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "verse:coral_forest",
+  "features": "verse:l_coral_tree_featurearg",
+  "step": "underground_structures"
+}

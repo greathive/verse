@@ -57,6 +57,16 @@ public class VerseModItems {
 	public static final DeferredItem<Item> DROWNED_CORAL_SLAB;
 	public static final DeferredItem<Item> WHEAT_CORAL_SLAB;
 	public static final DeferredItem<Item> MUSHROOM_CORAL_SLAB;
+	public static final DeferredItem<Item> DEEPLIGHT_BULB;
+	public static final DeferredItem<Item> TUBE_CORAL;
+	public static final DeferredItem<Item> TEARSTONE_BRICK;
+	public static final DeferredItem<Item> TEARSTONE_BRICK_SLAB;
+	public static final DeferredItem<Item> TEARSTONE_BRICK_STAIR;
+	public static final DeferredItem<Item> TEARSTONE_BRICK_WALL;
+	public static final DeferredItem<Item> SMALL_TEARSTONE_BRICK;
+	public static final DeferredItem<Item> SMALL_TEARSTONE_BRICK_SLAB;
+	public static final DeferredItem<Item> SMALL_TEARSTONE_BRICK_STAIR;
+	public static final DeferredItem<Item> SMALL_TEARSTONE_BRICK_WALL;
 	static {
 		TEMP = REGISTRY.register("temp", TempItem::new);
 		NPC_SPAWN_EGG = REGISTRY.register("npc_spawn_egg", () -> new DeferredSpawnEggItem(VerseModEntities.NPC, -1, -1, new Item.Properties()));
@@ -97,6 +107,16 @@ public class VerseModItems {
 		DROWNED_CORAL_SLAB = block(VerseModBlocks.DROWNED_CORAL_SLAB);
 		WHEAT_CORAL_SLAB = block(VerseModBlocks.WHEAT_CORAL_SLAB);
 		MUSHROOM_CORAL_SLAB = block(VerseModBlocks.MUSHROOM_CORAL_SLAB);
+		DEEPLIGHT_BULB = block(VerseModBlocks.DEEPLIGHT_BULB);
+		TUBE_CORAL = block(VerseModBlocks.TUBE_CORAL);
+		TEARSTONE_BRICK = block(VerseModBlocks.TEARSTONE_BRICK);
+		TEARSTONE_BRICK_SLAB = block(VerseModBlocks.TEARSTONE_BRICK_SLAB);
+		TEARSTONE_BRICK_STAIR = block(VerseModBlocks.TEARSTONE_BRICK_STAIR);
+		TEARSTONE_BRICK_WALL = block(VerseModBlocks.TEARSTONE_BRICK_WALL);
+		SMALL_TEARSTONE_BRICK = block(VerseModBlocks.SMALL_TEARSTONE_BRICK);
+		SMALL_TEARSTONE_BRICK_SLAB = block(VerseModBlocks.SMALL_TEARSTONE_BRICK_SLAB);
+		SMALL_TEARSTONE_BRICK_STAIR = block(VerseModBlocks.SMALL_TEARSTONE_BRICK_STAIR);
+		SMALL_TEARSTONE_BRICK_WALL = block(VerseModBlocks.SMALL_TEARSTONE_BRICK_WALL);
 	}
 
 	// Start of user code block custom items

@@ -1,0 +1,23 @@
+{
+  "_fv": 79,
+  "_type": "feature",
+  "definition": {
+    "skipPlacement": false,
+    "generationStep": "UNDERGROUND_DECORATION",
+    "restrictionBiomes": [
+      {
+        "value": "CUSTOM:CeltorianWastes"
+      },
+      {
+        "value": "CUSTOM:ForestOfLights"
+      },
+      {
+        "value": "CUSTOM:CoralForest"
+      }
+    ],
+    "generateCondition": {
+      "name": "Returnvalidfeatureplacement"
+    },
+    "featurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"feature_container\" deletable=\"false\" x=\"40\" y=\"40\"><value name=\"feature\"><block type=\"feature_custom_structure\"><field name=\"structure\">mushroomcoral</field><field name=\"x\">-6</field><field name=\"y\">-3</field><field name=\"z\">-6</field><field name=\"random_rotation\">TRUE</field><field name=\"random_mirror\">FALSE</field><value name=\"ignored_blocks\"><block type=\"block_holderset_list\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"1\"></mutation><field name=\"block0\">Blocks.AIR</field></block></value></block></value><next><block type=\"placement_count\"><value name=\"count\"><block type=\"int_provider_constant\"><field name=\"value\">1</field></block></value><next><block type=\"placement_in_square\"><next><block type=\"placement_height_triangular\"><value name=\"min\"><block type=\"vertical_anchor_absolute\"><field name=\"value\">64</field></block></value><value name=\"max\"><block type=\"vertical_anchor_absolute\"><field name=\"value\">120</field></block></value><next><block type=\"placement_block_predicate_filter\"><value name=\"condition\"><block type=\"block_predicate_all_of\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"2\"></mutation><value name=\"condition0\"><block type=\"block_predicate_is_air\"></block></value><value name=\"condition1\"><block type=\"block_predicate_solid\"><field name=\"x\">0</field><field name=\"y\">-1</field><field name=\"z\">0</field></block></value></block></value></block></next></block></next></block></next></block></next></block></xml>"
+  }
+}

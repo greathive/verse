@@ -18,6 +18,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.mcreator.verse.world.features.StructureFeature;
 import net.mcreator.verse.network.VerseModVariables;
 import net.mcreator.verse.init.*;
 
@@ -45,6 +46,8 @@ public class VerseMod {
 		VerseModEntities.REGISTRY.register(modEventBus);
 		VerseModTabs.REGISTRY.register(modEventBus);
 		VerseModVariables.ATTACHMENT_TYPES.register(modEventBus);
+		VerseModFeatures.REGISTRY.register(modEventBus);
+		StructureFeature.REGISTRY.register(modEventBus);
 		VerseModMobEffects.REGISTRY.register(modEventBus);
 		VerseModMenus.REGISTRY.register(modEventBus);
 		VerseModParticleTypes.REGISTRY.register(modEventBus);

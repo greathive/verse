@@ -47,12 +47,14 @@ public class VerseModKeyMappings {
 			isDownOld = isDown;
 		}
 	};
+	public static final KeyMapping MANTRA_CAST = new KeyMapping("key.verse.mantra_cast", GLFW.GLFW_KEY_G, "key.categories.verse");
 
 	@SubscribeEvent
 	public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
 		event.register(PARRY);
 		event.register(STAT_MENU);
 		event.register(MANTRA_SELECTION);
+		event.register(MANTRA_CAST);
 	}
 
 	@EventBusSubscriber(Dist.CLIENT)

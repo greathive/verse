@@ -1,0 +1,9 @@
+{
+  "feature": "verse:coral_tube_feature",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 4
+    }
+  ]
+}

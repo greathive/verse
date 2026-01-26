@@ -1,0 +1,52 @@
+{
+  "type": "verse:coral_tree_feature",
+  "config": {
+    "default": {
+      "feature": {
+        "type": "minecraft:no_op",
+        "config": {}
+      },
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.6,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree1",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -1,
+                -2,
+                -2
+              ]
+            }
+          },
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.4,
+        "feature": {
+          "feature": {
+            "type": "verse:structure_feature",
+            "config": {
+              "structure": "verse:coraltree2",
+              "random_rotation": true,
+              "ignored_blocks": "minecraft:air",
+              "offset": [
+                -2,
+                -2,
+                -2
+              ]
+            }
+          },
+          "placement": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "verse:biglightcoraltreefeature_3",
+  "config": {
+    "structure": "verse:coraltree8_1",
+    "random_rotation": true,
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      -4,
+      -4,
+      -4
+    ]
+  }
+}

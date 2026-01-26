@@ -41,6 +41,16 @@ public class VerseModBlocks {
 	public static final DeferredBlock<Block> DROWNED_CORAL_SLAB;
 	public static final DeferredBlock<Block> WHEAT_CORAL_SLAB;
 	public static final DeferredBlock<Block> MUSHROOM_CORAL_SLAB;
+	public static final DeferredBlock<Block> DEEPLIGHT_BULB;
+	public static final DeferredBlock<Block> TUBE_CORAL;
+	public static final DeferredBlock<Block> TEARSTONE_BRICK;
+	public static final DeferredBlock<Block> TEARSTONE_BRICK_SLAB;
+	public static final DeferredBlock<Block> TEARSTONE_BRICK_STAIR;
+	public static final DeferredBlock<Block> TEARSTONE_BRICK_WALL;
+	public static final DeferredBlock<Block> SMALL_TEARSTONE_BRICK;
+	public static final DeferredBlock<Block> SMALL_TEARSTONE_BRICK_SLAB;
+	public static final DeferredBlock<Block> SMALL_TEARSTONE_BRICK_STAIR;
+	public static final DeferredBlock<Block> SMALL_TEARSTONE_BRICK_WALL;
 	static {
 		ORCHESTRATOR_BASIN = REGISTRY.register("orchestrator_basin", OrchestratorBasinBlock::new);
 		TEARSTONE = REGISTRY.register("tearstone", TearstoneBlock::new);
@@ -70,6 +80,16 @@ public class VerseModBlocks {
 		DROWNED_CORAL_SLAB = REGISTRY.register("drowned_coral_slab", DrownedCoralSlabBlock::new);
 		WHEAT_CORAL_SLAB = REGISTRY.register("wheat_coral_slab", WheatCoralSlabBlock::new);
 		MUSHROOM_CORAL_SLAB = REGISTRY.register("mushroom_coral_slab", MushroomCoralSlabBlock::new);
+		DEEPLIGHT_BULB = REGISTRY.register("deeplight_bulb", DeeplightBulbBlock::new);
+		TUBE_CORAL = REGISTRY.register("tube_coral", TubeCoralBlock::new);
+		TEARSTONE_BRICK = REGISTRY.register("tearstone_brick", TearstoneBrickBlock::new);
+		TEARSTONE_BRICK_SLAB = REGISTRY.register("tearstone_brick_slab", TearstoneBrickSlabBlock::new);
+		TEARSTONE_BRICK_STAIR = REGISTRY.register("tearstone_brick_stair", TearstoneBrickStairBlock::new);
+		TEARSTONE_BRICK_WALL = REGISTRY.register("tearstone_brick_wall", TearstoneBrickWallBlock::new);
+		SMALL_TEARSTONE_BRICK = REGISTRY.register("small_tearstone_brick", SmallTearstoneBrickBlock::new);
+		SMALL_TEARSTONE_BRICK_SLAB = REGISTRY.register("small_tearstone_brick_slab", SmallTearstoneBrickSlabBlock::new);
+		SMALL_TEARSTONE_BRICK_STAIR = REGISTRY.register("small_tearstone_brick_stair", SmallTearstoneBrickStairBlock::new);
+		SMALL_TEARSTONE_BRICK_WALL = REGISTRY.register("small_tearstone_brick_wall", SmallTearstoneBrickWallBlock::new);
 	}
 	// Start of user code block custom blocks
 	// End of user code block custom blocks

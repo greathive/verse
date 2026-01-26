@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
+    "verse:tearstone_brick_wall",
     "verse:tearstone_wall",
+    "verse:small_tearstone_brick_wall",
     "verse:soakstone_wall",
     "verse:cobbled_tearstone_wall"
   ]

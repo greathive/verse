@@ -18,6 +18,8 @@ import net.mcreator.verse.block.entity.DeeplightBlockEntity;
 import net.mcreator.verse.init.VerseModBlocks;
 
 public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBlockEntity> {
+    private static final int MAX_RENDER_DISTANCE = 256; // blocks
+    private static final ResourceLocation STEM_TEXTURE = ResourceLocation.fromNamespaceAndPath("verse", "textures/block/deeplightstem.png");
 
     public DeeplightBlockRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -73,13 +75,10 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
         poseStack.pushPose();
         poseStack.translate(0, 0.004, 0);
 
-        // Create a custom vertex consumer that applies transparency
-        VertexConsumer buffer = new TransparentVertexConsumer(
-                bufferSource.getBuffer(RenderType.translucent()),
-                0.9f // 90% opacity
-        );
+        // Render with cutout_mipped for proper transparency without blending
+        VertexConsumer buffer = bufferSource.getBuffer(RenderType.cutoutMipped());
 
-        // Render with translucent type
+        // Render the model
         Minecraft.getInstance().getBlockRenderer().getModelRenderer().renderModel(
                 poseStack.last(),
                 buffer,
@@ -97,14 +96,27 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
 
         poseStack.popPose();
 
-        // Only render the full chain line if this is the TOP block
-        // Render OUTSIDE the rotation transform so the line doesn't rotate
-        if (!blockEntity.hasBlockAbove() && blockEntity.hasBlockBelow()) {
+        // Only render the full chain line if this is the TOP block and within render distance
+        if (!blockEntity.hasBlockAbove() && blockEntity.hasBlockBelow() && isWithinRenderDistance(blockEntity)) {
             poseStack.pushPose();
             poseStack.translate(0.5, 0.5, 0.5);
             drawFullChainLine(blockEntity, partialTick, poseStack, bufferSource, combinedLight);
             poseStack.popPose();
         }
+    }
+
+    /**
+     * Check if block is within render distance
+     */
+    private boolean isWithinRenderDistance(DeeplightBlockEntity blockEntity) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null) return false;
+
+        BlockPos blockPos = blockEntity.getBlockPos();
+        Vec3 playerPos = mc.player.getEyePosition();
+
+        double distanceSq = playerPos.distanceToSqr(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
+        return distanceSq <= MAX_RENDER_DISTANCE * MAX_RENDER_DISTANCE;
     }
 
     /**
@@ -129,7 +141,7 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
     }
 
     /**
-     * Draw a single continuous line from the top of the stack to the bottom
+     * Draw a single continuous textured beam from the top of the stack to the bottom
      */
     private void drawFullChainLine(DeeplightBlockEntity blockEntity, float partialTick,
                                    PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight) {
@@ -148,99 +160,17 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
             }
         }
 
-        // Start point: top of the current (topmost) block
-        float startY = 0.5f; // Top face of this block
+        if (blocksBelow == 0) return; // No blocks below, don't render
 
-        // End point: center of the bottom block
-        // Each block is 1.0 unit tall, so we go down blocksBelow blocks, then 0.5 more to reach center
-        float endY = -(blocksBelow + 0.5f);
-
-        // Get camera position for billboarding
-        Minecraft mc = Minecraft.getInstance();
-        Vec3 cameraPos = mc.gameRenderer.getMainCamera().getPosition();
-        Vec3 blockPos = new Vec3(
-                blockEntity.getBlockPos().getX() + 0.5,
-                blockEntity.getBlockPos().getY() + 0.5,
-                blockEntity.getBlockPos().getZ() + 0.5
-        );
-
-        // Calculate direction to camera (for billboarding)
-        Vec3 toCamera = cameraPos.subtract(blockPos).normalize();
-
-        // Calculate perpendicular vectors for billboarding
-        Vec3 up = new Vec3(0, 1, 0);
-        Vec3 right = toCamera.cross(up).normalize();
-        Vec3 actualUp = right.cross(toCamera).normalize();
-
-        // Draw a glowing line/beam
-        VertexConsumer buffer = bufferSource.getBuffer(RenderType.lightning());
-
-        // Get the pose matrices
-        PoseStack.Pose pose = poseStack.last();
-
-        // Draw multiple lines for thickness and glow effect
-        for (int i = 0; i < 13; i++) {
-            float offset = (i - 6f) * 0.015f; // Reduced from 8 iterations and 0.03f spacing
-
-            // Calculate billboard offsets using the right vector
-            float offsetX = (float)(right.x * offset);
-            float offsetY = (float)(right.y * offset);
-            float offsetZ = (float)(right.z * offset);
-
-            // Line 1 - using right vector for billboarding
-            buffer.addVertex(pose, offsetX, startY + offsetY, offsetZ)
-                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
-                    .setUv(0, 0)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(120)
-                    .setNormal(pose, 0, 1, 0);
-
-            buffer.addVertex(pose, offsetX, endY + offsetY, offsetZ)
-                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
-                    .setUv(0, 1)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(120)
-                    .setNormal(pose, 0, 1, 0);
-
-            // Calculate perpendicular offset using up vector
-            float offsetX2 = (float)(actualUp.x * offset);
-            float offsetY2 = (float)(actualUp.y * offset);
-            float offsetZ2 = (float)(actualUp.z * offset);
-
-            // Line 2 - using up vector for billboarding (perpendicular to line 1)
-            buffer.addVertex(pose, offsetX2, startY + offsetY2, offsetZ2)
-                    .setColor(11, 20, 116, 180) // #0b1474 with higher opacity
-                    .setUv(0, 0)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(240)
-                    .setNormal(pose, 0, 1, 0);
-
-            buffer.addVertex(pose, offsetX2, endY + offsetY2, offsetZ2)
-                    .setColor(11, 20, 116, 255) // #0b1474 with higher opacity
-                    .setUv(0, 1)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(120)
-                    .setNormal(pose, 0, 1, 0);
-        }
-    }
-
-    private void drawConnectionLine(DeeplightBlockEntity blockEntity, float partialTick,
-                                    PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight) {
-
-        // Get the block below
-        BlockPos belowPos = blockEntity.getBlockPos().below();
-        if (!(blockEntity.getLevel().getBlockEntity(belowPos) instanceof DeeplightBlockEntity belowEntity)) {
-            return;
-        }
-
-        // Get rotation angles for the block below
-        float belowSwingX = belowEntity.getSwingAngleX(partialTick);
-        float belowSwingZ = belowEntity.getSwingAngleZ(partialTick);
-
-        // Start at the bottom face of the current block (y = 0 in block space)
-        // From block center (0.5, 0.5, 0.5), bottom face is at y = 0, so offset is -0.5
+        // Start point: bottom of the current (topmost) block
         float startY = -0.5f;
 
+        // End point: top of the bottom block
+        float endY = -(blocksBelow - 0.5f);
+
+        // Calculate the height of the beam
+        float beamHeight = Math.abs(startY - endY);
+
         // Get camera position for billboarding
         Minecraft mc = Minecraft.getInstance();
         Vec3 cameraPos = mc.gameRenderer.getMainCamera().getPosition();
@@ -253,163 +183,73 @@ public class DeeplightBlockRenderer implements BlockEntityRenderer<DeeplightBloc
         // Calculate direction to camera (for billboarding)
         Vec3 toCamera = cameraPos.subtract(blockPos).normalize();
 
-        // Draw a glowing line/beam between the blocks
-        VertexConsumer buffer = bufferSource.getBuffer(RenderType.lightning());
+        // Calculate perpendicular vectors for billboarding
+        Vec3 up = new Vec3(0, 1, 0);
+        Vec3 right = toCamera.cross(up).normalize();
 
-        // Calculate end position
-        // If this is the last block (bottom block has no block below it), end at its center
-        // Otherwise, end at the top face of the block below
-        double endX, endY, endZ;
+        // Width of the beam
+        float beamWidth = 0.125f; // 2 pixels in block units (1/8 of a block)
 
-        boolean belowIsBottom = !belowEntity.hasBlockBelow();
-
-        if (belowIsBottom) {
-            // End at the center of the bottom block
-            // We need to account for the below block's rotation
-            double radX = Math.toRadians(belowSwingX);
-            double radZ = Math.toRadians(belowSwingZ);
-
-            // Center of the below block is at y = -1.0 from current block center
-            endY = -1.0;
-            endX = 0;
-            endZ = 0;
-        } else {
-            // End at the top face of the below block (y = 1.0 in that block's space)
-            // From current block center, that's y = -0.5 (one block down, then to top face)
-            // The rotation of the below block shifts where its top face center is
-            double radX = Math.toRadians(belowSwingX);
-            double radZ = Math.toRadians(belowSwingZ);
-
-            // Top face of below block, accounting for its rotation
-            endY = -0.5;
-            endX = 0;
-            endZ = 0;
-        }
+        // Get the textured buffer
+        VertexConsumer buffer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(STEM_TEXTURE));
 
         // Get the pose matrices
         PoseStack.Pose pose = poseStack.last();
 
-        // Calculate perpendicular vectors for billboarding
-        Vec3 up = new Vec3(0, 1, 0);
-        Vec3 right = toCamera.cross(up).normalize();
-        Vec3 actualUp = right.cross(toCamera).normalize();
+        // Calculate the four corners of the quad, billboarded to face camera
+        float halfWidth = beamWidth / 2f;
 
-        // Draw multiple lines for thickness and glow effect (increased from 4 to 8 iterations)
-        for (int i = 0; i < 8; i++) {
-            float offset = (i - 3.5f) * 0.03f; // Increased spacing from 0.02f to 0.03f
+        // Right side offset
+        float rightX = (float)(right.x * halfWidth);
+        float rightY = (float)(right.y * halfWidth);
+        float rightZ = (float)(right.z * halfWidth);
 
-            // Calculate billboard offsets using the right vector
-            float offsetX = (float)(right.x * offset);
-            float offsetY = (float)(right.y * offset);
-            float offsetZ = (float)(right.z * offset);
+        // Left side offset (negative right)
+        float leftX = -rightX;
+        float leftY = -rightY;
+        float leftZ = -rightZ;
 
-            // Line 1 - using right vector for billboarding
-            buffer.addVertex(pose, offsetX, startY + offsetY, offsetZ)
-                    .setColor(135, 206, 235, 128) // Light blue with transparency
-                    .setUv(0, 0)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(240) // Full brightness
-                    .setNormal(pose, 0, 1, 0);
+        // Draw the quad with correct winding order
+        // Bottom-left
+        buffer.addVertex(pose, leftX, endY, leftZ)
+                .setColor(255, 255, 255, 255)
+                .setUv(0, beamHeight)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(240)
+                .setNormal(pose, (float)toCamera.x, (float)toCamera.y, (float)toCamera.z);
 
-            buffer.addVertex(pose, (float)endX + offsetX, (float)endY + offsetY, (float)endZ + offsetZ)
-                    .setColor(135, 206, 235, 128)
-                    .setUv(0, 1)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(240)
-                    .setNormal(pose, 0, 1, 0);
+        // Bottom-right
+        buffer.addVertex(pose, rightX, endY, rightZ)
+                .setColor(255, 255, 255, 255)
+                .setUv(1, beamHeight)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(240)
+                .setNormal(pose, (float)toCamera.x, (float)toCamera.y, (float)toCamera.z);
 
-            // Calculate perpendicular offset using up vector
-            float offsetX2 = (float)(actualUp.x * offset);
-            float offsetY2 = (float)(actualUp.y * offset);
-            float offsetZ2 = (float)(actualUp.z * offset);
+        // Top-right
+        buffer.addVertex(pose, rightX, startY, rightZ)
+                .setColor(255, 255, 255, 255)
+                .setUv(1, 0)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(240)
+                .setNormal(pose, (float)toCamera.x, (float)toCamera.y, (float)toCamera.z);
 
-            // Line 2 - using up vector for billboarding (perpendicular to line 1)
-            buffer.addVertex(pose, offsetX2, startY + offsetY2, offsetZ2)
-                    .setColor(135, 206, 235, 128)
-                    .setUv(0, 0)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(240)
-                    .setNormal(pose, 0, 1, 0);
-
-            buffer.addVertex(pose, (float)endX + offsetX2, (float)endY + offsetY2, (float)endZ + offsetZ2)
-                    .setColor(135, 206, 235, 128)
-                    .setUv(0, 1)
-                    .setOverlay(OverlayTexture.NO_OVERLAY)
-                    .setLight(240)
-                    .setNormal(pose, 0, 1, 0);
-        }
+        // Top-left
+        buffer.addVertex(pose, leftX, startY, leftZ)
+                .setColor(255, 255, 255, 255)
+                .setUv(0, 0)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(240)
+                .setNormal(pose, (float)toCamera.x, (float)toCamera.y, (float)toCamera.z);
     }
 
     @Override
     public int getViewDistance() {
-        return 256;
+        return MAX_RENDER_DISTANCE;
     }
 
     @Override
     public boolean shouldRenderOffScreen(DeeplightBlockEntity blockEntity) {
-        return true;
-    }
-
-    // Wrapper class to apply transparency to vertex colors
-    private static class TransparentVertexConsumer implements VertexConsumer {
-        private final VertexConsumer delegate;
-        private final float alpha;
-
-        public TransparentVertexConsumer(VertexConsumer delegate, float alpha) {
-            this.delegate = delegate;
-            this.alpha = alpha;
-        }
-
-        @Override
-        public VertexConsumer addVertex(float x, float y, float z) {
-            return delegate.addVertex(x, y, z);
-        }
-
-        @Override
-        public VertexConsumer addVertex(PoseStack.Pose pose, float x, float y, float z) {
-            return delegate.addVertex(pose, x, y, z);
-        }
-
-        @Override
-        public VertexConsumer setColor(int red, int green, int blue, int alpha) {
-            return delegate.setColor(red, green, blue, (int)(this.alpha * 255));
-        }
-
-        @Override
-        public VertexConsumer setUv(float u, float v) {
-            return delegate.setUv(u, v);
-        }
-
-        @Override
-        public VertexConsumer setUv1(int u, int v) {
-            return delegate.setUv1(u, v);
-        }
-
-        @Override
-        public VertexConsumer setUv2(int u, int v) {
-            return delegate.setUv2(u, v);
-        }
-
-        @Override
-        public VertexConsumer setNormal(float x, float y, float z) {
-            return delegate.setNormal(x, y, z);
-        }
-
-        @Override
-        public VertexConsumer setNormal(PoseStack.Pose pose, float x, float y, float z) {
-            return delegate.setNormal(pose, x, y, z);
-        }
-
-        @Override
-        public void addVertex(float x, float y, float z, int color, float u, float v, int overlayUV, int lightmapUV, float normalX, float normalY, float normalZ) {
-            // Extract RGB from color, apply our alpha
-            int r = (color >> 16) & 0xFF;
-            int g = (color >> 8) & 0xFF;
-            int b = color & 0xFF;
-            int newAlpha = (int)(this.alpha * 255);
-            int newColor = (newAlpha << 24) | (r << 16) | (g << 8) | b;
-
-            delegate.addVertex(x, y, z, newColor, u, v, overlayUV, lightmapUV, normalX, normalY, normalZ);
-        }
+        return false;
     }
 }

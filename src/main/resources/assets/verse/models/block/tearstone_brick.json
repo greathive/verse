@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "verse:block/brick1alt",
+    "up": "verse:block/brick1alt",
+    "north": "verse:block/brick1alt",
+    "east": "verse:block/brick1alt",
+    "south": "verse:block/brick1alt",
+    "west": "verse:block/brick1alt",
+    "particle": "verse:block/brick1alt"
+  },
+  "render_type": "solid"
+}
